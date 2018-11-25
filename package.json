@@ -1,10 +1,11 @@
 {
   "name": "spa",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:release": "yarn lint && yarn test --watch=false --progress=false --browsers=ChromeHeadlessCI --code-coverage && yarn e2e --protractor-config=e2e/protractor-ci.conf.js && yarn build -- --base-href /$GITHUB_REPO/ ",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
