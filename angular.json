@@ -133,6 +133,41 @@
           }
         }
       }
+    },
+    "non-functional": {
+      "root": "projects/non-functional",
+      "sourceRoot": "projects/non-functional/src",
+      "projectType": "library",
+      "prefix": "nfl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/non-functional/tsconfig.lib.json",
+            "project": "projects/non-functional/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/non-functional/src/test.ts",
+            "tsConfig": "projects/non-functional/tsconfig.spec.json",
+            "karmaConfig": "projects/non-functional/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/non-functional/tsconfig.lib.json",
+              "projects/non-functional/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "spa"

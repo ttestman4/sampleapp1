@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "non-functional": [
+        "dist/non-functional"
+      ],
+      "non-functional/*": [
+        "dist/non-functional/*"
+      ]
+    }
   }
 }

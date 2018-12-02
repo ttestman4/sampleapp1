@@ -15,6 +15,10 @@
 # cd sampleapp1
 # yarn
 
+
+yarn run ng g library non-functional
+
+
 # yarn add @angular-devkit/{core,schematics} @ngrx/{store-devtools,schematics} --dev
 # yarn add @ngrx/{store,effects,entity} ngrx-store-freeze
 # # yarn run ng config cli.defaultCollection @ngrx/schematics
