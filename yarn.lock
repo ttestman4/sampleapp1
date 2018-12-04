@@ -5772,6 +5772,13 @@ ng-packagr@^4.2.0:
     uglify-js "^3.0.7"
     update-notifier "^2.3.0"
 
+ngx-logger@^3.3.6:
+  version "3.3.6"
+  resolved "https://registry.yarnpkg.com/ngx-logger/-/ngx-logger-3.3.6.tgz#de32ca9839f0fd6dc3e6702594130f51d9726b8d"
+  integrity sha512-vNxWqda7sPaeG59IVKAGAKSa7q4FEXk7WZNQwrFLMXrz9VsrR51NKsmLQJ/fSp7cI+sFvElBWz1Xs4XHMenlJw==
+  dependencies:
+    tslib "^1.9.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
@@ -5938,6 +5945,11 @@ node-sass@^4.9.3:
     sass-graph "^2.2.4"
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
+
+"non-functional@file:./dist/non-functional":
+  version "0.0.1"
+  dependencies:
+    tslib "^1.9.0"
 
 "nopt@2 || 3", nopt@3.x:
   version "3.0.6"

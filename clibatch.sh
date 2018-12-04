@@ -14,10 +14,9 @@
 # foo/node_modules/.bin/ng new spa -p spa --directory sampleapp1 --routing --skip-install --style scss --view-encapsulation None -g -v
 # cd sampleapp1
 # yarn
-
-
-yarn run ng g library non-functional
-
+# yarn ng g library non-functional
+# yarn ng g module logger --dry-run --project non-functional -m non-functional.module
+# yarn add ngx-logger
 
 # yarn add @angular-devkit/{core,schematics} @ngrx/{store-devtools,schematics} --dev
 # yarn add @ngrx/{store,effects,entity} ngrx-store-freeze
