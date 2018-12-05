@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NonFunctionalModule } from 'non-functional';
+import { NonFunctionalModule, CustomLoggerLevel } from 'non-functional';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,12 @@ import { NonFunctionalModule } from 'non-functional';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NonFunctionalModule
+    NonFunctionalModule.forRoot({
+      serverLoggingUrl: '/api/logs',
+      level: CustomLoggerLevel.DEBUG,
+      serverLogLevel: CustomLoggerLevel.ERROR,
+      disableConsoleLogging: false,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

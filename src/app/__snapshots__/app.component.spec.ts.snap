@@ -2,6 +2,7 @@
 
 exports[`AppComponent snaps 1`] = `
 <spa-root
+  logger={[Function NGXLogger]}
   title={[Function String]}
 >
   <div

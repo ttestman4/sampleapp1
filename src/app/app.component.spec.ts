@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ConfigureFn, configureTests } from '../lib/testing';
 
 import { AppComponent } from './app.component';
+import { NonFunctionalModule, CustomLoggerLevel } from 'non-functional';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -16,7 +17,15 @@ describe('AppComponent', () => {
       const configure: ConfigureFn = testBed => {
         testBed.configureTestingModule({
           declarations: [AppComponent],
-          imports: [NoopAnimationsModule],
+          imports: [
+            NoopAnimationsModule,
+            NonFunctionalModule.forRoot({
+              serverLoggingUrl: '/api/logs',
+              level: CustomLoggerLevel.DEBUG,
+              serverLogLevel: CustomLoggerLevel.ERROR,
+              disableConsoleLogging: false,
+            })
+          ],
           schemas: [NO_ERRORS_SCHEMA],
         });
       };

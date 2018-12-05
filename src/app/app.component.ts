@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NGXLogger } from 'ngx-logger';
+import { CustomLogger } from 'non-functional';
 
 @Component({
   selector: 'spa-root',
@@ -9,7 +9,7 @@ import { NGXLogger } from 'ngx-logger';
 export class AppComponent {
   title = 'spa';
 
-  constructor(private logger: NGXLogger) {
+  constructor(private logger: CustomLogger) {
     this.logger.debug('Your log message goes here');
     this.logger.debug('Multiple', 'Argument', 'support');
   }
