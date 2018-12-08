@@ -17,6 +17,17 @@
       "es2018",
       "dom"
     ],
+    "alwaysStrict": true,
+    "extendedDiagnostics": true,
+    "forceConsistentCasingInFileNames": true,
+    "listEmittedFiles": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
     "paths": {
       "non-functional": [
         "dist/non-functional"
