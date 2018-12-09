@@ -15,8 +15,10 @@
 # cd sampleapp1
 # yarn
 # yarn ng g library non-functional
-# yarn ng g module logger --dry-run --project non-functional -m non-functional.module
+# yarn ng g module CustomLogger --project non-functional -m non-functional.module
 # yarn add ngx-logger
+# yarn ng g module AppErrorHandler --project non-functional -m non-functional.module
+# yarn ng g service app-error-handler/AppErrorHandler --project non-functional -m app-error-handler/app-error-handler.module
 
 # yarn add @angular-devkit/{core,schematics} @ngrx/{store-devtools,schematics} --dev
 # yarn add @ngrx/{store,effects,entity} ngrx-store-freeze
