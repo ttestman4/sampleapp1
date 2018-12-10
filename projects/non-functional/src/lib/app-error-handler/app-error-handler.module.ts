@@ -1,8 +1,11 @@
-import { ErrorHandler, NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppErrorHandlerService } from './app-error-handler.service';
+import { ErrorHandler, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { CustomLoggerConfigService, CustomLoggerModule } from '../custom-logger/custom-logger.module';
 import { AppErrorHandlerConfigService } from './app-error-handler-config.service';
-import { CustomLoggerModule, CustomLoggerConfigService } from '../custom-logger/custom-logger.module';
+import { AppErrorHandlerService, RestNextAppErrorHandlerServiceId } from './app-error-handler.service';
+
+export { AppErrorHandlerConfigService } from './app-error-handler-config.service';
+export { AppErrorHandlerConfig } from './app-error-handler.models';
 
 @NgModule({
   declarations: [],
@@ -22,6 +25,12 @@ import { CustomLoggerModule, CustomLoggerConfigService } from '../custom-logger/
   ],
 })
 export class AppErrorHandlerModule {
+  constructor(@Optional() @SkipSelf() parentModule: AppErrorHandlerModule) {
+    if (parentModule) {
+      throw new Error(
+        'AppErrorHandlerModule is already loaded. Import it in the AppModule only');
+    }
+  }
   static forRoot(config: AppErrorHandlerService | null | undefined): ModuleWithProviders {
     return {
       ngModule: AppErrorHandlerModule,
@@ -39,5 +48,8 @@ export class AppErrorHandlerModule {
       providers: [
       ]
     };
+  }
+  static forTestReset() {
+    RestNextAppErrorHandlerServiceId();
   }
 }

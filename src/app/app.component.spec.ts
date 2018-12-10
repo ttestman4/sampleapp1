@@ -1,12 +1,9 @@
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { async, fakeAsync, tick, ComponentFixture } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
-
+import { async, ComponentFixture } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CustomLoggerLevel, NonFunctionalModule } from 'non-functional';
 import { ConfigureFn, configureTests } from '../lib/testing';
-
 import { AppComponent } from './app.component';
-import { NonFunctionalModule, CustomLoggerLevel } from 'non-functional';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -14,6 +11,7 @@ describe('AppComponent', () => {
 
   beforeEach(
     async(() => {
+      NonFunctionalModule.forTestReset();
       const configure: ConfigureFn = testBed => {
         testBed.configureTestingModule({
           declarations: [AppComponent],

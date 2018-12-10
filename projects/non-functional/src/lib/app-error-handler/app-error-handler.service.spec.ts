@@ -2,13 +2,14 @@ import { TestBed } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
 import { ErrorHandler } from '@angular/core';
 import { CustomLoggerModule, CustomLogger } from '../custom-logger/custom-logger.module';
-import { AppErrorHandlerService } from './app-error-handler.service';
+import { AppErrorHandlerService, RestNextAppErrorHandlerServiceId } from './app-error-handler.service';
 
 describe('AppErrorHandlerService', () => {
   let service: ErrorHandler;
   let customLogger: CustomLogger;
 
   beforeEach(() => {
+    RestNextAppErrorHandlerServiceId();
     TestBed.configureTestingModule({
       imports: [
         CommonModule,
@@ -38,5 +39,9 @@ describe('AppErrorHandlerService', () => {
     const err = new Error('TestError');
     service.handleError(err);
     expect(customLogger.error).toHaveBeenCalled();
+  });
+
+  it('duplicate instance creation not allowed', () => {
+    expect(() => new AppErrorHandlerService(customLogger)).toThrowError();
   });
 });

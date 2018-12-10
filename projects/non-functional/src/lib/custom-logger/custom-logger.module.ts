@@ -1,15 +1,12 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomLoggerConfig } from './custom-logger.model';
-import { CustomLoggerConfigService } from './custom-logger-config.service';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { LoggerConfig, LoggerModule } from 'ngx-logger';
+import { CustomLoggerConfigService } from './custom-logger-config.service';
+import { CustomLoggerConfig } from './custom-logger.model';
 
-export {
-  NgxLoggerLevel as CustomLoggerLevel,
-  NGXLogger as CustomLogger
-} from 'ngx-logger';
-export { CustomLoggerConfig } from './custom-logger.model';
+export { NGXLogger as CustomLogger, NgxLoggerLevel as CustomLoggerLevel } from 'ngx-logger';
 export { CustomLoggerConfigService } from './custom-logger-config.service';
+export { CustomLoggerConfig } from './custom-logger.model';
 
 @NgModule({
   declarations: [],
@@ -25,6 +22,12 @@ export { CustomLoggerConfigService } from './custom-logger-config.service';
   ]
 })
 export class CustomLoggerModule {
+  constructor(@Optional() @SkipSelf() parentModule: CustomLoggerModule) {
+    if (parentModule) {
+      throw new Error(
+        'CustomLoggerModule is already loaded. Import it in the AppModule only');
+    }
+  }
   static forRoot(config: CustomLoggerConfig | null | undefined): ModuleWithProviders {
     return {
       ngModule: CustomLoggerModule,

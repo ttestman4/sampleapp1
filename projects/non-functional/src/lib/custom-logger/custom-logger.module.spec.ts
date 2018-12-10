@@ -14,4 +14,13 @@ describe('CustomLoggerModule', () => {
         customLoggerModuleForChild = CustomLoggerModule.forChild();
         expect(customLoggerModuleForChild).toBeTruthy();
     });
+
+    it('duplicate instance creation not allowed', () => {
+        expect(() => new CustomLoggerModule(customLoggerModuleForRoot)).toThrowError();
+    });
+
+    it('single instance creation is allowed', () => {
+        const customLoggerModule = new CustomLoggerModule();
+        expect(customLoggerModule).toBeTruthy();
+    });
 });

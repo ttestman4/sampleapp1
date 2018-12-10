@@ -1,10 +1,10 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { NonFunctionalComponent } from './non-functional.component';
-import { CustomLoggerModule, CustomLoggerConfigService } from './custom-logger/custom-logger.module';
-import { NonFunctionalConfig } from './non-functional.models';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { AppErrorHandlerConfigService, AppErrorHandlerModule } from './app-error-handler/app-error-handler.module';
+import { CustomLoggerConfigService, CustomLoggerModule } from './custom-logger/custom-logger.module';
 import { NonFunctionalConfigService } from './non-functional-config.service';
-import { AppErrorHandlerModule } from './app-error-handler/app-error-handler.module';
-export { CustomLoggerLevel, CustomLogger } from './custom-logger/custom-logger.module';
+import { NonFunctionalComponent } from './non-functional.component';
+import { NonFunctionalConfig } from './non-functional.models';
+export { CustomLogger, CustomLoggerLevel } from './custom-logger/custom-logger.module';
 export { NonFunctionalConfig } from './non-functional.models';
 
 @NgModule({
@@ -17,11 +17,22 @@ export { NonFunctionalConfig } from './non-functional.models';
     {
       provide: CustomLoggerConfigService,
       useExisting: NonFunctionalConfigService
+    },
+    {
+      provide: AppErrorHandlerConfigService,
+      useExisting: NonFunctionalConfigService
     }
   ],
   exports: [NonFunctionalComponent]
 })
 export class NonFunctionalModule {
+  constructor(@Optional() @SkipSelf() parentModule: NonFunctionalModule) {
+    if (parentModule) {
+      throw new Error(
+        'NonFunctionalModule is already loaded. Import it in the AppModule only');
+    }
+  }
+
   static forRoot(config: NonFunctionalConfig | null | undefined): ModuleWithProviders {
     return {
       ngModule: NonFunctionalModule,
@@ -34,6 +45,13 @@ export class NonFunctionalModule {
     };
   }
   static forChild(): ModuleWithProviders {
-    return CustomLoggerModule.forChild();
+    return {
+      ngModule: NonFunctionalModule,
+      providers: [
+      ]
+    };
+  }
+  static forTestReset() {
+    AppErrorHandlerModule.forTestReset();
   }
 }
