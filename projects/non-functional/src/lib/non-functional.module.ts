@@ -1,6 +1,7 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { AppErrorHandlerConfigService, AppErrorHandlerModule } from './app-error-handler/app-error-handler.module';
 import { CustomLoggerConfigService, CustomLoggerModule } from './custom-logger/custom-logger.module';
+import { HttpConfigurationConfigService, HttpConfigurationModule } from './http-configuration/http-configuration.module';
 import { NonFunctionalConfigService } from './non-functional-config.service';
 import { NonFunctionalComponent } from './non-functional.component';
 import { NonFunctionalConfig } from './non-functional.models';
@@ -11,7 +12,8 @@ export { NonFunctionalConfig } from './non-functional.models';
   declarations: [NonFunctionalComponent],
   imports: [
     CustomLoggerModule,
-    AppErrorHandlerModule
+    AppErrorHandlerModule,
+    HttpConfigurationModule
   ],
   providers: [
     {
@@ -20,6 +22,10 @@ export { NonFunctionalConfig } from './non-functional.models';
     },
     {
       provide: AppErrorHandlerConfigService,
+      useExisting: NonFunctionalConfigService
+    },
+    {
+      provide: HttpConfigurationConfigService,
       useExisting: NonFunctionalConfigService
     }
   ],
@@ -53,5 +59,6 @@ export class NonFunctionalModule {
   }
   static forTestReset() {
     AppErrorHandlerModule.forTestReset();
+    HttpConfigurationModule.forTestReset();
   }
 }

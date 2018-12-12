@@ -1,9 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { CustomLoggerLevel, NonFunctionalModule } from 'non-functional';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NonFunctionalModule, CustomLoggerLevel } from 'non-functional';
+
 
 @NgModule({
   declarations: [

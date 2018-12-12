@@ -20,18 +20,24 @@
 # yarn ng g module AppErrorHandler --project non-functional -m non-functional.module
 # yarn ng g service app-error-handler/AppErrorHandler --project non-functional -m app-error-handler/app-error-handler.module
 
+# yarn ng g module HttpConfiguration --project non-functional -m non-functional.module --dry-run
+# yarn ng g service http-configuration/HttpErrorLogger --project non-functional --dry-run
+
+
+
+
 # yarn add @angular-devkit/{core,schematics} @ngrx/{store-devtools,schematics} --dev
 # yarn add @ngrx/{store,effects,entity} ngrx-store-freeze
 # # yarn run ng config cli.defaultCollection @ngrx/schematics
-# yarn run ng g library non-functional 
+# yarn run ng g library non-functional
 # yarn run ng config projects.spa.schematics.@ngrx/schematics:component.styleext scss
 # yarn add concurrently
-# yarn run ng g module rootStore -m non-functional.module --project non-functional 
-# yarn run ng g @ngrx/schematics:store root --root --module root-store --state-path root-store --project non-functional 
-# yarn run ng g @ngrx/schematics:effect root-store/root-store --root -m root-store/root-store.module --project non-functional 
-# yarn run ng g library country -d 
-# yarn run ng g module countryStore -m country.module --project country 
-# yarn run ng g @ngrx/schematics:entity country-store/country -m country-store.module --project country 
+# yarn run ng g module rootStore -m non-functional.module --project non-functional
+# yarn run ng g @ngrx/schematics:store root --root --module root-store --state-path root-store --project non-functional
+# yarn run ng g @ngrx/schematics:effect root-store/root-store --root -m root-store/root-store.module --project non-functional
+# yarn run ng g library country -d
+# yarn run ng g module countryStore -m country.module --project country
+# yarn run ng g @ngrx/schematics:entity country-store/country -m country-store.module --project country
 
 # npm run ng -- set defaults.component.changeDetection OnPush
 # npm run ng -- set defaults.component.viewEncapsulation None
@@ -64,15 +70,15 @@
 # npm run ng -- g service non-functional/logger/loggerHttp -m non-functional/logger/logger.module
 # npm run ng -- g class non-functional/logger/loggerConfig
 
-# npm run ng -- g module module1 --routing 
-# npm run ng -- g component module1/mod1comp1 -m module1/module1.module 
-# npm run ng -- g component module1/mod1comp2 -m module1/module1.module 
-# npm run ng -- g component module1/mod1host -m module1/module1.module 
+# npm run ng -- g module module1 --routing
+# npm run ng -- g component module1/mod1comp1 -m module1/module1.module
+# npm run ng -- g component module1/mod1comp2 -m module1/module1.module
+# npm run ng -- g component module1/mod1host -m module1/module1.module
 
-# npm run ng -- g module module2 --routing 
-# npm run ng -- g component module2/mod2comp1 -m module2/module2.module 
-# npm run ng -- g component module2/mod2comp2 -m module2/module2.module 
-# npm run ng -- g component module2/mod2host -m module2/module2.module 
+# npm run ng -- g module module2 --routing
+# npm run ng -- g component module2/mod2comp1 -m module2/module2.module
+# npm run ng -- g component module2/mod2comp2 -m module2/module2.module
+# npm run ng -- g component module2/mod2host -m module2/module2.module
 
 # npm run ng -- g module shared
-# yarn ng g service shared/svc1 
+# yarn ng g service shared/svc1

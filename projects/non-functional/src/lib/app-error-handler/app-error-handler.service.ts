@@ -1,9 +1,9 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { CustomLogger } from '../custom-logger/custom-logger.module';
 
-export let nextAppErrorHandlerServiceId = 1;
+let nextAppErrorHandlerServiceId = 1;
 
-export function RestNextAppErrorHandlerServiceId() {
+export function RestAppErrorHandlerServiceId() {
   nextAppErrorHandlerServiceId = 1;
 }
 
