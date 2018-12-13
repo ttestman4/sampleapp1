@@ -22,6 +22,7 @@
 
 # yarn ng g module HttpConfiguration --project non-functional -m non-functional.module --dry-run
 # yarn ng g service http-configuration/HttpErrorLogger --project non-functional --dry-run
+# yarn ng g module ROotStore --project non-functional -m non-functional.module --dry-run
 
 
 

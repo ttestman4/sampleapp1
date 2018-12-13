@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomLoggerLevel, NonFunctionalModule } from 'non-functional';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AppComponent } from './app.component';
       level: CustomLoggerLevel.DEBUG,
       serverLogLevel: CustomLoggerLevel.ERROR,
       disableConsoleLogging: false,
+      debugStore: !environment.production,
     }),
   ],
   providers: [],

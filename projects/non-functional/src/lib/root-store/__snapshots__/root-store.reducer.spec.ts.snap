@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root Reducer Unknown action should return the initial state 1`] = `"Root Store"`;
+
+exports[`Root Reducer Unknown action should return the initial state for undefined initial state input 1`] = `"Root Store"`;

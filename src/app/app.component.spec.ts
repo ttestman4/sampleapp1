@@ -4,7 +4,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomLoggerLevel, NonFunctionalModule } from 'non-functional';
 import { ConfigureFn, configureTests } from '../lib/testing';
 import { AppComponent } from './app.component';
-
+import {RouterTestingModule } from '@angular/router/testing';
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
@@ -22,7 +22,9 @@ describe('AppComponent', () => {
               level: CustomLoggerLevel.DEBUG,
               serverLogLevel: CustomLoggerLevel.ERROR,
               disableConsoleLogging: false,
-            })
+              debugStore: true
+            }),
+            RouterTestingModule.withRoutes([]),
           ],
           schemas: [NO_ERRORS_SCHEMA],
         });

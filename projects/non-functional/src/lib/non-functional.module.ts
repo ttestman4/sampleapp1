@@ -5,6 +5,8 @@ import { HttpConfigurationConfigService, HttpConfigurationModule } from './http-
 import { NonFunctionalConfigService } from './non-functional-config.service';
 import { NonFunctionalComponent } from './non-functional.component';
 import { NonFunctionalConfig } from './non-functional.models';
+import { RootStoreModule } from './root-store/root-store.module';
+import { RootStoreConfigService } from './root-store/root-store-config.service';
 export { CustomLogger, CustomLoggerLevel } from './custom-logger/custom-logger.module';
 export { NonFunctionalConfig } from './non-functional.models';
 
@@ -13,7 +15,8 @@ export { NonFunctionalConfig } from './non-functional.models';
   imports: [
     CustomLoggerModule,
     AppErrorHandlerModule,
-    HttpConfigurationModule
+    HttpConfigurationModule,
+    RootStoreModule
   ],
   providers: [
     {
@@ -26,6 +29,10 @@ export { NonFunctionalConfig } from './non-functional.models';
     },
     {
       provide: HttpConfigurationConfigService,
+      useExisting: NonFunctionalConfigService
+    },
+    {
+      provide: RootStoreConfigService,
       useExisting: NonFunctionalConfigService
     }
   ],
