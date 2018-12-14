@@ -1,4 +1,4 @@
-// import * as fromRouter from '@ngrx/router-store';
+import * as fromRouter from '@ngrx/router-store';
 import { Action, ActionReducer, ActionReducerMap } from '@ngrx/store';
 /**
  * storeFreeze prevents state from being mutated. When mutation occurs, an
@@ -14,7 +14,7 @@ import { RootStoreConfig } from './root-store.models';
  */
 export interface State {
     name: string;
-    // router: fromRouter.RouterReducerState;
+    router: fromRouter.RouterReducerState;
 }
 
 export const initialState = 'Root Store';
@@ -33,7 +33,7 @@ export function reducer(state = initialState, action: Action): string {
  */
 export const reducers: ActionReducerMap<State> = {
     name: reducer,
-    // router: fromRouter.routerReducer,
+    router: fromRouter.routerReducer,
 };
 
 // console.log all actions
