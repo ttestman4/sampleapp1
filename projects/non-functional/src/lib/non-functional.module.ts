@@ -3,7 +3,6 @@ import { AppErrorHandlerConfigService, AppErrorHandlerModule } from './app-error
 import { CustomLoggerConfigService, CustomLoggerModule } from './custom-logger/custom-logger.module';
 import { HttpConfigurationConfigService, HttpConfigurationModule } from './http-configuration/http-configuration.module';
 import { NonFunctionalConfigService } from './non-functional-config.service';
-import { NonFunctionalComponent } from './non-functional.component';
 import { NonFunctionalConfig } from './non-functional.models';
 import { RootStoreModule } from './root-store/root-store.module';
 import { RootStoreConfigService } from './root-store/root-store-config.service';
@@ -11,7 +10,7 @@ export { CustomLogger, CustomLoggerLevel } from './custom-logger/custom-logger.m
 export { NonFunctionalConfig } from './non-functional.models';
 
 @NgModule({
-  declarations: [NonFunctionalComponent],
+  declarations: [],
   imports: [
     CustomLoggerModule,
     AppErrorHandlerModule,
@@ -36,7 +35,7 @@ export { NonFunctionalConfig } from './non-functional.models';
       useExisting: NonFunctionalConfigService
     }
   ],
-  exports: [NonFunctionalComponent]
+  exports: []
 })
 export class NonFunctionalModule {
   constructor(@Optional() @SkipSelf() parentModule: NonFunctionalModule) {

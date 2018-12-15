@@ -22,9 +22,10 @@
 
 # yarn ng g module HttpConfiguration --project non-functional -m non-functional.module --dry-run
 # yarn ng g service http-configuration/HttpErrorLogger --project non-functional --dry-run
-# yarn ng g module ROotStore --project non-functional -m non-functional.module --dry-run
+# yarn ng g module RootStore --project non-functional -m non-functional.module --dry-run
 
-
+# yarn ng g library FeatureStore
+# yarn ng g module ConfigData --project FeatureStore
 
 
 # yarn add @angular-devkit/{core,schematics} @ngrx/{store-devtools,schematics} --dev
