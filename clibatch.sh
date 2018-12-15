@@ -25,7 +25,7 @@
 # yarn ng g module RootStore --project non-functional -m non-functional.module --dry-run
 
 # yarn ng g library FeatureStore
-# yarn ng g module ConfigData --project FeatureStore
+# yarn ng g module ConfigDataStore --project feature-store
 
 
 # yarn add @angular-devkit/{core,schematics} @ngrx/{store-devtools,schematics} --dev

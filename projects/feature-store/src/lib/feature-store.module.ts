@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { FeatureStoreComponent } from './feature-store.component';
 
 @NgModule({
-  declarations: [FeatureStoreComponent],
+  declarations: [],
   imports: [
   ],
-  exports: [FeatureStoreComponent]
+  exports: []
 })
 export class FeatureStoreModule { }

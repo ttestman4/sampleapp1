@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root Reducer Unknown action should return the initial state 1`] = `
+Object {
+  "airports": Array [],
+  "name": "Config Data Store",
+}
+`;
+
+exports[`Root Reducer Unknown action should return the initial state for undefined initial state input 1`] = `
+Object {
+  "airports": Array [],
+  "name": "Config Data Store",
+}
+`;
+
+exports[`Root Reducer Valid action should return the updated State 1`] = `
+Object {
+  "airports": Array [
+    Object {
+      "code": "BOM",
+      "name": "MUMBAI",
+    },
+    Object {
+      "code": "GOI",
+      "name": "GOA",
+    },
+  ],
+  "name": "Config Data Store",
+}
+`;
+
+exports[`Root Reducer Valid action with invalid payload i.e. Non arry should be handled gracefully 1`] = `
+Object {
+  "airports": Array [],
+  "name": "Config Data Store",
+}
+`;
