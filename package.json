@@ -17,6 +17,7 @@
     "test:lib": "yarn test:lib:non && yarn test:lib:fea",
     "test:ci:lib": "yarn test:lib:non --runInBand --ci && yarn test:lib:fea --runInBand --ci",
     "test:app": "jest --config ./jest.app.config.js",
+    "test:debug:lib:fea": "node  --inspect-brk node_modules/.bin/jest --runInBand --ci --config ./jest.lib.feature-store.config.js",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -59,6 +60,7 @@
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
+    "jasmine-marbles": "^0.4.1",
     "jasmine-spec-reporter": "~4.2.1",
     "jest": "^23.6.0",
     "jest-preset-angular": "^6.0.1",

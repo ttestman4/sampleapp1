@@ -3,6 +3,10 @@ export interface Airport {
     name: string;
 }
 
+export interface AirportData {
+    data: Airport[];
+}
+
 export interface ConfigData {
     airports: Airport[];
 }

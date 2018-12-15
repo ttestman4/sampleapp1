@@ -22,17 +22,19 @@
 
 # yarn ng g module HttpConfiguration --project non-functional -m non-functional.module --dry-run
 # yarn ng g service http-configuration/HttpErrorLogger --project non-functional --dry-run
-# yarn ng g module RootStore --project non-functional -m non-functional.module --dry-run
-
-# yarn ng g library FeatureStore
-# yarn ng g module ConfigDataStore --project feature-store
-
 
 # yarn add @angular-devkit/{core,schematics} @ngrx/{store-devtools,schematics} --dev
 # yarn add @ngrx/{store,effects,entity} ngrx-store-freeze
 # # yarn run ng config cli.defaultCollection @ngrx/schematics
-# yarn run ng g library non-functional
-# yarn run ng config projects.spa.schematics.@ngrx/schematics:component.styleext scss
+
+# yarn ng g module RootStore --project non-functional -m non-functional.module --dry-run
+
+# yarn ng g library FeatureStore
+# yarn ng g module ConfigDataStore --project feature-store
+# yarn ng g service config-data-store/config-data-store.service --project feature-store --dry-run
+
+
+
 # yarn add concurrently
 # yarn run ng g module rootStore -m non-functional.module --project non-functional
 # yarn run ng g @ngrx/schematics:store root --root --module root-store --state-path root-store --project non-functional
