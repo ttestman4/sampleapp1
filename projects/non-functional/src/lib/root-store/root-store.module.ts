@@ -6,7 +6,7 @@ import { META_REDUCERS, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RootStoreConfigService } from './root-store-config.service';
 import { RootStoreConfig, StoreConfig } from './root-store.models';
-import { reducers, createMetaReducers } from './root-store.reducer';
+import { createMetaReducers, reducers } from './root-store.reducer';
 export { RootStoreConfig } from './root-store.models';
 
 @NgModule({
