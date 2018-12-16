@@ -34,7 +34,6 @@ describe('ConfigDataStoreService', () => {
   });
 
   it('duplicate instance creation not allowed', () => {
-    expect(configService).toBeTruthy();
     expect(() => new ConfigDataStoreService()).toThrowError();
   });
 

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { defer, of } from 'rxjs';
-import { catchError, flatMap, map, switchMap } from 'rxjs/operators';
+import { Actions, Effect, ofType, UpdateEffects, UPDATE_EFFECTS } from '@ngrx/effects';
+import { of } from 'rxjs';
+import { catchError, filter, flatMap, map, switchMap } from 'rxjs/operators';
 import * as ConfigStoreActions from './config-data-store.actions';
 import { Airport } from './config-data-store.models';
 import { ConfigDataStoreService } from './config-data-store.service';
 
 let nextConfigDataEffectsId = 1;
 
+export function ResetNextConfigDataEffectsId() {
+    nextConfigDataEffectsId = 1;
+}
 @Injectable({
     providedIn: 'root'
 })
@@ -35,13 +38,12 @@ export class ConfigDataEffects {
         })
     );
 
-    // If you want to trigger another action,
-    // be careful to add this effect at the end.
-    // Should be your last effectyarn build
     @Effect()
-    init$ = defer(() => {
-        return of(new ConfigStoreActions.LoadConfig());
-    });
+    init$ = this.actions$.pipe(
+        ofType<UpdateEffects>(UPDATE_EFFECTS),
+        filter(action => action.effects.includes('ConfigDataEffects')),
+        map(_action => new ConfigStoreActions.LoadConfig())
+    );
 
     constructor(
         private actions$: Actions<ConfigStoreActions.ConfigDataActionsUnion>,
