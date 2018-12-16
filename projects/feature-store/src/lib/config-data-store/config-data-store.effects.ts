@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType, UpdateEffects, UPDATE_EFFECTS } from '@ngrx/effects';
+import { Actions, Effect, ofType, OnIdentifyEffects, UpdateEffects, UPDATE_EFFECTS } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, filter, flatMap, map, switchMap } from 'rxjs/operators';
+import { catchError, flatMap, map, switchMap } from 'rxjs/operators';
 import * as ConfigStoreActions from './config-data-store.actions';
 import { Airport } from './config-data-store.models';
 import { ConfigDataStoreService } from './config-data-store.service';
@@ -14,7 +14,8 @@ export function ResetNextConfigDataEffectsId() {
 @Injectable({
     providedIn: 'root'
 })
-export class ConfigDataEffects {
+export class ConfigDataEffects implements OnIdentifyEffects {
+    effectIdentifier = 'FeatureStoreConfigDataEffects';
 
     @Effect()
     loadAirports$ = this.actions$.pipe(
@@ -41,9 +42,17 @@ export class ConfigDataEffects {
     @Effect()
     init$ = this.actions$.pipe(
         ofType<UpdateEffects>(UPDATE_EFFECTS),
-        filter(action => action.effects.includes('ConfigDataEffects')),
+        // SourceName is given. Instance Name or Identifier is prefered as aot will kill this.
+        // filter(action => {
+        //     debugger;
+        //     return action.effects.includes(this.effectIdentifier);
+        // }),
         map(_action => new ConfigStoreActions.LoadConfig())
     );
+
+    ngrxOnIdentifyEffects() {
+        return this.effectIdentifier;
+    }
 
     constructor(
         private actions$: Actions<ConfigStoreActions.ConfigDataActionsUnion>,

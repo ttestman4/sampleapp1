@@ -45,7 +45,7 @@ describe('ConfigDataEffects', () => {
         it('should return action for load config data', () => {
             const action = {
                 type: UPDATE_EFFECTS,
-                effects: ['ConfigDataEffects']
+                effects: [effects.effectIdentifier]
             };
             const responseAction1 = new ConfigDataStoreActions.LoadConfig();
 
