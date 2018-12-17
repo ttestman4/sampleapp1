@@ -398,6 +398,9 @@ non-functional
 @ngrx/effects
 MIT
 
+@ngrx/entity
+MIT
+
 feature-store
 
 @ngrx/store
