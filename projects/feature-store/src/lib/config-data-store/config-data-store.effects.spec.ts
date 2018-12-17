@@ -43,16 +43,9 @@ describe('ConfigDataEffects', () => {
 
     describe('init$', () => {
         it('should return action for load config data', () => {
-            const action = {
-                type: UPDATE_EFFECTS,
-                effects: [effects.effectIdentifier]
-            };
+
             const responseAction1 = new ConfigDataStoreActions.LoadConfig();
-
-            actions$ = hot('-a---', { a: action });
-            const expected = cold('-p--', { p: responseAction1 });
-
-            expect(effects.init$).toBeObservable(expected);
+            effects.init$.subscribe((action) => expect(action).toEqual(responseAction1));
         });
     });
 
