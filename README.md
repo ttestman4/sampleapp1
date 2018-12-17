@@ -5,7 +5,7 @@ Angular applicaion integrating all the known best practices
 ## CICD Setup
 
 Project is configured for CICD using [Travis](https://travis-ci.org/ttestman4/sampleapp1)
-and github [ghpashes](https://ttestman4.github.io/sampleapp1/index.html). Please check live [Demo URL](https://ttestman4.github.io/sampleapp1/index.html) to see running application.
+and github [ghpages](https://ttestman4.github.io/sampleapp1/index.html). Please check live [Demo URL](https://ttestman4.github.io/sampleapp1/index.html) to see running application.
 
 ## [Redux](https://redux.js.org/introduction/motivation) pattern implementation
 
