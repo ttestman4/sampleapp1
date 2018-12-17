@@ -25,7 +25,7 @@ describe('Flight Reducer', () => {
             const flightSearchDetails: FlightModels.FlightSearchDetail = {
                 from: 'BOM',
                 to: 'GOI',
-                startDate: new Date('2018-12-17T03:24:00'),
+                startDate: new Date('2018-12-17'),
                 travelOrder: 1,
                 startAfterTime: { hours: 9, minutes: 20 },
                 startBeforeTime: { hours: 16, minutes: 19 },
@@ -41,7 +41,7 @@ describe('Flight Reducer', () => {
             const flightSearchDetails: FlightModels.FlightSearchDetail = {
                 from: 'BOM',
                 to: 'DEL',
-                startDate: new Date('2019-11-17T03:24:00'),
+                startDate: new Date('2019-11-17'),
                 travelOrder: 1,
                 startAfterTime: { hours: 9, minutes: 20 },
                 startBeforeTime: { hours: 16, minutes: 19 },
@@ -57,7 +57,7 @@ describe('Flight Reducer', () => {
             const flightSearchDetails: FlightModels.FlightSearchDetail = {
                 from: 'GOI',
                 to: 'BOM',
-                startDate: new Date('2018-12-17T03:24:00'),
+                startDate: new Date('2018-12-17'),
                 travelOrder: 2,
                 startAfterTime: { hours: 9, minutes: 20 },
                 startBeforeTime: { hours: 16, minutes: 19 },
@@ -76,7 +76,7 @@ describe('Flight Reducer', () => {
                 flightDetails: [{
                     from: 'BOM',
                     to: 'DEL',
-                    startDate: new Date('2019-11-17T03:24:00'),
+                    startDate: new Date('2019-11-17'),
                     travelOrder: 1,
                     airline: 'indigo',
                     startTime: { hours: 9, minutes: 20 },

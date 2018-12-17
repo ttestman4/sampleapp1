@@ -47,7 +47,7 @@ describe('FlightEffects', () => {
                 flightDetails: [{
                     from: 'BOM',
                     to: 'DEL',
-                    startDate: new Date('2019-11-17T03:24:00'),
+                    startDate: new Date('2019-11-17'),
                     travelOrder: 1,
                     airline: 'indigo',
                     startTime: { hours: 9, minutes: 20 },
