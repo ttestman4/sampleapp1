@@ -15,6 +15,7 @@ module.exports = {
         "/node_modules/",
         "jestGlobalMocks",
         "src/lib/testing",
+        "src/setupJest.ts",
         "dist/"
     ],
     "coverageThreshold": {

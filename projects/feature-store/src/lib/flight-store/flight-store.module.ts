@@ -3,9 +3,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { ConfigDataEffects } from './config-data-store.effects';
-import { reducer } from './config-data-store.reducer';
-export { Airport } from './config-data-store.models';
+import { FlightEffects } from './flight-store.effects';
+import { reducer } from './flight-store.reducer';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -16,7 +16,7 @@ export { Airport } from './config-data-store.models';
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature('configdata', reducer),
+    StoreModule.forFeature('flight', reducer),
     /**
      * Effects.forFeature is used to register effects
      * from feature modules. Effects can be loaded
@@ -25,27 +25,27 @@ export { Airport } from './config-data-store.models';
      * All Effects will only be instantiated once regardless of
      * whether they are registered once or multiple times.
      */
-    EffectsModule.forFeature([ConfigDataEffects]),
+    EffectsModule.forFeature([FlightEffects]),
     HttpClientModule,
   ]
 })
-export class ConfigDataStoreModule {
-  constructor(@Optional() @SkipSelf() parentModule: ConfigDataStoreModule) {
+export class FlightStoreModule {
+  constructor(@Optional() @SkipSelf() parentModule: FlightStoreModule) {
     if (parentModule) {
       throw new Error(
-        'ConfigDataStoreModule is already loaded. Import it in the AppModule only');
+        'FlightStoreModule is already loaded. Import it in the AppModule only');
     }
   }
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: ConfigDataStoreModule,
+      ngModule: FlightStoreModule,
       providers: [
       ]
     };
   }
   static forChild(): ModuleWithProviders {
     return {
-      ngModule: ConfigDataStoreModule,
+      ngModule: FlightStoreModule,
       providers: [
       ]
     };

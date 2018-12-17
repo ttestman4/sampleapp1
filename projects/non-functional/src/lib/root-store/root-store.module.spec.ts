@@ -12,6 +12,20 @@ describe('RootStoreModule', () => {
         expect(rootStoreModuleForRoot).toBeTruthy();
     });
 
+    it('should create an instance For Root', () => {
+        rootStoreModuleForRoot = RootStoreModule.forRoot({
+            debugStore: false,
+        });
+        expect(rootStoreModuleForRoot).toBeTruthy();
+    });
+
+    it('should create an instance For Root', () => {
+        rootStoreModuleForRoot = RootStoreModule.forRoot({
+            debugStore: true,
+        });
+        expect(rootStoreModuleForRoot).toBeTruthy();
+    });
+
     it('should create an instance For Child', () => {
         rootStoreModuleForChild = RootStoreModule.forChild();
         expect(rootStoreModuleForChild).toBeTruthy();

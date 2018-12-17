@@ -1,7 +1,7 @@
 import { LoadAirportsSuccess } from './config-data-store.actions';
 import { Airport } from './config-data-store.models';
 import { initialState, reducer, State } from './config-data-store.reducer';
-describe('Root Reducer', () => {
+describe('ConfigData Reducer', () => {
     it('Unknown action should return the initial state', () => {
         const action = {} as any;
 

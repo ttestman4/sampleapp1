@@ -5,7 +5,7 @@ import { CustomLoggerLevel, NonFunctionalModule } from 'non-functional';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
-import { ConfigDataStoreModule } from 'feature-store';
+import { ConfigDataStoreModule, FlightStoreModule } from 'feature-store';
 
 @NgModule({
   declarations: [
@@ -23,6 +23,7 @@ import { ConfigDataStoreModule } from 'feature-store';
       debugStore: !environment.production,
     }),
     ConfigDataStoreModule.forRoot(),
+    FlightStoreModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

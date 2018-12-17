@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType, OnIdentifyEffects, UpdateEffects, UPDATE_EFFECTS } from '@ngrx/effects';
+import { Actions, Effect, ofType, UpdateEffects, UPDATE_EFFECTS } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, flatMap, map, switchMap } from 'rxjs/operators';
 import * as ConfigStoreActions from './config-data-store.actions';
@@ -14,8 +14,7 @@ export function ResetNextConfigDataEffectsId() {
 @Injectable({
     providedIn: 'root'
 })
-export class ConfigDataEffects implements OnIdentifyEffects {
-    effectIdentifier = 'FeatureStoreConfigDataEffects';
+export class ConfigDataEffects {
 
     @Effect()
     loadAirports$ = this.actions$.pipe(
@@ -49,10 +48,6 @@ export class ConfigDataEffects implements OnIdentifyEffects {
         // }),
         map(_action => new ConfigStoreActions.LoadConfig())
     );
-
-    ngrxOnIdentifyEffects() {
-        return this.effectIdentifier;
-    }
 
     constructor(
         private actions$: Actions<ConfigStoreActions.ConfigDataActionsUnion>,
