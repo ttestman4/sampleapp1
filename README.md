@@ -9,7 +9,8 @@ and github [ghpages](https://ttestman4.github.io/sampleapp1/index.html). Please 
 
 ## [Redux](https://redux.js.org/introduction/motivation) pattern implementation
 
-[ngrx](https://ngrx.io/) library is used to implement redux pattern
+[ngrx](https://ngrx.io/) library is used to implement redux pattern.
+  Use [dev tool](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) to debug live app
 
 ## Setup
 

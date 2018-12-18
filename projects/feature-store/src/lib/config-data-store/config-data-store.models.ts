@@ -10,3 +10,5 @@ export interface AirportData {
 export interface ConfigData {
     airports: Airport[];
 }
+
+

@@ -4,8 +4,9 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ConfigDataEffects } from './config-data-store.effects';
-import { reducer } from './config-data-store.reducer';
-export { Airport } from './config-data-store.models';
+import { reducer, featureName } from './config-data-store.reducer';
+export * from './config-data-store.models';
+export * from './config-data-store.selectors';
 @NgModule({
   declarations: [],
   imports: [
@@ -16,7 +17,7 @@ export { Airport } from './config-data-store.models';
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature('configdata', reducer),
+    StoreModule.forFeature(featureName, reducer),
     /**
      * Effects.forFeature is used to register effects
      * from feature modules. Effects can be loaded

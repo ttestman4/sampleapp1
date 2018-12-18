@@ -1,0 +1,190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchComponent snaps 1`] = `
+<spa-search
+  airports$={[Function Observable]}
+  fromCtrl={[Function FormControl]}
+  store={[Function Store]}
+  toCtrl={[Function FormControl]}
+>
+  <p>
+     search works!
+  
+  </p><form
+    class="ng-untouched ng-pristine ng-valid"
+    novalidate=""
+  >
+    <mat-form-field
+      class="mat-form-field ng-tns-c3-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder ng-untouched ng-pristine ng-valid _mat-animation-noopable"
+    >
+      <div
+        class="mat-form-field-wrapper"
+      >
+        <div
+          class="mat-form-field-flex"
+        >
+          
+          
+          <div
+            class="mat-form-field-infix"
+          >
+            <input
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-invalid="false"
+              aria-label="From"
+              aria-required="false"
+              autocomplete="off"
+              class="mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored ng-untouched ng-pristine ng-valid"
+              id="mat-input-2"
+              matinput=""
+              ng-reflect-autocomplete="[object Object]"
+              ng-reflect-form="[object Object]"
+              ng-reflect-placeholder="From"
+              ng-reflect-type="text"
+              placeholder="From"
+              role="combobox"
+              type="text"
+            />
+            <mat-autocomplete
+              class="mat-autocomplete"
+            >
+              
+            </mat-autocomplete>
+            <span
+              class="mat-form-field-label-wrapper"
+            >
+              
+              <label
+                aria-owns="mat-input-2"
+                class="mat-form-field-label ng-tns-c3-0 mat-empty mat-form-field-empty ng-star-inserted"
+                for="mat-input-2"
+                id="mat-form-field-label-5"
+                ng-reflect-disabled="true"
+                ng-reflect-ng-switch="false"
+              >
+                
+                
+                From
+                
+                
+              </label>
+            </span>
+          </div>
+          
+        </div>
+        
+        <div
+          class="mat-form-field-underline ng-tns-c3-0 ng-star-inserted"
+        >
+          <span
+            class="mat-form-field-ripple"
+          />
+        </div>
+        <div
+          class="mat-form-field-subscript-wrapper"
+          ng-reflect-ng-switch="hint"
+        >
+          
+          
+          <div
+            class="mat-form-field-hint-wrapper ng-tns-c3-0 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
+            style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+          >
+            
+            <div
+              class="mat-form-field-hint-spacer"
+            />
+          </div>
+        </div>
+      </div>
+    </mat-form-field>
+    <br />
+    <mat-form-field
+      class="mat-form-field ng-tns-c3-1 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-legacy mat-form-field-can-float mat-form-field-hide-placeholder ng-untouched ng-pristine ng-valid _mat-animation-noopable"
+    >
+      <div
+        class="mat-form-field-wrapper"
+      >
+        <div
+          class="mat-form-field-flex"
+        >
+          
+          
+          <div
+            class="mat-form-field-infix"
+          >
+            <input
+              aria-autocomplete="list"
+              aria-expanded="false"
+              aria-invalid="false"
+              aria-label="To"
+              aria-required="false"
+              autocomplete="off"
+              class="mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored ng-untouched ng-pristine ng-valid"
+              id="mat-input-3"
+              matinput=""
+              ng-reflect-autocomplete="[object Object]"
+              ng-reflect-form="[object Object]"
+              ng-reflect-placeholder="Where To"
+              ng-reflect-type="text"
+              placeholder="Where To"
+              role="combobox"
+              type="text"
+            />
+            <mat-autocomplete
+              class="mat-autocomplete"
+            >
+              
+            </mat-autocomplete>
+            <span
+              class="mat-form-field-label-wrapper"
+            >
+              
+              <label
+                aria-owns="mat-input-3"
+                class="mat-form-field-label ng-tns-c3-1 mat-empty mat-form-field-empty ng-star-inserted"
+                for="mat-input-3"
+                id="mat-form-field-label-7"
+                ng-reflect-disabled="true"
+                ng-reflect-ng-switch="false"
+              >
+                
+                
+                Where To
+                
+                
+              </label>
+            </span>
+          </div>
+          
+        </div>
+        
+        <div
+          class="mat-form-field-underline ng-tns-c3-1 ng-star-inserted"
+        >
+          <span
+            class="mat-form-field-ripple"
+          />
+        </div>
+        <div
+          class="mat-form-field-subscript-wrapper"
+          ng-reflect-ng-switch="hint"
+        >
+          
+          
+          <div
+            class="mat-form-field-hint-wrapper ng-tns-c3-1 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
+            style="opacity:1;transform:translateY(0%);0:opacity;1:transform;"
+          >
+            
+            <div
+              class="mat-form-field-hint-spacer"
+            />
+          </div>
+        </div>
+      </div>
+    </mat-form-field>
+  </form>
+</spa-search>
+`;

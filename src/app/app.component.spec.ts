@@ -21,8 +21,8 @@ describe('AppComponent', () => {
               serverLoggingUrl: '/api/logs',
               level: CustomLoggerLevel.DEBUG,
               serverLogLevel: CustomLoggerLevel.ERROR,
-              disableConsoleLogging: false,
-              debugStore: true
+              disableConsoleLogging: true,
+              debugStore: false
             }),
             RouterTestingModule.withRoutes([]),
           ],

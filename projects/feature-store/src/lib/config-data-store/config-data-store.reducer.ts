@@ -1,6 +1,8 @@
+import { createFeatureSelector } from '@ngrx/store';
 import { ConfigDataActionsUnion, ConfigDataActionTypes, LoadAirportsSuccess } from './config-data-store.actions';
 import { Airport, ConfigData } from './config-data-store.models';
 
+export const featureName = 'configdata';
 
 export interface State extends ConfigData {
     name: string;
@@ -35,3 +37,5 @@ export function reducer(
         }
     }
 }
+
+export const selectConfigData = createFeatureSelector<ConfigData>(featureName);
