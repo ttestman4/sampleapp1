@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { ConfigDataStoreModule, FlightStoreModule } from 'feature-store';
+import { SearchModule } from './search/search.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ConfigDataStoreModule, FlightStoreModule } from 'feature-store';
       debugStore: !environment.production,
     }),
     ConfigDataStoreModule.forRoot(),
-    FlightStoreModule.forRoot()
+    FlightStoreModule.forRoot(),
+    SearchModule
   ],
   providers: [],
   bootstrap: [AppComponent]
