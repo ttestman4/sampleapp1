@@ -2,11 +2,23 @@
     "data": [
         {
             "code": "BOM",
-            "name": "MUMBAI"
+            "name": "Mumbai",
+            "city": "Chhatrapati Shivaji International Airport"
         },
         {
             "code": "GOI",
-            "name": "GOA"
+            "name": "Dabolim Airport",
+            "city": "Goa"
+        },
+        {
+            "code": "BHJ",
+            "name": "Bhuj Airport",
+            "city": "Bhuj"
+        },
+        {
+            "code": "DEL",
+            "name": "Indira Gandhi International Airport",
+            "city": "New Delhi"
         }
     ]
 }
