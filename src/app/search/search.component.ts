@@ -12,10 +12,24 @@ import { map, startWith, withLatestFrom } from 'rxjs/operators';
 export class SearchComponent implements OnInit, OnDestroy {
   fromCtrl = new FormControl();
   toCtrl = new FormControl();
-  airports$: Observable<FeatuerStore.Airport[]>;
+  fromAirports$: Observable<FeatuerStore.Airport[]>;
+  toAirports$: Observable<FeatuerStore.Airport[]>;
+
 
   constructor(private store: Store<FeatuerStore.ConfigData>) {
-    this.airports$ = this.fromCtrl.valueChanges
+    this.fromAirports$ = this.fromCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        withLatestFrom(this.store.pipe(
+          select(FeatuerStore.selectAirports)
+        ), (typeAheadText, airports) => ({ typeAheadText, airports })),
+        map(data => {
+          return data.typeAheadText ?
+            this._filterAirport(data.typeAheadText, data.airports) :
+            data.airports.slice();
+        })
+      );
+    this.toAirports$ = this.toCtrl.valueChanges
       .pipe(
         startWith(''),
         withLatestFrom(this.store.pipe(
@@ -38,6 +52,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private _filterAirport(value: string, airports: FeatuerStore.Airport[]): FeatuerStore.Airport[] {
     const filterValue = value.toLowerCase();
-    return airports.filter(airport => airport.name.toLowerCase().indexOf(filterValue) === 0);
+    return airports.filter(airport =>
+      airport.code.toLowerCase().indexOf(filterValue) >= 0 ||
+      airport.city.toLowerCase().indexOf(filterValue) >= 0 ||
+      airport.name.toLowerCase().indexOf(filterValue) >= 0
+    );
   }
 }

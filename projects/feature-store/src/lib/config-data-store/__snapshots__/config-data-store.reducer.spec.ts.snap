@@ -18,12 +18,14 @@ exports[`ConfigData Reducer Valid action should return the updated State 1`] = `
 Object {
   "airports": Array [
     Object {
+      "city": "Mumbai",
       "code": "BOM",
-      "name": "MUMBAI",
+      "name": "Chatrapati Shivaji Airport",
     },
     Object {
+      "city": "Goa",
       "code": "GOI",
-      "name": "GOA",
+      "name": "Dhambolian AIrport",
     },
   ],
   "name": "Config Data Store",

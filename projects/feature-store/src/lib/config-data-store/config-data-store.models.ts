@@ -1,6 +1,7 @@
 export interface Airport {
     code: string;
     name: string;
+    city: string;
 }
 
 export interface AirportData {

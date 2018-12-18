@@ -21,8 +21,16 @@ describe('ConfigData Reducer', () => {
     let resultFromPreviousStep: State;
     it('Valid action should return the updated State', () => {
         const airports: Airport[] = [
-            { code: 'BOM', name: 'MUMBAI' },
-            { code: 'GOI', name: 'GOA' },
+            {
+                'code': 'BOM',
+                'city': 'Mumbai',
+                'name': 'Chatrapati Shivaji Airport',
+            },
+            {
+                'code': 'GOI',
+                'name': 'Dhambolian AIrport',
+                'city': 'Goa',
+            }
         ];
         const action = new LoadAirportsSuccess(airports);
 

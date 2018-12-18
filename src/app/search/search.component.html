@@ -8,7 +8,8 @@
     [formControl]="fromCtrl"
       [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let airport of airports$ | async" [value]="airport.name">
+      <mat-option *ngFor="let airport of fromAirports$ | async"
+      [value]="airport.name">
         <span>{{airport.name}}</span>|
         <small>{{airport.code}}</small>
       </mat-option>
@@ -16,9 +17,11 @@
   </mat-form-field>
   <br/>
   <mat-form-field>
-    <input type="text" placeholder="Where To" aria-label="To" matInput [formControl]="fromCtrl" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let airport of airports$ | async" [value]="airport.name">
+    <input type="text" placeholder="Where To" aria-label="To"
+    matInput [formControl]="toCtrl" [matAutocomplete]="auto2">
+    <mat-autocomplete #auto2="matAutocomplete">
+      <mat-option *ngFor="let airport of toAirports$ | async"
+      [value]="airport.name">
         <span>{{airport.name}}</span>|
         <small>{{airport.code}}</small>
       </mat-option>

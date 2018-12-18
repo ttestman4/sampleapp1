@@ -42,11 +42,13 @@ describe('ConfigDataStoreService', () => {
     'data': [
       {
         'code': 'BOM',
-        'name': 'MUMBAI'
+        'city': 'Mumbai',
+        'name': 'Chatrapati Shivaji Airport',
       },
       {
         'code': 'GOI',
-        'name': 'GOA'
+        'name': 'Dhambolian AIrport',
+        'city': 'Goa',
       }
     ]
   };
