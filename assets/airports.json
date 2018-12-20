@@ -6,14 +6,14 @@
             "city": "Mumbai"
         },
         {
-            "code": "GOI",
-            "name": "Dabolim Airport",
-            "city": "Goa"
+            "code": "PNQ",
+            "name": "Pune Airport",
+            "city": "Pune"
         },
         {
-            "code": "BHJ",
-            "name": "Bhuj Airport",
-            "city": "Bhuj"
+            "code": "BLR",
+            "name": "Bengaluru Airport",
+            "city": "Bengaluru"
         },
         {
             "code": "DEL",
