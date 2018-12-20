@@ -1,6 +1,9 @@
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import * as FlightActions from './flight-store.actions';
 import { FlightSearchDetail, ResultSortBy, SearchState, TravelClass, TravelType } from './flight-store.models';
+import { createFeatureSelector } from '@ngrx/store';
+
+export const featureName = 'flight';
 
 export interface State extends SearchState {
     name: string;
@@ -55,3 +58,6 @@ export function reducer(
         }
     }
 }
+
+
+export const selectSearchState = createFeatureSelector<SearchState>(featureName);

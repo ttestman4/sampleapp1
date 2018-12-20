@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
+import { select, Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import * as FlightActions from './flight-store.actions';
 import * as FlightModels from './flight-store.models';
+import * as FlightSelectors from './flight-store.selectors';
 import { FlightStoreService } from './flight-store.service';
 
 let nextFlightEffectsId = 1;
@@ -19,8 +21,12 @@ export class FlightEffects {
     @Effect()
     search$ = this.actions$.pipe(
         ofType<FlightActions.Search>(FlightActions.FlightActionTypes.Search),
-        switchMap((_action) => {
-            return this.flightService.search().pipe(
+        withLatestFrom(this.store.pipe(
+            select(FlightSelectors.selectCriteria)),
+            ((action, criteria) => ({ action, criteria }))
+        ),
+        switchMap((data) => {
+            return this.flightService.search(data.criteria).pipe(
                 map((response: FlightModels.Result) => {
                     return new FlightActions.SearchSuccess(response);
                 }),
@@ -30,9 +36,18 @@ export class FlightEffects {
         })
     );
 
+    @Effect()
+    upsertFlightSearchDetails$ = this.actions$.pipe(
+        ofType<FlightActions.UpsertFlightSearchDetails>(FlightActions.FlightActionTypes.UpsertFlightSearchDetails),
+        map((_action) => {
+            return new FlightActions.Search();
+        })
+    );
+
     constructor(
         private actions$: Actions<FlightActions.FlightActionsUnion>,
-        private flightService: FlightStoreService
+        private flightService: FlightStoreService,
+        private store: Store<FlightModels.SearchState>
     ) {
         const id = nextFlightEffectsId++;
         if (id > 1) {

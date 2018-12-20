@@ -16,7 +16,7 @@ export function ResetNextFlightStoreServiceId() {
 export class FlightStoreService {
   searchUrl = 'assets/search.json';
 
-  search(): Observable<FlightModels.Result> {
+  search(_criteria: FlightModels.Criteria): Observable<FlightModels.Result> {
     // TBD: In real implementation this is going to post call.
     // Need good deployment mechanics to simulat post call.
     return this.http.get<FlightModels.Result>(this.searchUrl);

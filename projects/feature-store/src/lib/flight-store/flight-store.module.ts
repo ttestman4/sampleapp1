@@ -4,7 +4,7 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { FlightEffects } from './flight-store.effects';
-import { reducer } from './flight-store.reducer';
+import { reducer, featureName} from './flight-store.reducer';
 
 export * from './flight-store.actions';
 export * from './flight-store.models';
@@ -19,7 +19,7 @@ export * from './flight-store.models';
      * eagerly or lazily and will be dynamically added to
      * the existing state.
      */
-    StoreModule.forFeature('flight', reducer),
+    StoreModule.forFeature(featureName, reducer),
     /**
      * Effects.forFeature is used to register effects
      * from feature modules. Effects can be loaded

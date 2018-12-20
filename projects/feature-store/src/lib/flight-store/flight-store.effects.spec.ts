@@ -7,7 +7,8 @@ import * as flightStoreActions from './flight-store.actions';
 import { FlightEffects, ResetNextFlightEffectsId } from './flight-store.effects';
 import * as FlightModels from './flight-store.models';
 import { FlightStoreService } from './flight-store.service';
-
+import { StoreModule , combineReducers} from '@ngrx/store';
+import { reducer, featureName } from './flight-store.reducer';
 
 
 describe('FlightEffects', () => {
@@ -18,6 +19,11 @@ describe('FlightEffects', () => {
     beforeEach(() => {
         ResetNextFlightEffectsId();
         TestBed.configureTestingModule({
+            imports: [
+                StoreModule.forRoot({
+                    flight: combineReducers(reducer),
+                }),
+            ],
             providers: [
                 FlightEffects,
                 {
@@ -82,4 +88,23 @@ describe('FlightEffects', () => {
         });
     });
 
+    describe('upsertFlightSearchDetails$', () => {
+        it('should return search action', () => {
+            const flightSearchDetails: FlightModels.FlightSearchDetail = {
+                from: 'BOM',
+                to: 'GOI',
+                startDate: new Date('2018-12-17'),
+                travelOrder: 1,
+                startAfterTime: { hours: 9, minutes: 20 },
+                startBeforeTime: { hours: 16, minutes: 19 },
+            };
+            const action = new flightStoreActions.UpsertFlightSearchDetails(flightSearchDetails);
+            const responseAction1 = new flightStoreActions.Search();
+
+            actions$ = hot('-a---', { a: action });
+            const expected = cold('-p--', { p: responseAction1 });
+
+            expect(effects.upsertFlightSearchDetails$).toBeObservable(expected);
+        });
+    });
 });
