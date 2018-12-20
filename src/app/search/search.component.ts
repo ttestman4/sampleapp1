@@ -1,9 +1,28 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl, ValidatorFn} from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import * as FeatuerStore from 'feature-store';
+import * as NonFunctional from 'non-functional';
 import { Observable, Subscription } from 'rxjs';
 import { filter, map, startWith, tap, withLatestFrom } from 'rxjs/operators';
+
+export function AirportCodeValidator(store: Store<FeatuerStore.ConfigData>): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    let airports: FeatuerStore.Airport[] = [];
+
+    if (airports.length <= 0) {
+      store.pipe(
+        select(FeatuerStore.selectAirports)
+      ).subscribe((data) => {
+        airports = data;
+      }).unsubscribe();
+    }
+
+    const validCode = airports.find((ele: FeatuerStore.Airport) => ele.code.toLowerCase() === control.value.toLowerCase());
+    return NonFunctional.isUndefined(validCode) ? { 'invalidCode': { value: control.value } } : null;
+  };
+}
+
 @Component({
   selector: 'spa-search',
   templateUrl: './search.component.html',
@@ -28,8 +47,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   constructor(private store: Store<FeatuerStore.ConfigData>, private fb: FormBuilder) {
     this.searchForm = this.fb.group({
       flightDetailsGroup: this.fb.group({
-        fromCtrl: ['', [Validators.required]],
-        toCtrl: ['', [Validators.required]]
+        fromCtrl: ['', [Validators.required, AirportCodeValidator(store)]],
+        toCtrl: ['', [Validators.required, AirportCodeValidator(store)]]
       }),
     });
 
