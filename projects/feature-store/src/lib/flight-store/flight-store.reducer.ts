@@ -1,8 +1,8 @@
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import * as FlightActions from './flight-store.actions';
-import { FlightSearchDetail, ResultSortBy, Search, TravelClass, TravelType } from './flight-store.models';
+import { FlightSearchDetail, ResultSortBy, SearchState, TravelClass, TravelType } from './flight-store.models';
 
-export interface State extends Search {
+export interface State extends SearchState {
     name: string;
 }
 

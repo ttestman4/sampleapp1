@@ -6,6 +6,9 @@ import { StoreModule } from '@ngrx/store';
 import { FlightEffects } from './flight-store.effects';
 import { reducer } from './flight-store.reducer';
 
+export * from './flight-store.actions';
+export * from './flight-store.models';
+
 @NgModule({
   declarations: [],
   imports: [

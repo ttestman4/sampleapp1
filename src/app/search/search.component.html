@@ -1,30 +1,38 @@
 <p>
   search works!
 </p>
-<form>
-  <mat-form-field>
-    <input type="text"
-    placeholder="From" aria-label="From" matInput
-    [formControl]="fromCtrl"
-      [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let airport of fromAirports$ | async"
-      [value]="airport.name">
-        <span>{{airport.name}}</span>|
-        <small>{{airport.code}}</small>
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-  <br/>
-  <mat-form-field>
-    <input type="text" placeholder="Where To" aria-label="To"
-    matInput [formControl]="toCtrl" [matAutocomplete]="auto2">
-    <mat-autocomplete #auto2="matAutocomplete">
-      <mat-option *ngFor="let airport of toAirports$ | async"
-      [value]="airport.name">
-        <span>{{airport.name}}</span>|
-        <small>{{airport.code}}</small>
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+<form [formGroup]="searchForm">
+  <div formGroupName="flightDetailsGroup">
+    <mat-form-field>
+      <input type="text" placeholder="From" aria-label="From" matInput [formControl]="fromCtrl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let airport of fromAirports$ | async" [value]="airport.city">
+          <span>{{airport.name}}</span>|
+          <small>{{airport.code}}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input type="text" placeholder="Where To" aria-label="To" matInput [formControl]="toCtrl" [matAutocomplete]="auto2">
+      <mat-autocomplete #auto2="matAutocomplete">
+        <mat-option *ngFor="let airport of toAirports$ | async" [value]="airport.city">
+          <span>{{airport.name}}</span>|
+          <small>{{airport.code}}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
 </form>
+<p>
+  Control Status: {{ fromCtrl.value | json }}
+</p>
+<p>
+  Control Status: {{ fromCtrl.status }}
+</p>
+<p>
+  Form Status: {{ searchForm.value | json }}
+</p>
+<p>
+  Form Status: {{ searchForm.status }}
+</p>

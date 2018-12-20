@@ -70,7 +70,7 @@ export interface Result {
     sortBy: ResultSortBy;
 }
 
-export interface Search {
+export interface SearchState {
     criteria: Criteria;
     result: Result;
 }
