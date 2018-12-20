@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl, ValidatorFn} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import * as FeatuerStore from 'feature-store';
 import * as NonFunctional from 'non-functional';
@@ -18,7 +18,7 @@ export function AirportCodeValidator(store: Store<FeatuerStore.ConfigData>): Val
       }).unsubscribe();
     }
 
-    const validCode = airports.find((ele: FeatuerStore.Airport) => ele.city.toLowerCase() === control.value.toLowerCase());
+    const validCode = airports.find((ele: FeatuerStore.Airport) => ele.displayText.toLowerCase() === control.value.toLowerCase());
     return NonFunctional.isUndefined(validCode) ? { 'invalidCode': { value: control.value } } : null;
   };
 }
@@ -111,7 +111,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     const filterValue = value.toLowerCase();
     return airports.filter(airport =>
       airport.code.toLowerCase().indexOf(filterValue) >= 0 ||
-      airport.city.toLowerCase().indexOf(filterValue) >= 0 
+      airport.city.toLowerCase().indexOf(filterValue) >= 0
     );
   }
 }

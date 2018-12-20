@@ -20,7 +20,10 @@ export class ConfigDataStoreService {
   getAirports(): Observable<Airport[]> {
     return this.http.get<AirportData>(this.airportUrl).pipe(
       map((response) => {
-        return response.data;
+        return response.data.map((airport) => {
+          airport.displayText = airport.city + ' (' + airport.code + ')';
+          return airport;
+        });
       })
     );
   }
