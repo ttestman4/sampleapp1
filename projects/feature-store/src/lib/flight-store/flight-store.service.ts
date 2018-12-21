@@ -18,13 +18,16 @@ export class FlightStoreService {
   searchUrl = 'assets/advFlightSearch.json';
   // searchUrl = 'assets/search.json';
 
-  search(_criteria: FlightModels.Criteria): Observable<FlightModels.Result> {
+  search(criteria: FlightModels.Criteria): Observable<FlightModels.Result> {
     // TBD: In real implementation this is going to post call.
     // Need good deployment mechanics to simulat post call.
     return this.http.get<FlightModels.FlightResultDetail[]>(this.searchUrl).pipe(
       map((response) => {
         return {
-          flightDetails: response,
+          flightDetails: response.filter((ele) => {
+            return ele.origin === criteria.flightSearchDetails.entities[1].origin &&
+              ele.destination === criteria.flightSearchDetails.entities[1].destination;
+          }),
           sortBy: FlightModels.ResultSortBy.BestFlights
         };
       })

@@ -7,3 +7,11 @@ describe('selectCriteria', () => {
             .toBe(initialState.criteria);
     });
 });
+
+describe('selectResult', () => {
+    it('should return Result', () => {
+        expect(flightSelectors.selectResult
+            .projector(initialState))
+            .toBe(initialState.result);
+    });
+});

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { ConfigDataStoreModule, FlightStoreModule } from 'feature-store';
 import { SearchModule } from './search/search.module';
+import { ResultModule } from './result/result.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SearchModule } from './search/search.module';
     }),
     ConfigDataStoreModule.forRoot(),
     FlightStoreModule.forRoot(),
-    SearchModule
+    SearchModule,
+    ResultModule
   ],
   providers: [],
   bootstrap: [AppComponent]

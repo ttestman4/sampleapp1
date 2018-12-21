@@ -1,14 +1,13 @@
-// import { CommonModule } from '@angular/common';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as Material from '@angular/material';
-import { SearchComponent } from './search.component';
-import { ConfigDataStoreModule, FlightStoreModule } from 'feature-store';
-import { CustomLoggerLevel, NonFunctionalModule } from 'non-functional';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ConfigDataStoreModule } from 'feature-store';
+import { CustomLoggerLevel, NonFunctionalModule } from 'non-functional';
 import { ConfigureFn, configureTests } from '../../lib/testing';
+import { SearchComponent } from './search.component';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;

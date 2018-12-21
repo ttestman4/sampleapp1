@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultComponent should create 1`] = `
+<spa-result
+  result$={[Function Store]}
+  store={[Function Store]}
+>
+  <p>
+     Search result: {
+    "flightDetails": [],
+    "sortBy": "Best Flights"
+  }
+  
+  </p>
+</spa-result>
+`;

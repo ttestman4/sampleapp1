@@ -35,3 +35,5 @@
 
 # yarn ng g module search  -m app.module
 # yarn ng g component search  -m search/search.module
+# yarn ng g module result  -m app.module
+# yarn ng g component result  -m result/result.module

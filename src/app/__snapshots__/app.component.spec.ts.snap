@@ -11,6 +11,6 @@ exports[`AppComponent snaps 1`] = `
     <h1>
        Welcome to spa! 
     </h1>
-  </div><spa-search /><router-outlet />
+  </div><spa-search /><spa-result /><router-outlet />
 </spa-root>
 `;

@@ -4,10 +4,12 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { FlightEffects } from './flight-store.effects';
-import { reducer, featureName} from './flight-store.reducer';
+import { reducer, featureName } from './flight-store.reducer';
+import { ResetNextFlightStoreServiceId } from './flight-store.service';
 
 export * from './flight-store.actions';
 export * from './flight-store.models';
+export * from './flight-store.selectors';
 
 @NgModule({
   declarations: [],
@@ -54,5 +56,6 @@ export class FlightStoreModule {
     };
   }
   static forTestReset() {
+    ResetNextFlightStoreServiceId();
   }
 }

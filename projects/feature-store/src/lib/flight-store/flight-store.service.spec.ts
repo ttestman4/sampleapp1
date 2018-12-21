@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { Result, ResultSortBy } from './flight-store.models';
+import { Result, ResultSortBy, Criteria, TravelType, TravelClass } from './flight-store.models';
 import { FlightStoreService, ResetNextFlightStoreServiceId } from './flight-store.service';
 describe('FlightStoreService', () => {
   let httpTestingController: HttpTestingController;
@@ -37,47 +37,77 @@ describe('FlightStoreService', () => {
     expect(() => new FlightStoreService()).toThrowError();
   });
 
-  /// service method tests begin ///
-  const testData: Result = {
-    flightDetails: [{
-      origin: 'BOM',
-      destination: 'DEL',
-      date: new Date('2019-11-17'),
-      travelOrder: 1,
-      name: 'indigo',
-      departureTime: { hours: 9, minutes: 20 },
-      arrivalTime: { hours: 16, minutes: 19 },
-      duration: { hours: 7, minutes: 10 },
-      price: 1,
-      flightNo: '6E-123',
-    }],
-    sortBy: ResultSortBy.BestFlights
-  };
+  describe('Search', () => {
+    const criteria: Criteria = {
+      flightSearchDetails: {
+        ids: [
+          1
+        ],
+        entities: {
+          '1': {
+            origin: 'Pune (PNQ)',
+            destination: 'Mumbai (BOM)',
+            date: new Date('2018-12-21'),
+            travelOrder: 1,
+            departureAfterTime: {
+              hours: 0,
+              minutes: 0
+            },
+            departureBeforeTime: {
+              hours: 0,
+              minutes: 0
+            }
+          }
+        }
+      },
+      passengers: [],
+      travelType: TravelType.Return,
+      travelClass: TravelClass.Economy,
+      bags: 1,
+      stops: 10,
+      price: 0
+    };
+    /// service method tests begin ///
+    const testData: Result = {
+      flightDetails: [{
+        origin: 'Pune (PNQ)',
+        destination: 'Mumbai (BOM)',
+        date: new Date('2019-11-17'),
+        travelOrder: 1,
+        name: 'indigo',
+        departureTime: { hours: 9, minutes: 20 },
+        arrivalTime: { hours: 16, minutes: 19 },
+        duration: { hours: 7, minutes: 10 },
+        price: 1,
+        flightNo: '6E-123',
+      }],
+      sortBy: ResultSortBy.BestFlights
+    };
 
-  it('#search should return expected Results (called once)', () => {
-    flightStoreService.search().subscribe(
-      (result) => expect(result).toEqual(testData,
-        'should return expected results'),
-      fail
-    );
+    it('#search should return expected Results (called once)', () => {
+      flightStoreService.search(criteria).subscribe(
+        (result) => expect(result).toEqual(testData,
+          'should return expected results'),
+        fail
+      );
 
-    // configService should have made one request to GET heroes from expected URL
-    const req = httpTestingController.expectOne(flightStoreService.searchUrl);
-    expect(req.request.method).toEqual('GET');
+      // configService should have made one request to GET heroes from expected URL
+      const req = httpTestingController.expectOne(flightStoreService.searchUrl);
+      expect(req.request.method).toEqual('GET');
 
-    // Respond with the mock heroes
-    req.flush(testData.flightDetails);
+      // Respond with the mock heroes
+      req.flush(testData.flightDetails);
+    });
+
+    it('#search should be OK returning no results', () => {
+
+      flightStoreService.search(criteria).subscribe(
+        result => expect(result.flightDetails.length).toEqual(0, 'should have empty airports array'),
+        fail
+      );
+
+      const req = httpTestingController.expectOne(flightStoreService.searchUrl);
+      req.flush([]); // Respond with no airports
+    });
   });
-
-  it('#search should be OK returning no results', () => {
-
-    flightStoreService.search().subscribe(
-      result => expect(result.flightDetails.length).toEqual(0, 'should have empty airports array'),
-      fail
-    );
-
-    const req = httpTestingController.expectOne(flightStoreService.searchUrl);
-    req.flush({ 'flightDetails': [], sortBy: ResultSortBy.BestFlights }); // Respond with no airports
-  });
-
 });
