@@ -66,7 +66,7 @@ describe('FlightStoreService', () => {
     expect(req.request.method).toEqual('GET');
 
     // Respond with the mock heroes
-    req.flush(testData);
+    req.flush(testData.flightDetails);
   });
 
   it('#search should be OK returning no results', () => {
