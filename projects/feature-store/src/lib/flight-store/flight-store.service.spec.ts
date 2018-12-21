@@ -40,16 +40,16 @@ describe('FlightStoreService', () => {
   /// service method tests begin ///
   const testData: Result = {
     flightDetails: [{
-      from: 'BOM',
-      to: 'DEL',
-      startDate: new Date('2019-11-17'),
+      origin: 'BOM',
+      destination: 'DEL',
+      date: new Date('2019-11-17'),
       travelOrder: 1,
-      airline: 'indigo',
-      startTime: { hours: 9, minutes: 20 },
+      name: 'indigo',
+      departureTime: { hours: 9, minutes: 20 },
       arrivalTime: { hours: 16, minutes: 19 },
       duration: { hours: 7, minutes: 10 },
-      cost: 1,
-      code: '6E-123',
+      price: 1,
+      flightNo: '6E-123',
     }],
     sortBy: ResultSortBy.BestFlights
   };

@@ -7,31 +7,31 @@ export enum TravelType {
     MultiCity = 'Multi-city',
 }
 interface FlightDetailsCore {
-    from: string;
-    to: string;
-    startDate: Date;
+    origin: string;
+    destination: string;
+    date: Date;
     travelOrder: number;
 }
 
 export interface FlightSearchDetail extends FlightDetailsCore {
-    startAfterTime: Time;
-    startBeforeTime: Time;
+    departureAfterTime: Time;
+    departureBeforeTime: Time;
 }
 
 export interface FlightResultDetail extends FlightDetailsCore {
-    airline: string;
-    startTime: Time;
+    name: string;
+    departureTime: Time;
     arrivalTime: Time;
     duration: Time;
-    cost: number;
-    code: string;
+    price: number;
+    flightNo: string;
 }
 
 export enum PassengerType {
     Adult = 'Adult',
     Child = 'Child',
-    InfantInSeat = 'Infact in Seat',
-    InfantOnLap = 'Infact on Lap',
+    InfantInSeat = 'Infant in Seat',
+    InfantOnLap = 'Infant on Lap',
 }
 
 export interface Passenger {

@@ -87,12 +87,12 @@ export class SearchComponent implements OnInit, OnDestroy {
       }),
       tap((data) => {
         const flightDetails: FeatuerStore.FlightSearchDetail = {
-          from: data.value.flightDetailsGroup.fromCtrl,
-          to: data.value.flightDetailsGroup.toCtrl,
-          startDate: new Date(Date.now()),
+          origin: data.value.flightDetailsGroup.fromCtrl,
+          destination: data.value.flightDetailsGroup.toCtrl,
+          date: new Date(Date.now()),
           travelOrder: 1,
-          startAfterTime: { hours: 0, minutes: 0 },
-          startBeforeTime: { hours: 0, minutes: 0 }
+          departureAfterTime: { hours: 0, minutes: 0 },
+          departureBeforeTime: { hours: 0, minutes: 0 }
         };
         this.store.dispatch(new FeatuerStore.UpsertFlightSearchDetails(flightDetails));
       })

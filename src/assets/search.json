@@ -1,12 +1,12 @@
 {
     "flightDetails": [
         {
-            "from": "BOM",
-            "to": "DEL",
-            "startDate": "2019-11-17T00:00:00.000Z",
+            "origin": "BOM",
+            "destination": "DEL",
+            "date": "2019-11-17T00:00:00.000Z",
             "travelOrder": 1,
-            "airline": "indigo",
-            "startTime": {
+            "name": "indigo",
+            "departureTime": {
                 "hours": 9,
                 "minutes": 20
             },
@@ -18,8 +18,8 @@
                 "hours": 7,
                 "minutes": 10
             },
-            "cost": 1,
-            "code": "6E-123"
+            "price": 1,
+            "flightNo": "6E-123"
         }
     ],
     "sortBy": "Best Flights"

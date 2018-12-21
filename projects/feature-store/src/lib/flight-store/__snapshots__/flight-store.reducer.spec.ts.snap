@@ -7,31 +7,31 @@ Object {
     "flightSearchDetails": Object {
       "entities": Object {
         "1": Object {
-          "from": "BOM",
-          "startAfterTime": Object {
+          "date": 2019-11-17T00:00:00.000Z,
+          "departureAfterTime": Object {
             "hours": 9,
             "minutes": 20,
           },
-          "startBeforeTime": Object {
+          "departureBeforeTime": Object {
             "hours": 16,
             "minutes": 19,
           },
-          "startDate": 2019-11-17T00:00:00.000Z,
-          "to": "DEL",
+          "destination": "DEL",
+          "origin": "BOM",
           "travelOrder": 1,
         },
         "2": Object {
-          "from": "GOI",
-          "startAfterTime": Object {
+          "date": 2018-12-17T00:00:00.000Z,
+          "departureAfterTime": Object {
             "hours": 9,
             "minutes": 20,
           },
-          "startBeforeTime": Object {
+          "departureBeforeTime": Object {
             "hours": 16,
             "minutes": 19,
           },
-          "startDate": 2018-12-17T00:00:00.000Z,
-          "to": "BOM",
+          "destination": "BOM",
+          "origin": "GOI",
           "travelOrder": 2,
         },
       },
@@ -50,24 +50,24 @@ Object {
   "result": Object {
     "flightDetails": Array [
       Object {
-        "airline": "indigo",
         "arrivalTime": Object {
           "hours": 16,
           "minutes": 19,
         },
-        "code": "6E-123",
-        "cost": 1,
+        "date": 2019-11-17T00:00:00.000Z,
+        "departureTime": Object {
+          "hours": 9,
+          "minutes": 20,
+        },
+        "destination": "DEL",
         "duration": Object {
           "hours": 7,
           "minutes": 10,
         },
-        "from": "BOM",
-        "startDate": 2019-11-17T00:00:00.000Z,
-        "startTime": Object {
-          "hours": 9,
-          "minutes": 20,
-        },
-        "to": "DEL",
+        "flightNo": "6E-123",
+        "name": "indigo",
+        "origin": "BOM",
+        "price": 1,
         "travelOrder": 1,
       },
     ],
@@ -127,17 +127,17 @@ Object {
     "flightSearchDetails": Object {
       "entities": Object {
         "1": Object {
-          "from": "BOM",
-          "startAfterTime": Object {
+          "date": 2018-12-17T00:00:00.000Z,
+          "departureAfterTime": Object {
             "hours": 9,
             "minutes": 20,
           },
-          "startBeforeTime": Object {
+          "departureBeforeTime": Object {
             "hours": 16,
             "minutes": 19,
           },
-          "startDate": 2018-12-17T00:00:00.000Z,
-          "to": "GOI",
+          "destination": "GOI",
+          "origin": "BOM",
           "travelOrder": 1,
         },
       },
@@ -166,31 +166,31 @@ Object {
     "flightSearchDetails": Object {
       "entities": Object {
         "1": Object {
-          "from": "BOM",
-          "startAfterTime": Object {
+          "date": 2019-11-17T00:00:00.000Z,
+          "departureAfterTime": Object {
             "hours": 9,
             "minutes": 20,
           },
-          "startBeforeTime": Object {
+          "departureBeforeTime": Object {
             "hours": 16,
             "minutes": 19,
           },
-          "startDate": 2019-11-17T00:00:00.000Z,
-          "to": "DEL",
+          "destination": "DEL",
+          "origin": "BOM",
           "travelOrder": 1,
         },
         "2": Object {
-          "from": "GOI",
-          "startAfterTime": Object {
+          "date": 2018-12-17T00:00:00.000Z,
+          "departureAfterTime": Object {
             "hours": 9,
             "minutes": 20,
           },
-          "startBeforeTime": Object {
+          "departureBeforeTime": Object {
             "hours": 16,
             "minutes": 19,
           },
-          "startDate": 2018-12-17T00:00:00.000Z,
-          "to": "BOM",
+          "destination": "BOM",
+          "origin": "GOI",
           "travelOrder": 2,
         },
       },
@@ -220,17 +220,17 @@ Object {
     "flightSearchDetails": Object {
       "entities": Object {
         "1": Object {
-          "from": "BOM",
-          "startAfterTime": Object {
+          "date": 2019-11-17T00:00:00.000Z,
+          "departureAfterTime": Object {
             "hours": 9,
             "minutes": 20,
           },
-          "startBeforeTime": Object {
+          "departureBeforeTime": Object {
             "hours": 16,
             "minutes": 19,
           },
-          "startDate": 2019-11-17T00:00:00.000Z,
-          "to": "DEL",
+          "destination": "DEL",
+          "origin": "BOM",
           "travelOrder": 1,
         },
       },

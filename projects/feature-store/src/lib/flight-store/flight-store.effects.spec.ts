@@ -1,15 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { Actions } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
+import { combineReducers, StoreModule } from '@ngrx/store';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable } from 'rxjs';
 import * as flightStoreActions from './flight-store.actions';
 import { FlightEffects, ResetNextFlightEffectsId } from './flight-store.effects';
 import * as FlightModels from './flight-store.models';
+import { reducer } from './flight-store.reducer';
 import { FlightStoreService } from './flight-store.service';
-import { StoreModule , combineReducers} from '@ngrx/store';
-import { reducer, featureName } from './flight-store.reducer';
-
 
 describe('FlightEffects', () => {
     let effects: FlightEffects;
@@ -51,16 +50,16 @@ describe('FlightEffects', () => {
         it('should return success action', () => {
             const result: FlightModels.Result = {
                 flightDetails: [{
-                    from: 'BOM',
-                    to: 'DEL',
-                    startDate: new Date('2019-11-17'),
+                    origin: 'BOM',
+                    destination: 'DEL',
+                    date: new Date('2019-11-17'),
                     travelOrder: 1,
-                    airline: 'indigo',
-                    startTime: { hours: 9, minutes: 20 },
+                    name: 'indigo',
+                    departureTime: { hours: 9, minutes: 20 },
                     arrivalTime: { hours: 16, minutes: 19 },
                     duration: { hours: 7, minutes: 10 },
-                    cost: 1,
-                    code: '6E-123',
+                    price: 1,
+                    flightNo: '6E-123',
                 }],
                 sortBy: FlightModels.ResultSortBy.BestFlights
             };
@@ -91,12 +90,12 @@ describe('FlightEffects', () => {
     describe('upsertFlightSearchDetails$', () => {
         it('should return search action', () => {
             const flightSearchDetails: FlightModels.FlightSearchDetail = {
-                from: 'BOM',
-                to: 'GOI',
-                startDate: new Date('2018-12-17'),
+                origin: 'BOM',
+                destination: 'GOI',
+                date: new Date('2018-12-17'),
                 travelOrder: 1,
-                startAfterTime: { hours: 9, minutes: 20 },
-                startBeforeTime: { hours: 16, minutes: 19 },
+                departureAfterTime: { hours: 9, minutes: 20 },
+                departureBeforeTime: { hours: 16, minutes: 19 },
             };
             const action = new flightStoreActions.UpsertFlightSearchDetails(flightSearchDetails);
             const responseAction1 = new flightStoreActions.Search();
