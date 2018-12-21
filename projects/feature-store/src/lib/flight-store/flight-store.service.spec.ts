@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { Result, ResultSortBy, Criteria, TravelType, TravelClass } from './flight-store.models';
 import { FlightStoreService, ResetNextFlightStoreServiceId } from './flight-store.service';
+import { FlightResultDetail } from 'feature-store/public_api';
 describe('FlightStoreService', () => {
   let httpTestingController: HttpTestingController;
   let flightStoreService: FlightStoreService;
@@ -68,11 +69,23 @@ describe('FlightStoreService', () => {
       price: 0
     };
     /// service method tests begin ///
+    const flightDetails: FlightResultDetail[] = [{
+      origin: 'Pune (PNQ)',
+      destination: 'Mumbai (BOM)',
+      date: new Date('2019-12-21'),
+      travelOrder: 1,
+      name: 'indigo',
+      departureTime: '9:20',
+      arrivalTime: '16:19',
+      duration: { hours: 7, minutes: 10 },
+      price: 1,
+      flightNo: '6E-123',
+    }];
     const testData: Result = {
       flightDetails: [{
         origin: 'Pune (PNQ)',
         destination: 'Mumbai (BOM)',
-        date: new Date('2019-11-17'),
+        date: new Date('2019-12-21'),
         travelOrder: 1,
         name: 'indigo',
         departureTime: { hours: 9, minutes: 20 },
@@ -96,7 +109,7 @@ describe('FlightStoreService', () => {
       expect(req.request.method).toEqual('GET');
 
       // Respond with the mock heroes
-      req.flush(testData.flightDetails);
+      req.flush(flightDetails);
     });
 
     it('#search should be OK returning no results', () => {
