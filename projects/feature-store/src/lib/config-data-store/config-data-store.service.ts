@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Airport , AirportData} from './config-data-store.models';
+import { Airport } from './config-data-store.models';
 
 let nextConfigDataStoreServiceId = 1;
 
@@ -18,9 +18,9 @@ export class ConfigDataStoreService {
   airportUrl = 'assets/airports.json';
 
   getAirports(): Observable<Airport[]> {
-    return this.http.get<AirportData>(this.airportUrl).pipe(
+    return this.http.get<Airport[]>(this.airportUrl).pipe(
       map((response) => {
-        return response.data.map((airport) => {
+        return response.map((airport) => {
           airport.displayText = airport.city + ' (' + airport.code + ')';
           return airport;
         });

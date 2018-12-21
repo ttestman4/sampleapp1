@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { AirportData } from './config-data-store.models';
+import { Airport } from './config-data-store.models';
 import { ConfigDataStoreService, ResetNextConfigDataStoreServiceId } from './config-data-store.service';
 describe('ConfigDataStoreService', () => {
   let httpTestingController: HttpTestingController;
@@ -38,22 +38,33 @@ describe('ConfigDataStoreService', () => {
   });
 
   /// service method tests begin ///
-  const testData: AirportData = {
-    'data': [
-      {
-        'code': 'BOM',
-        'city': 'Mumbai',
-        'name': 'Chatrapati Shivaji Airport',
-      },
-      {
-        'code': 'GOI',
-        'name': 'Dhambolian AIrport',
-        'city': 'Goa',
-      }
-    ]
-  };
+  const testData: Airport[] = [
+    {
+      'code': 'BOM',
+      'name': 'Chhatrapati Shivaji International Airport',
+      'city': 'Mumbai',
+    },
+    {
+      'code': 'PNQ',
+      'name': 'Pune Airport',
+      'city': 'Pune'
+    },
+    {
+      'code': 'BLR',
+      'name': 'Bengaluru Airport',
+      'city': 'Bengaluru'
+    },
+    {
+      'code': 'DEL',
+      'name': 'Indira Gandhi International Airport',
+      'city': 'New Delhi'
+    }
+  ] as Airport[];
 
-  const expectedAirports = testData.data;
+  const expectedAirports = testData.map((airport) => {
+    airport.displayText = airport.city + ' (' + airport.code + ')';
+    return airport;
+  });
 
   it('#getAirports should return expected Airports (called once)', () => {
     configService.getAirports().subscribe(
@@ -78,7 +89,7 @@ describe('ConfigDataStoreService', () => {
     );
 
     const req = httpTestingController.expectOne(configService.airportUrl);
-    req.flush({ 'data': [] }); // Respond with no airports
+    req.flush([]); // Respond with no airports
   });
 
 });

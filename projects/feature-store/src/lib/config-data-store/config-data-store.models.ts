@@ -5,12 +5,6 @@ export interface Airport {
     displayText: string;
 }
 
-export interface AirportData {
-    data: Airport[];
-}
-
 export interface ConfigData {
     airports: Airport[];
 }
-
-
