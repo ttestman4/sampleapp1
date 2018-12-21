@@ -1,24 +1,22 @@
-{
-    "data": [
-        {
-            "code": "BOM",
-            "name": "Chhatrapati Shivaji International Airport",
-            "city": "Mumbai"
-        },
-        {
-            "code": "PNQ",
-            "name": "Pune Airport",
-            "city": "Pune"
-        },
-        {
-            "code": "BLR",
-            "name": "Bengaluru Airport",
-            "city": "Bengaluru"
-        },
-        {
-            "code": "DEL",
-            "name": "Indira Gandhi International Airport",
-            "city": "New Delhi"
-        }
-    ]
-}
+[
+    {
+        "code": "BOM",
+        "name": "Chhatrapati Shivaji International Airport",
+        "city": "Mumbai"
+    },
+    {
+        "code": "PNQ",
+        "name": "Pune Airport",
+        "city": "Pune"
+    },
+    {
+        "code": "BLR",
+        "name": "Bengaluru Airport",
+        "city": "Bengaluru"
+    },
+    {
+        "code": "DEL",
+        "name": "Indira Gandhi International Airport",
+        "city": "New Delhi"
+    }
+]
