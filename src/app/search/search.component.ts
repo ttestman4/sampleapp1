@@ -47,8 +47,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   constructor(private store: Store<FeatuerStore.ConfigData>, private fb: FormBuilder) {
     this.searchForm = this.fb.group({
       flightDetailsGroup: this.fb.group({
-        fromCtrl: ['', [Validators.required, AirportCodeValidator(store)]],
-        toCtrl: ['', [Validators.required, AirportCodeValidator(store)]]
+        fromCtrl: ['Pune (PNQ)', [Validators.required, AirportCodeValidator(store)]],
+        toCtrl: ['Delhi (DEL)', [Validators.required, AirportCodeValidator(store)]]
       }),
     });
 

@@ -11,6 +11,18 @@ export function ResetNextFlightStoreServiceId() {
   nextFlightStoreServiceId = 1;
 }
 
+export interface FlightResultDetailFromRestApi {
+  origin: string;
+  destination: string;
+  date: string;
+  travelOrder: number;
+  name: string;
+  departureTime: string;
+  arrivalTime: string;
+  duration: Time;
+  price: number;
+  flightNo: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -22,22 +34,38 @@ export class FlightStoreService {
   search(criteria: FlightModels.Criteria): Observable<FlightModels.Result> {
     // TBD: In real implementation this is going to post call.
     // Need good deployment mechanics to simulat post call.
-    return this.http.get<FlightModels.FlightResultDetail[]>(this.searchUrl).pipe(
+    return this.http.get<FlightResultDetailFromRestApi[]>(this.searchUrl).pipe(
       map((response) => {
         return response.map((ele) => {
-          // rectify time values to UI friendly data structure
-          ele.departureTime = this.parseTime(ele.departureTime as string);
-          ele.arrivalTime = this.parseTime(ele.arrivalTime as string);
-          return ele;
+          const departureTime = this.parseTime(ele.departureTime);
+          const arrivalTime = this.parseTime(ele.arrivalTime);
+          const duration = this.calculateDuration(
+            departureTime,
+            arrivalTime
+          );
+          const resultEle: FlightModels.FlightResultDetail = {
+            // rectify result values to UI friendly data structure
+            origin: ele.origin,
+            destination: ele.destination,
+            date: new Date(ele.date),
+            travelOrder: 0,
+            name: ele.name,
+            departureTime,
+            arrivalTime,
+            duration,
+            price: ele.price,
+            flightNo: ele.flightNo,
+          };
+          return resultEle;
         });
       }),
       // Filter records which match the origin and destination criteria
       map((response) => {
         return response.filter((ele) => {
           return (
-            (ele.origin === criteria.flightSearchDetails.entities[1].origin ||
+            (ele.origin === criteria.flightSearchDetails.entities[1].origin &&
               ele.destination === criteria.flightSearchDetails.entities[1].destination) &&
-            ele.date === '2020/11/01'
+            ele.date.valueOf() === new Date('2020/11/01').valueOf()
           );
         });
       }),
@@ -68,5 +96,20 @@ export class FlightStoreService {
       time.minutes = parseInt(separator[1], 10);
     }
     return time;
+  }
+
+  private calculateDuration(time1: Time, time2: Time) {
+    const result: Time = { hours: 0, minutes: 0 };
+    const date1 = new Date('1995-12-11');
+    const date2 = new Date('1995-12-11');
+    date1.setUTCHours(time1.hours);
+    date1.setUTCMinutes(time1.minutes);
+    date2.setUTCHours(time2.hours);
+    date2.setUTCMinutes(time2.minutes);
+    const diffDate = new Date(date2.valueOf() - date1.valueOf());
+    result.hours = diffDate.getUTCHours();
+    result.minutes = diffDate.getUTCMinutes();
+
+    return result;
   }
 }

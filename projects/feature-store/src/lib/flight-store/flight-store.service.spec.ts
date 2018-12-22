@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Result, ResultSortBy, Criteria, TravelType, TravelClass } from './flight-store.models';
-import { FlightStoreService, ResetNextFlightStoreServiceId } from './flight-store.service';
+import { FlightStoreService, ResetNextFlightStoreServiceId, FlightResultDetailFromRestApi} from './flight-store.service';
 import { FlightResultDetail } from 'feature-store/public_api';
 describe('FlightStoreService', () => {
   let httpTestingController: HttpTestingController;
@@ -69,14 +69,14 @@ describe('FlightStoreService', () => {
       price: 0
     };
     /// service method tests begin ///
-    const flightDetails: FlightResultDetail[] = [{
+    const flightDetails: FlightResultDetailFromRestApi[] = [{
       origin: 'Pune (PNQ)',
       destination: 'Mumbai (BOM)',
-      date: new Date('2019-12-21'),
+      date: '2019-12-21',
       travelOrder: 1,
       name: 'indigo',
       departureTime: '9:20',
-      arrivalTime: '16:19',
+      arrivalTime: '10:44',
       duration: { hours: 7, minutes: 10 },
       price: 1,
       flightNo: '6E-123',
@@ -90,7 +90,7 @@ describe('FlightStoreService', () => {
         name: 'indigo',
         departureTime: { hours: 9, minutes: 20 },
         arrivalTime: { hours: 16, minutes: 19 },
-        duration: { hours: 7, minutes: 10 },
+        duration: { hours: 1, minutes: 24 },
         price: 1,
         flightNo: '6E-123',
       }],

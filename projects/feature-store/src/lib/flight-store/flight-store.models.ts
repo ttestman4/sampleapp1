@@ -9,7 +9,7 @@ export enum TravelType {
 interface FlightDetailsCore {
     origin: string;
     destination: string;
-    date: Date | string;
+    date: Date;
     travelOrder: number;
 }
 
@@ -20,8 +20,8 @@ export interface FlightSearchDetail extends FlightDetailsCore {
 
 export interface FlightResultDetail extends FlightDetailsCore {
     name: string;
-    departureTime: Time | string;
-    arrivalTime: Time | string;
+    departureTime: Time ;
+    arrivalTime: Time ;
     duration: Time;
     price: number;
     flightNo: string;
