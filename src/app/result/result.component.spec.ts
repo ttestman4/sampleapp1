@@ -1,7 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import * as Material from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FlightStoreModule } from 'feature-store';
@@ -24,10 +23,6 @@ describe('ResultComponent', () => {
           NoopAnimationsModule,
           FormsModule,
           ReactiveFormsModule,
-          Material.MatAutocompleteModule,
-          Material.MatFormFieldModule,
-          Material.MatOptionModule,
-          Material.MatInputModule,
           NonFunctionalModule.forRoot({
             serverLoggingUrl: '/api/logs',
             level: CustomLoggerLevel.DEBUG,
@@ -52,9 +47,9 @@ describe('ResultComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  // });
+    // });
 
-  // it('snaps', () => {
+    // it('snaps', () => {
     expect(fixture).toMatchSnapshot();
   });
 });

@@ -4,7 +4,8 @@ import { select, Store } from '@ngrx/store';
 import * as FeatuerStore from 'feature-store';
 import * as NonFunctional from 'non-functional';
 import { Observable, Subscription } from 'rxjs';
-import { filter, map, startWith, tap, withLatestFrom } from 'rxjs/operators';
+import { filter, map, startWith, withLatestFrom } from 'rxjs/operators';
+import { ArirportValidatiorService } from './arirport-validatior.service';
 
 export function AirportCodeValidator(store: Store<FeatuerStore.ConfigData>): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -32,7 +33,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   fromAirports$: Observable<FeatuerStore.Airport[]>;
   toAirports$: Observable<FeatuerStore.Airport[]>;
   searchForm: FormGroup;
-  statusSubscription: Subscription;
+  formValueChangeSubscription: Subscription;
 
   get fromCtrl() {
     return this.searchForm
@@ -44,11 +45,21 @@ export class SearchComponent implements OnInit, OnDestroy {
       .get('flightDetailsGroup.toCtrl') as FormControl;
   }
 
-  constructor(private store: Store<FeatuerStore.ConfigData>, private fb: FormBuilder) {
+  constructor(private store: Store<FeatuerStore.ConfigData>,
+    private fb: FormBuilder,
+    private airportValidatorService: ArirportValidatiorService) {
     this.searchForm = this.fb.group({
       flightDetailsGroup: this.fb.group({
-        fromCtrl: ['Pune (PNQ)', [Validators.required, AirportCodeValidator(store)]],
-        toCtrl: ['Delhi (DEL)', [Validators.required, AirportCodeValidator(store)]]
+        fromCtrl: [
+          'Pune (PNQ)',
+          [Validators.required],
+          [this.airportValidatorService.validate.bind(this.airportValidatorService)]
+        ],
+        toCtrl: [
+          '',
+          [Validators.required],
+          [this.airportValidatorService.validate.bind(this.airportValidatorService)]
+        ]
       }),
     });
 
@@ -78,33 +89,38 @@ export class SearchComponent implements OnInit, OnDestroy {
         })
       );
 
-    this.statusSubscription = this.searchForm.statusChanges.pipe(
-      filter((status) => {
-        return status === 'VALID';
-      }),
-      withLatestFrom(this.searchForm.valueChanges, (status, value) => {
+    this.formValueChangeSubscription = this.searchForm.valueChanges.pipe(
+      withLatestFrom(this.searchForm.statusChanges, (value, status) => {
         return ({ status, value });
       }),
-      tap((data) => {
-        const flightDetails: FeatuerStore.FlightSearchDetail = {
-          origin: data.value.flightDetailsGroup.fromCtrl,
-          destination: data.value.flightDetailsGroup.toCtrl,
-          date: new Date(Date.now()),
-          travelOrder: 1,
-          departureAfterTime: { hours: 0, minutes: 0 },
-          departureBeforeTime: { hours: 0, minutes: 0 }
-        };
-        this.store.dispatch(new FeatuerStore.UpsertFlightSearchDetails(flightDetails));
+      filter((data) => {
+        return data.status === 'VALID';
       })
-    ).subscribe();
+    ).subscribe(data => {
+      this._sendUpsertFlightSearchDetailsAction(data.value);
+    });
+
   }
 
   ngOnInit() {
-
+    this.toCtrl.setValue('Delhi (DEL)');
+    this._sendUpsertFlightSearchDetailsAction(this.searchForm.value);
   }
 
   ngOnDestroy() {
-    this.statusSubscription.unsubscribe();
+    this.formValueChangeSubscription.unsubscribe();
+  }
+
+  private _sendUpsertFlightSearchDetailsAction(value: any) {
+    const flightDetails: FeatuerStore.FlightSearchDetail = {
+      origin: value.flightDetailsGroup.fromCtrl,
+      destination: value.flightDetailsGroup.toCtrl,
+      date: new Date(Date.now()),
+      travelOrder: 1,
+      departureAfterTime: { hours: 0, minutes: 0 },
+      departureBeforeTime: { hours: 0, minutes: 0 }
+    };
+    this.store.dispatch(new FeatuerStore.UpsertFlightSearchDetails(flightDetails));
   }
 
   private _filterAirport(value: string, airports: FeatuerStore.Airport[]): FeatuerStore.Airport[] {
