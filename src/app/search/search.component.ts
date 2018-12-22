@@ -45,6 +45,11 @@ export class SearchComponent implements OnInit, OnDestroy {
       .get('flightDetailsGroup.toCtrl') as FormControl;
   }
 
+  get fromDateCtrl() {
+    return this.searchForm
+      .get('flightDetailsGroup.fromDateCtrl') as FormControl;
+  }
+
   constructor(private store: Store<FeatuerStore.ConfigData>,
     private fb: FormBuilder,
     private airportValidatorService: ArirportValidatiorService) {
@@ -59,6 +64,10 @@ export class SearchComponent implements OnInit, OnDestroy {
           '',
           [Validators.required],
           [this.airportValidatorService.validate.bind(this.airportValidatorService)]
+        ],
+        fromDateCtrl: [
+          new Date('2020/11/01'),
+          [Validators.required]
         ]
       }),
     });
@@ -115,7 +124,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     const flightDetails: FeatuerStore.FlightSearchDetail = {
       origin: value.flightDetailsGroup.fromCtrl,
       destination: value.flightDetailsGroup.toCtrl,
-      date: new Date(Date.now()),
+      date: value.flightDetailsGroup.fromDateCtrl,
       travelOrder: 1,
       departureAfterTime: { hours: 0, minutes: 0 },
       departureBeforeTime: { hours: 0, minutes: 0 }

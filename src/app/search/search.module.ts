@@ -15,6 +15,8 @@ import * as Material from '@angular/material';
     Material.MatFormFieldModule,
     Material.MatOptionModule,
     Material.MatInputModule,
+    Material.MatDatepickerModule,
+    Material.MatNativeDateModule,
   ],
   exports: [
     SearchComponent

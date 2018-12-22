@@ -65,7 +65,7 @@ export class FlightStoreService {
           return (
             (ele.origin === criteria.flightSearchDetails.entities[1].origin &&
               ele.destination === criteria.flightSearchDetails.entities[1].destination) &&
-            ele.date.valueOf() === new Date('2020/11/01').valueOf()
+            ele.date.valueOf() === criteria.flightSearchDetails.entities[1].date.valueOf()
           );
         });
       }),
