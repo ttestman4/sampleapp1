@@ -53,13 +53,14 @@ describe('FlightEffects', () => {
                     origin: 'BOM',
                     destination: 'DEL',
                     date: new Date('2019-11-17'),
-                    travelOrder: 1,
+                    travelOrder: 0,
                     name: 'indigo',
                     departureTime: { hours: 9, minutes: 20 },
                     arrivalTime: { hours: 16, minutes: 19 },
                     duration: { hours: 7, minutes: 10 },
                     price: 1,
                     flightNo: '6E-123',
+                    stops: 0,
                 }],
                 sortBy: FlightModels.ResultSortBy.BestFlights
             };
@@ -87,23 +88,31 @@ describe('FlightEffects', () => {
         });
     });
 
-    describe('upsertFlightSearchDetails$', () => {
+    describe('updateSearchCriteria$', () => {
         it('should return search action', () => {
-            const flightSearchDetails: FlightModels.Criteria = {
-                origin: 'BOM',
-                destination: 'GOI',
-                date: new Date('2018-12-17'),
-                travelOrder: 1,
-                departureAfterTime: { hours: 9, minutes: 20 },
-                departureBeforeTime: { hours: 16, minutes: 19 },
+            const criteria: FlightModels.Criteria = {
+                flightSearchDetails: [{
+                    origin: 'BOM',
+                    destination: 'GOI',
+                    date: new Date('2018-12-17'),
+                    travelOrder: 0,
+                    departureAfterTime: { hours: 9, minutes: 20 },
+                    departureBeforeTime: { hours: 16, minutes: 19 },
+                }],
+                passengers: [],
+                travelType: FlightModels.TravelType.Return,
+                travelClass: FlightModels.TravelClass.Economy,
+                bags: 1,
+                stops: 2,
+                price: 0,
             };
-            const action = new flightStoreActions.UpdateSearchCriteria(flightSearchDetails);
+            const action = new flightStoreActions.UpdateSearchCriteria(criteria);
             const responseAction1 = new flightStoreActions.Search();
 
             actions$ = hot('-a---', { a: action });
             const expected = cold('-p--', { p: responseAction1 });
 
-            expect(effects.upsertFlightSearchDetails$).toBeObservable(expected);
+            expect(effects.updateSearchCriteria$).toBeObservable(expected);
         });
     });
 });

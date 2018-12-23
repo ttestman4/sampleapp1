@@ -154,7 +154,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         origin: value.flightDetailsGroup.fromCtrl,
         destination: value.flightDetailsGroup.toCtrl,
         date: value.flightDetailsGroup.fromDateCtrl,
-        travelOrder: 1,
+        travelOrder: 0,
         departureAfterTime: { hours: 0, minutes: 0 },
         departureBeforeTime: { hours: 0, minutes: 0 }
       }],
@@ -170,7 +170,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         origin: value.flightDetailsGroup.toCtrl,
         destination: value.flightDetailsGroup.fromCtrl,
         date: value.flightDetailsGroup.toDateCtrl,
-        travelOrder: 2,
+        travelOrder: 1,
         departureAfterTime: { hours: 0, minutes: 0 },
         departureBeforeTime: { hours: 0, minutes: 0 }
       });
