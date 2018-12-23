@@ -51,6 +51,11 @@ export class SearchComponent implements OnInit, OnDestroy {
       .get('flightDetailsGroup.fromDateCtrl') as FormControl;
   }
 
+  get toDateCtrl() {
+    return this.searchForm
+      .get('flightDetailsGroup.toDateCtrl') as FormControl;
+  }
+
   get travelTypeCtrl() {
     return this.searchForm
       .get('travelTypeCtrl') as FormControl;
@@ -86,6 +91,10 @@ export class SearchComponent implements OnInit, OnDestroy {
         ],
         fromDateCtrl: [
           new Date('2020/11/01'),
+          [Validators.required]
+        ],
+        toDateCtrl: [
+          new Date('2020/11/02'),
           [Validators.required]
         ]
       }),
@@ -156,6 +165,16 @@ export class SearchComponent implements OnInit, OnDestroy {
       stops: parseInt(value.stopsCtrl, 10),
       price: 0,
     };
+    if (criteria.travelType === FeatuerStore.TravelType.Return) {
+      criteria.flightSearchDetails.push({
+        origin: value.flightDetailsGroup.toCtrl,
+        destination: value.flightDetailsGroup.fromCtrl,
+        date: value.flightDetailsGroup.toDateCtrl,
+        travelOrder: 2,
+        departureAfterTime: { hours: 0, minutes: 0 },
+        departureBeforeTime: { hours: 0, minutes: 0 }
+      });
+    }
     this.store.dispatch(new FeatuerStore.UpdateSearchCriteria(criteria));
   }
 

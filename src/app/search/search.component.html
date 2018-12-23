@@ -38,9 +38,15 @@
     </mat-form-field>
     <br />
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [formControl]="fromDateCtrl">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <input matInput [matDatepicker]="departureDt" placeholder="Choose departure date" [formControl]="fromDateCtrl">
+      <mat-datepicker-toggle matSuffix [for]="departureDt"></mat-datepicker-toggle>
+      <mat-datepicker #departureDt></mat-datepicker>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <input matInput [matDatepicker]="returnDt" placeholder="Choose return date" [formControl]="toDateCtrl">
+      <mat-datepicker-toggle matSuffix [for]="returnDt"></mat-datepicker-toggle>
+      <mat-datepicker #returnDt></mat-datepicker>
     </mat-form-field>
   </div>
 </form>
