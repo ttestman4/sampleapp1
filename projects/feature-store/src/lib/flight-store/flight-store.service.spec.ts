@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { Result, ResultSortBy, Criteria, TravelType, TravelClass } from './flight-store.models';
-import { FlightStoreService, ResetNextFlightStoreServiceId, FlightResultDetailFromRestApi} from './flight-store.service';
-import { FlightResultDetail } from 'feature-store/public_api';
+import { Criteria, Result, ResultSortBy, TravelClass, TravelType } from './flight-store.models';
+import { FlightResultDetailFromRestApi, FlightStoreService, ResetNextFlightStoreServiceId } from './flight-store.service';
 describe('FlightStoreService', () => {
   let httpTestingController: HttpTestingController;
   let flightStoreService: FlightStoreService;
@@ -48,7 +47,7 @@ describe('FlightStoreService', () => {
           '1': {
             origin: 'Pune (PNQ)',
             destination: 'Mumbai (BOM)',
-            date: new Date('2018-12-21'),
+            date: new Date('2019-12-21'),
             travelOrder: 1,
             departureAfterTime: {
               hours: 0,
@@ -73,13 +72,31 @@ describe('FlightStoreService', () => {
       origin: 'Pune (PNQ)',
       destination: 'Mumbai (BOM)',
       date: '2019-12-21',
-      travelOrder: 1,
       name: 'indigo',
       departureTime: '9:20',
       arrivalTime: '10:44',
-      duration: { hours: 7, minutes: 10 },
       price: 1,
       flightNo: '6E-123',
+    },
+    {
+      origin: 'Pune (PNQ)',
+      destination: 'Delhi (DEL)',
+      date: '2019-12-21',
+      name: 'indigo',
+      departureTime: '9:20',
+      arrivalTime: '10:44',
+      price: 2,
+      flightNo: '6E-124',
+    },
+    {
+      origin: 'Delhi (DEL)',
+      destination: 'Mumbai (BOM)',
+      date: '2019-12-21',
+      name: 'indigo',
+      departureTime: '11:44',
+      arrivalTime: '14:44',
+      price: 3,
+      flightNo: '6E-125',
     }];
     const testData: Result = {
       flightDetails: [{
@@ -89,18 +106,61 @@ describe('FlightStoreService', () => {
         travelOrder: 1,
         name: 'indigo',
         departureTime: { hours: 9, minutes: 20 },
-        arrivalTime: { hours: 16, minutes: 19 },
+        arrivalTime: { hours: 10, minutes: 44 },
         duration: { hours: 1, minutes: 24 },
         price: 1,
         flightNo: '6E-123',
+        stops: 0,
+      },
+      {
+        origin: 'Pune (PNQ)',
+        destination: 'Mumbai (BOM)',
+        date: new Date('2019-12-21'),
+        travelOrder: 1,
+        name: 'Multiple',
+        departureTime: { hours: 9, minutes: 20 },
+        arrivalTime: { hours: 14, minutes: 44 },
+        duration: { hours: 5, minutes: 24 },
+        price: 5,
+        flightNo: '6E-124 => 6E-125',
+        stops: 1,
+        multiple: [{
+          origin: 'Pune (PNQ)',
+          destination: 'Delhi (DEL)',
+          date: new Date('2019-12-21'),
+          travelOrder: 1,
+          name: 'indigo',
+          departureTime: { hours: 9, minutes: 20 },
+          arrivalTime: { hours: 10, minutes: 44 },
+          duration: { hours: 1, minutes: 24 },
+          price: 2,
+          flightNo: '6E-124',
+          stops: 0,
+        },
+        {
+          origin: 'Delhi (DEL)',
+          destination: 'Mumbai (BOM)',
+          date: new Date('2019-12-21'),
+          travelOrder: 1,
+          name: 'indigo',
+          departureTime: { hours: 11, minutes: 44 },
+          arrivalTime: { hours: 14, minutes: 44 },
+          duration: { hours: 3, minutes: 0 },
+          price: 3,
+          flightNo: '6E-125',
+          stops: 0,
+        }]
       }],
       sortBy: ResultSortBy.BestFlights
     };
 
-    it('#search should return expected Results (called once)', () => {
+    it('#search should return expected Results (called once)', (done) => {
       flightStoreService.search(criteria).subscribe(
-        (result) => expect(result).toEqual(testData,
-          'should return expected results'),
+        (result) => {
+          expect(result).toEqual(testData,
+            'should return expected results');
+          done();
+        },
         fail
       );
 
@@ -112,10 +172,13 @@ describe('FlightStoreService', () => {
       req.flush(flightDetails);
     });
 
-    it('#search should be OK returning no results', () => {
+    it('#search should be OK returning no results', (done) => {
 
       flightStoreService.search(criteria).subscribe(
-        result => expect(result.flightDetails.length).toEqual(0, 'should have empty airports array'),
+        result => {
+          expect(result.flightDetails.length).toEqual(0, 'should have empty airports array');
+          done();
+        },
         fail
       );
 

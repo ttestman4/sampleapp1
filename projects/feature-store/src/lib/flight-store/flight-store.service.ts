@@ -15,11 +15,9 @@ export interface FlightResultDetailFromRestApi {
   origin: string;
   destination: string;
   date: string;
-  travelOrder: number;
   name: string;
   departureTime: string;
   arrivalTime: string;
-  duration: Time;
   price: number;
   flightNo: string;
 }
@@ -48,26 +46,83 @@ export class FlightStoreService {
             origin: ele.origin,
             destination: ele.destination,
             date: new Date(ele.date),
-            travelOrder: 0,
+            travelOrder: 1,
             name: ele.name,
             departureTime,
             arrivalTime,
             duration,
             price: ele.price,
             flightNo: ele.flightNo,
+            stops: 0,
           };
           return resultEle;
         });
       }),
-      // Filter records which match the origin and destination criteria
       map((response) => {
-        return response.filter((ele) => {
+        const result: FlightModels.FlightResultDetail[] = [];
+        // Build list of direct flights
+        // Filter records which match the origin and destination criteria and date
+        const directFights = response.filter((ele) => {
           return (
             (ele.origin === criteria.flightSearchDetails.entities[1].origin &&
               ele.destination === criteria.flightSearchDetails.entities[1].destination) &&
             ele.date.valueOf() === criteria.flightSearchDetails.entities[1].date.valueOf()
           );
         });
+
+        // Build list of of flights with 1 stop
+        const departureFlightsMatchingOrigin = response.filter((ele) => {
+          return (
+            (ele.origin === criteria.flightSearchDetails.entities[1].origin &&
+              ele.destination !== criteria.flightSearchDetails.entities[1].destination) &&
+            ele.date.valueOf() === criteria.flightSearchDetails.entities[1].date.valueOf()
+          );
+        });
+
+        const arrivalFlightsMatchingOrigin = response.filter((ele) => {
+          return (
+            (ele.origin !== criteria.flightSearchDetails.entities[1].origin &&
+              ele.destination === criteria.flightSearchDetails.entities[1].destination) &&
+            ele.date.valueOf() === criteria.flightSearchDetails.entities[1].date.valueOf()
+          );
+        });
+
+        let flightsWithOneStop: FlightModels.FlightResultDetail[] = [];
+
+        departureFlightsMatchingOrigin.forEach((depart) => {
+          const secondLegFlight = arrivalFlightsMatchingOrigin.filter((arrival) => {
+            return depart.destination === arrival.origin &&
+              this.timeToMinutes(this.calculateDuration(depart.arrivalTime, arrival.departureTime)) >= 30;
+          });
+
+          const firstLegInstanceAndSecondLegListMerged =
+            secondLegFlight.map((second) => {
+              const multipleFlightInstance: FlightModels.FlightResultDetail = {
+                origin: depart.origin,
+                destination: second.destination,
+                date: depart.date,
+                travelOrder: 1,
+                name: 'Multiple',
+                departureTime: depart.departureTime,
+                arrivalTime: second.arrivalTime,
+                duration: this.calculateDuration(
+                  depart.departureTime,
+                  second.arrivalTime
+                ),
+                price: (depart.price + second.price),
+                flightNo: depart.flightNo + ' => ' + second.flightNo,
+                stops: 1,
+                multiple: [
+                  depart, second
+                ]
+              };
+              return multipleFlightInstance;
+            });
+
+          flightsWithOneStop = flightsWithOneStop.concat(firstLegInstanceAndSecondLegListMerged);
+        });
+
+        return result.concat(directFights, flightsWithOneStop);
       }),
       map((response) => {
         return {
@@ -111,5 +166,9 @@ export class FlightStoreService {
     result.minutes = diffDate.getUTCMinutes();
 
     return result;
+  }
+
+  private timeToMinutes(time: Time) {
+    return time.hours * 60 + time.minutes;
   }
 }

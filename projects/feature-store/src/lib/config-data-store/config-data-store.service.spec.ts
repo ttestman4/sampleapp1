@@ -66,10 +66,12 @@ describe('ConfigDataStoreService', () => {
     return airport;
   });
 
-  it('#getAirports should return expected Airports (called once)', () => {
+  it('#getAirports should return expected Airports (called once)', (done) => {
     configService.getAirports().subscribe(
-      (airports) => expect(airports).toEqual(expectedAirports,
-        'should return expected airports'),
+      (airports) => {
+        expect(airports).toEqual(expectedAirports, 'should return expected airports');
+        done();
+      },
       fail
     );
 
@@ -81,10 +83,13 @@ describe('ConfigDataStoreService', () => {
     req.flush(testData);
   });
 
-  it('#getAirports should be OK returning no airports', () => {
+  it('#getAirports should be OK returning no airports', (done) => {
 
     configService.getAirports().subscribe(
-      airports => expect(airports.length).toEqual(0, 'should have empty airports array'),
+      airports => {
+        expect(airports.length).toEqual(0, 'should have empty airports array');
+        done();
+      },
       fail
     );
 

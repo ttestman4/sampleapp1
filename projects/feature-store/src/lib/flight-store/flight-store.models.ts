@@ -25,6 +25,8 @@ export interface FlightResultDetail extends FlightDetailsCore {
     duration: Time;
     price: number;
     flightNo: string;
+    stops: number;
+    multiple?: FlightResultDetail[];
 }
 
 export enum PassengerType {
