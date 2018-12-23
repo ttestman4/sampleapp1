@@ -403,6 +403,8 @@ MIT
 
 @angular/material/form-field
 
+@angular/material/select
+
 @angular/material/autocomplete
 
 @ngrx/effects
