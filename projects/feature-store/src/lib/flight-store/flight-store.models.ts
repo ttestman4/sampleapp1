@@ -1,5 +1,4 @@
 import { Time } from '@angular/common';
-import { EntityState } from '@ngrx/entity';
 
 export enum TravelType {
     OneWay = 'One way',
@@ -13,7 +12,7 @@ interface FlightDetailsCore {
     travelOrder: number;
 }
 
-export interface FlightSearchDetail extends FlightDetailsCore {
+export interface FlightSearchDetails extends FlightDetailsCore {
     departureAfterTime: Time;
     departureBeforeTime: Time;
 }
@@ -49,7 +48,7 @@ export enum TravelClass {
 }
 
 export interface Criteria {
-    flightSearchDetails: EntityState<FlightSearchDetail>;
+    flightSearchDetails: FlightSearchDetails[];
     passengers: Passenger[];
     travelType: TravelType;
     travelClass: TravelClass;

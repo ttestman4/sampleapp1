@@ -64,26 +64,26 @@ export class FlightStoreService {
         // Filter records which match the origin and destination criteria and date
         const directFights = response.filter((ele) => {
           return (
-            (ele.origin === criteria.flightSearchDetails.entities[1].origin &&
-              ele.destination === criteria.flightSearchDetails.entities[1].destination) &&
-            ele.date.valueOf() === criteria.flightSearchDetails.entities[1].date.valueOf()
+            (ele.origin === criteria.flightSearchDetails[0].origin &&
+              ele.destination === criteria.flightSearchDetails[0].destination) &&
+            ele.date.valueOf() === criteria.flightSearchDetails[0].date.valueOf()
           );
         });
 
         // Build list of of flights with 1 stop
         const departureFlightsMatchingOrigin = response.filter((ele) => {
           return (
-            (ele.origin === criteria.flightSearchDetails.entities[1].origin &&
-              ele.destination !== criteria.flightSearchDetails.entities[1].destination) &&
-            ele.date.valueOf() === criteria.flightSearchDetails.entities[1].date.valueOf()
+            (ele.origin === criteria.flightSearchDetails[0].origin &&
+              ele.destination !== criteria.flightSearchDetails[0].destination) &&
+            ele.date.valueOf() === criteria.flightSearchDetails[0].date.valueOf()
           );
         });
 
         const arrivalFlightsMatchingOrigin = response.filter((ele) => {
           return (
-            (ele.origin !== criteria.flightSearchDetails.entities[1].origin &&
-              ele.destination === criteria.flightSearchDetails.entities[1].destination) &&
-            ele.date.valueOf() === criteria.flightSearchDetails.entities[1].date.valueOf()
+            (ele.origin !== criteria.flightSearchDetails[0].origin &&
+              ele.destination === criteria.flightSearchDetails[0].destination) &&
+            ele.date.valueOf() === criteria.flightSearchDetails[0].date.valueOf()
           );
         });
 

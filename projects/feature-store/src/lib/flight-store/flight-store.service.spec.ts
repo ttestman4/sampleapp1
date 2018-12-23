@@ -39,27 +39,22 @@ describe('FlightStoreService', () => {
 
   describe('Search', () => {
     const criteria: Criteria = {
-      flightSearchDetails: {
-        ids: [
-          1
-        ],
-        entities: {
-          '1': {
-            origin: 'Pune (PNQ)',
-            destination: 'Mumbai (BOM)',
-            date: new Date('2019-12-21'),
-            travelOrder: 1,
-            departureAfterTime: {
-              hours: 0,
-              minutes: 0
-            },
-            departureBeforeTime: {
-              hours: 0,
-              minutes: 0
-            }
+      flightSearchDetails: [
+        {
+          origin: 'Pune (PNQ)',
+          destination: 'Mumbai (BOM)',
+          date: new Date('2019-12-21'),
+          travelOrder: 1,
+          departureAfterTime: {
+            hours: 0,
+            minutes: 0
+          },
+          departureBeforeTime: {
+            hours: 0,
+            minutes: 0
           }
         }
-      },
+      ],
       passengers: [],
       travelType: TravelType.Return,
       travelClass: TravelClass.Economy,

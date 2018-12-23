@@ -20,52 +20,29 @@ describe('Flight Reducer', () => {
 
     let resultFromPreviousStep: State;
 
-    describe('UpdateFlightSearchDetails', () => {
-        it('Valid action should return the added FlightSearchDetailsState', () => {
-            const flightSearchDetails: FlightModels.FlightSearchDetail = {
-                origin: 'BOM',
-                destination: 'GOI',
-                date: new Date('2018-12-17'),
-                travelOrder: 1,
-                departureAfterTime: { hours: 9, minutes: 20 },
-                departureBeforeTime: { hours: 16, minutes: 19 },
+    describe('UpdateSearchCriteria', () => {
+        it('Valid action should return the added Criteria State', () => {
+            const criteria: FlightModels.Criteria = {
+                flightSearchDetails: [{
+                    origin: 'BOM',
+                    destination: 'GOI',
+                    date: new Date('2018-12-17'),
+                    travelOrder: 1,
+                    departureAfterTime: { hours: 9, minutes: 20 },
+                    departureBeforeTime: { hours: 16, minutes: 19 },
+                }],
+                passengers: [],
+                travelType: FlightModels.TravelType.Return,
+                travelClass: FlightModels.TravelClass.Economy,
+                bags: 1,
+                stops: 2,
+                price: 0,
             };
-            const action = new FlighActions.UpsertFlightSearchDetails(flightSearchDetails);
+            const action = new FlighActions.UpdateSearchCriteria(criteria);
 
             resultFromPreviousStep = reducer(initialState, action);
 
-            expect(resultFromPreviousStep).toMatchSnapshot();
-        });
-
-        it('Valid action should return the updated FlightSearchDetailsState', () => {
-            const flightSearchDetails: FlightModels.FlightSearchDetail = {
-                origin: 'BOM',
-                destination: 'DEL',
-                date: new Date('2019-11-17'),
-                travelOrder: 1,
-                departureAfterTime: { hours: 9, minutes: 20 },
-                departureBeforeTime: { hours: 16, minutes: 19 },
-            };
-            const action = new FlighActions.UpsertFlightSearchDetails(flightSearchDetails);
-
-            resultFromPreviousStep = reducer(resultFromPreviousStep, action);
-
-            expect(resultFromPreviousStep).toMatchSnapshot();
-        });
-
-        it('Valid action should return the added FlightSearchDetailsState', () => {
-            const flightSearchDetails: FlightModels.FlightSearchDetail = {
-                origin: 'GOI',
-                destination: 'BOM',
-                date: new Date('2018-12-17'),
-                travelOrder: 2,
-                departureAfterTime: { hours: 9, minutes: 20 },
-                departureBeforeTime: { hours: 16, minutes: 19 },
-            };
-            const action = new FlighActions.UpsertFlightSearchDetails(flightSearchDetails);
-
-            resultFromPreviousStep = reducer(resultFromPreviousStep, action);
-
+            expect(resultFromPreviousStep.criteria).toEqual(criteria);
             expect(resultFromPreviousStep).toMatchSnapshot();
         });
     });
@@ -84,6 +61,7 @@ describe('Flight Reducer', () => {
                     duration: { hours: 7, minutes: 10 },
                     price: 1,
                     flightNo: '6E-123',
+                    stops: 0,
                 }],
                 sortBy: FlightModels.ResultSortBy.BestFlights
             };
@@ -91,6 +69,7 @@ describe('Flight Reducer', () => {
 
             resultFromPreviousStep = reducer(resultFromPreviousStep, action);
 
+            expect(resultFromPreviousStep.result).toEqual(result);
             expect(resultFromPreviousStep).toMatchSnapshot();
         });
     });

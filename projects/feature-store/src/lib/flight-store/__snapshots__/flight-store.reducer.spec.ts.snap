@@ -4,45 +4,25 @@ exports[`Flight Reducer SearchSuccess Valid action should update the result 1`] 
 Object {
   "criteria": Object {
     "bags": 1,
-    "flightSearchDetails": Object {
-      "entities": Object {
-        "1": Object {
-          "date": 2019-11-17T00:00:00.000Z,
-          "departureAfterTime": Object {
-            "hours": 9,
-            "minutes": 20,
-          },
-          "departureBeforeTime": Object {
-            "hours": 16,
-            "minutes": 19,
-          },
-          "destination": "DEL",
-          "origin": "BOM",
-          "travelOrder": 1,
+    "flightSearchDetails": Array [
+      Object {
+        "date": 2018-12-17T00:00:00.000Z,
+        "departureAfterTime": Object {
+          "hours": 9,
+          "minutes": 20,
         },
-        "2": Object {
-          "date": 2018-12-17T00:00:00.000Z,
-          "departureAfterTime": Object {
-            "hours": 9,
-            "minutes": 20,
-          },
-          "departureBeforeTime": Object {
-            "hours": 16,
-            "minutes": 19,
-          },
-          "destination": "BOM",
-          "origin": "GOI",
-          "travelOrder": 2,
+        "departureBeforeTime": Object {
+          "hours": 16,
+          "minutes": 19,
         },
+        "destination": "GOI",
+        "origin": "BOM",
+        "travelOrder": 1,
       },
-      "ids": Array [
-        1,
-        2,
-      ],
-    },
+    ],
     "passengers": Array [],
     "price": 0,
-    "stops": 10,
+    "stops": 2,
     "travelClass": "Economy",
     "travelType": "Round trip",
   },
@@ -68,6 +48,7 @@ Object {
         "name": "indigo",
         "origin": "BOM",
         "price": 1,
+        "stops": 0,
         "travelOrder": 1,
       },
     ],
@@ -80,13 +61,10 @@ exports[`Flight Reducer Unknown action should return the initial state 1`] = `
 Object {
   "criteria": Object {
     "bags": 1,
-    "flightSearchDetails": Object {
-      "entities": Object {},
-      "ids": Array [],
-    },
+    "flightSearchDetails": Array [],
     "passengers": Array [],
     "price": 0,
-    "stops": 10,
+    "stops": 2,
     "travelClass": "Economy",
     "travelType": "Round trip",
   },
@@ -102,13 +80,10 @@ exports[`Flight Reducer Unknown action should return the initial state for undef
 Object {
   "criteria": Object {
     "bags": 1,
-    "flightSearchDetails": Object {
-      "entities": Object {},
-      "ids": Array [],
-    },
+    "flightSearchDetails": Array [],
     "passengers": Array [],
     "price": 0,
-    "stops": 10,
+    "stops": 2,
     "travelClass": "Economy",
     "travelType": "Round trip",
   },
@@ -120,127 +95,29 @@ Object {
 }
 `;
 
-exports[`Flight Reducer UpdateFlightSearchDetails Valid action should return the added FlightSearchDetailsState 1`] = `
+exports[`Flight Reducer UpdateSearchCriteria Valid action should return the added Criteria State 1`] = `
 Object {
   "criteria": Object {
     "bags": 1,
-    "flightSearchDetails": Object {
-      "entities": Object {
-        "1": Object {
-          "date": 2018-12-17T00:00:00.000Z,
-          "departureAfterTime": Object {
-            "hours": 9,
-            "minutes": 20,
-          },
-          "departureBeforeTime": Object {
-            "hours": 16,
-            "minutes": 19,
-          },
-          "destination": "GOI",
-          "origin": "BOM",
-          "travelOrder": 1,
+    "flightSearchDetails": Array [
+      Object {
+        "date": 2018-12-17T00:00:00.000Z,
+        "departureAfterTime": Object {
+          "hours": 9,
+          "minutes": 20,
         },
+        "departureBeforeTime": Object {
+          "hours": 16,
+          "minutes": 19,
+        },
+        "destination": "GOI",
+        "origin": "BOM",
+        "travelOrder": 1,
       },
-      "ids": Array [
-        1,
-      ],
-    },
+    ],
     "passengers": Array [],
     "price": 0,
-    "stops": 10,
-    "travelClass": "Economy",
-    "travelType": "Round trip",
-  },
-  "name": "Flight Store",
-  "result": Object {
-    "flightDetails": Array [],
-    "sortBy": "Best Flights",
-  },
-}
-`;
-
-exports[`Flight Reducer UpdateFlightSearchDetails Valid action should return the added FlightSearchDetailsState 2`] = `
-Object {
-  "criteria": Object {
-    "bags": 1,
-    "flightSearchDetails": Object {
-      "entities": Object {
-        "1": Object {
-          "date": 2019-11-17T00:00:00.000Z,
-          "departureAfterTime": Object {
-            "hours": 9,
-            "minutes": 20,
-          },
-          "departureBeforeTime": Object {
-            "hours": 16,
-            "minutes": 19,
-          },
-          "destination": "DEL",
-          "origin": "BOM",
-          "travelOrder": 1,
-        },
-        "2": Object {
-          "date": 2018-12-17T00:00:00.000Z,
-          "departureAfterTime": Object {
-            "hours": 9,
-            "minutes": 20,
-          },
-          "departureBeforeTime": Object {
-            "hours": 16,
-            "minutes": 19,
-          },
-          "destination": "BOM",
-          "origin": "GOI",
-          "travelOrder": 2,
-        },
-      },
-      "ids": Array [
-        1,
-        2,
-      ],
-    },
-    "passengers": Array [],
-    "price": 0,
-    "stops": 10,
-    "travelClass": "Economy",
-    "travelType": "Round trip",
-  },
-  "name": "Flight Store",
-  "result": Object {
-    "flightDetails": Array [],
-    "sortBy": "Best Flights",
-  },
-}
-`;
-
-exports[`Flight Reducer UpdateFlightSearchDetails Valid action should return the updated FlightSearchDetailsState 1`] = `
-Object {
-  "criteria": Object {
-    "bags": 1,
-    "flightSearchDetails": Object {
-      "entities": Object {
-        "1": Object {
-          "date": 2019-11-17T00:00:00.000Z,
-          "departureAfterTime": Object {
-            "hours": 9,
-            "minutes": 20,
-          },
-          "departureBeforeTime": Object {
-            "hours": 16,
-            "minutes": 19,
-          },
-          "destination": "DEL",
-          "origin": "BOM",
-          "travelOrder": 1,
-        },
-      },
-      "ids": Array [
-        1,
-      ],
-    },
-    "passengers": Array [],
-    "price": 0,
-    "stops": 10,
+    "stops": 2,
     "travelClass": "Economy",
     "travelType": "Round trip",
   },

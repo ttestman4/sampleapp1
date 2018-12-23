@@ -1,7 +1,6 @@
-import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
-import * as FlightActions from './flight-store.actions';
-import { FlightSearchDetail, ResultSortBy, SearchState, TravelClass, TravelType } from './flight-store.models';
 import { createFeatureSelector } from '@ngrx/store';
+import * as FlightActions from './flight-store.actions';
+import { ResultSortBy, SearchState, TravelClass, TravelType } from './flight-store.models';
 
 export const featureName = 'flight';
 
@@ -9,20 +8,20 @@ export interface State extends SearchState {
     name: string;
 }
 
-export const flightSearchDetailAdapter: EntityAdapter<FlightSearchDetail> = createEntityAdapter<FlightSearchDetail>({
-    selectId: (a) => a.travelOrder,
-    sortComparer: (a, b) => (a.travelOrder - b.travelOrder),
-});
+// export const flightSearchDetailAdapter: EntityAdapter<FlightSearchDetail> = createEntityAdapter<FlightSearchDetail>({
+//     selectId: (a) => a.travelOrder,
+//     sortComparer: (a, b) => (a.travelOrder - b.travelOrder),
+// });
 
 export const initialState: State = {
     name: 'Flight Store',
     criteria: {
-        flightSearchDetails: flightSearchDetailAdapter.getInitialState(),
+        flightSearchDetails: [],
         passengers: [],
         travelType: TravelType.Return,
         travelClass: TravelClass.Economy,
         bags: 1,
-        stops: 10,
+        stops: 2,
         price: 0,
     },
     result: {
@@ -36,15 +35,10 @@ export function reducer(
     action: FlightActions.FlightActionsUnion
 ): State {
     switch (action.type) {
-        case FlightActions.FlightActionTypes.UpsertFlightSearchDetails: {
+        case FlightActions.FlightActionTypes.UpdateSearchCriteria: {
             return {
                 ...state,
-                criteria: {
-                    ...state.criteria,
-                    flightSearchDetails: flightSearchDetailAdapter.upsertOne(
-                        action.payload,
-                        state.criteria.flightSearchDetails)
-                }
+                criteria: action.payload,
             };
         }
         case FlightActions.FlightActionTypes.SearchSuccess: {

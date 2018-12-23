@@ -38,7 +38,7 @@ export class FlightEffects {
 
     @Effect()
     upsertFlightSearchDetails$ = this.actions$.pipe(
-        ofType<FlightActions.UpsertFlightSearchDetails>(FlightActions.FlightActionTypes.UpsertFlightSearchDetails),
+        ofType<FlightActions.UpdateSearchCriteria>(FlightActions.FlightActionTypes.UpdateSearchCriteria),
         map((_action) => {
             return new FlightActions.Search();
         })

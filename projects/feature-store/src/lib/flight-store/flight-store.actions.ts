@@ -4,7 +4,7 @@ export enum FlightActionTypes {
     Search = '[Flight Store] Search',
     SearchSuccess = '[Flight Store] Search Success',
     SearchFailuer = '[Flight Store] Search Failuer',
-    UpsertFlightSearchDetails = '[Flight Store] Upsert Flight Search Details',
+    UpdateSearchCriteria = '[Flight Store] Update Search Criteria',
 }
 
 /**
@@ -28,9 +28,9 @@ export class SearchFailuer implements Action {
     constructor() { }
 }
 
-export class UpsertFlightSearchDetails implements Action {
-    readonly type = FlightActionTypes.UpsertFlightSearchDetails;
-    constructor(public payload: FlightModels.FlightSearchDetail) { }
+export class UpdateSearchCriteria implements Action {
+    readonly type = FlightActionTypes.UpdateSearchCriteria;
+    constructor(public payload: FlightModels.Criteria) { }
 }
 
 
@@ -42,5 +42,5 @@ export type FlightActionsUnion =
     Search |
     SearchSuccess |
     SearchFailuer |
-    UpsertFlightSearchDetails;
+    UpdateSearchCriteria;
 

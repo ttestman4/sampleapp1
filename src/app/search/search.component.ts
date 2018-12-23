@@ -121,15 +121,23 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   private _sendUpsertFlightSearchDetailsAction(value: any) {
-    const flightDetails: FeatuerStore.FlightSearchDetail = {
-      origin: value.flightDetailsGroup.fromCtrl,
-      destination: value.flightDetailsGroup.toCtrl,
-      date: value.flightDetailsGroup.fromDateCtrl,
-      travelOrder: 1,
-      departureAfterTime: { hours: 0, minutes: 0 },
-      departureBeforeTime: { hours: 0, minutes: 0 }
+    const criteria: FeatuerStore.Criteria = {
+      flightSearchDetails: [{
+        origin: value.flightDetailsGroup.fromCtrl,
+        destination: value.flightDetailsGroup.toCtrl,
+        date: value.flightDetailsGroup.fromDateCtrl,
+        travelOrder: 1,
+        departureAfterTime: { hours: 0, minutes: 0 },
+        departureBeforeTime: { hours: 0, minutes: 0 }
+      }],
+      passengers: [],
+      travelType: FeatuerStore.TravelType.Return,
+      travelClass: FeatuerStore.TravelClass.Economy,
+      bags: 1,
+      stops: 2,
+      price: 0,
     };
-    this.store.dispatch(new FeatuerStore.UpsertFlightSearchDetails(flightDetails));
+    this.store.dispatch(new FeatuerStore.UpdateSearchCriteria(criteria));
   }
 
   private _filterAirport(value: string, airports: FeatuerStore.Airport[]): FeatuerStore.Airport[] {

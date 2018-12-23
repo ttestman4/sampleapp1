@@ -89,7 +89,7 @@ describe('FlightEffects', () => {
 
     describe('upsertFlightSearchDetails$', () => {
         it('should return search action', () => {
-            const flightSearchDetails: FlightModels.FlightSearchDetail = {
+            const flightSearchDetails: FlightModels.Criteria = {
                 origin: 'BOM',
                 destination: 'GOI',
                 date: new Date('2018-12-17'),
@@ -97,7 +97,7 @@ describe('FlightEffects', () => {
                 departureAfterTime: { hours: 9, minutes: 20 },
                 departureBeforeTime: { hours: 16, minutes: 19 },
             };
-            const action = new flightStoreActions.UpsertFlightSearchDetails(flightSearchDetails);
+            const action = new flightStoreActions.UpdateSearchCriteria(flightSearchDetails);
             const responseAction1 = new flightStoreActions.Search();
 
             actions$ = hot('-a---', { a: action });
