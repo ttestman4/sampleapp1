@@ -408,9 +408,6 @@ MIT
 @ngrx/effects
 MIT
 
-@ngrx/entity
-MIT
-
 feature-store
 
 ngx-logger
