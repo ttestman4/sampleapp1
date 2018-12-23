@@ -3,7 +3,7 @@
         "origin": "BOM",
         "destination": "DEL",
         "date": "2019-11-17T00:00:00.000Z",
-        "travelOrder": 1,
+        "travelOrder": 0,
         "name": "indigo",
         "departureTime": {
             "hours": 9,
