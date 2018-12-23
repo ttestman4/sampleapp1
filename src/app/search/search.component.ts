@@ -34,6 +34,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   toAirports$: Observable<FeatuerStore.Airport[]>;
   searchForm: FormGroup;
   formValueChangeSubscription: Subscription;
+  travelTypes = Object.values(FeatuerStore.TravelType);
 
   get fromCtrl() {
     return this.searchForm
@@ -50,10 +51,28 @@ export class SearchComponent implements OnInit, OnDestroy {
       .get('flightDetailsGroup.fromDateCtrl') as FormControl;
   }
 
+  get travelTypeCtrl() {
+    return this.searchForm
+      .get('travelTypeCtrl') as FormControl;
+  }
+
+  get stopsCtrl() {
+    return this.searchForm
+      .get('stopsCtrl') as FormControl;
+  }
+
   constructor(private store: Store<FeatuerStore.ConfigData>,
     private fb: FormBuilder,
     private airportValidatorService: ArirportValidatiorService) {
     this.searchForm = this.fb.group({
+      travelTypeCtrl: [
+        FeatuerStore.TravelType.Return,
+        [Validators.required]
+      ],
+      stopsCtrl: [
+        '0',
+        [Validators.required]
+      ],
       flightDetailsGroup: this.fb.group({
         fromCtrl: [
           'Pune (PNQ)',
@@ -131,10 +150,10 @@ export class SearchComponent implements OnInit, OnDestroy {
         departureBeforeTime: { hours: 0, minutes: 0 }
       }],
       passengers: [],
-      travelType: FeatuerStore.TravelType.Return,
+      travelType: value.travelTypeCtrl,
       travelClass: FeatuerStore.TravelClass.Economy,
       bags: 1,
-      stops: 2,
+      stops: parseInt(value.stopsCtrl, 10),
       price: 0,
     };
     this.store.dispatch(new FeatuerStore.UpdateSearchCriteria(criteria));

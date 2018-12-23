@@ -2,6 +2,20 @@
   search works!
 </p>
 <form [formGroup]="searchForm">
+  <mat-form-field>
+    <mat-select [formControl]="travelTypeCtrl">
+      <mat-option *ngFor="let tt of travelTypes" [value]="tt">
+        {{tt}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <mat-select [formControl]="stopsCtrl">
+      <mat-option value="0">Nonstop only</mat-option>
+      <mat-option value="1">1 stop or fewer</mat-option>
+    </mat-select>
+  </mat-form-field>
   <div formGroupName="flightDetailsGroup">
     <mat-form-field>
       <input type="text" placeholder="From" aria-label="From" matInput [formControl]="fromCtrl" [matAutocomplete]="auto">
