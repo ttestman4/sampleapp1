@@ -9,7 +9,7 @@ exports[`AppComponent snaps 1`] = `
     style="text-align:center"
   >
     <h1>
-       Welcome to spa! 
+       Flight Search App 
     </h1>
   </div><spa-search /><spa-result /><router-outlet />
 </spa-root>

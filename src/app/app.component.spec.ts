@@ -60,7 +60,7 @@ describe('AppComponent', () => {
     'should render title in a h1 tag',
     async(() => {
       const compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('h1').textContent).toContain('Welcome to spa!');
+      expect(compiled.querySelector('h1').textContent).toContain('Flight Search App');
     })
   );
 });
