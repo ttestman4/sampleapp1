@@ -3,8 +3,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { FlightEffects } from './flight-store.effects';
-import { reducer, featureName } from './flight-store.reducer';
+import { FlightEffects, ResetNextFlightEffectsId } from './flight-store.effects';
+import { featureName, reducer } from './flight-store.reducer';
 import { ResetNextFlightStoreServiceId } from './flight-store.service';
 
 export * from './flight-store.actions';
@@ -32,6 +32,9 @@ export * from './flight-store.selectors';
      */
     EffectsModule.forFeature([FlightEffects]),
     HttpClientModule,
+  ],
+  providers: [
+    FlightEffects,
   ]
 })
 export class FlightStoreModule {
@@ -57,5 +60,6 @@ export class FlightStoreModule {
   }
   static forTestReset() {
     ResetNextFlightStoreServiceId();
+    ResetNextFlightEffectsId();
   }
 }

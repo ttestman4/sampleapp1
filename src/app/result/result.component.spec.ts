@@ -47,9 +47,9 @@ describe('ResultComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    // });
+  });
 
-    // it('snaps', () => {
+  it('snaps', () => {
     expect(fixture).toMatchSnapshot();
   });
 });

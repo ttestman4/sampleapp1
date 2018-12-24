@@ -20,7 +20,7 @@ import { ResultModule } from './result/result.module';
     NonFunctionalModule.forRoot({
       serverLoggingUrl: '/api/logs',
       level: CustomLoggerLevel.DEBUG,
-      serverLogLevel: CustomLoggerLevel.ERROR,
+      serverLogLevel: CustomLoggerLevel.OFF,
       disableConsoleLogging: false,
       debugStore: !environment.production,
     }),

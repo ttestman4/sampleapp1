@@ -1,16 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResultComponent should create 1`] = `
+exports[`ResultComponent snaps 1`] = `
 <spa-result
+  flightListAll={[Function Array]}
   result$={[Function Store]}
+  resultSubscription={[Function Subscriber]}
   store={[Function Store]}
 >
-  <p>
-     Search result: {
-    "flightDetails": [],
-    "sortBy": "Best Flights"
-  }
-  
-  </p>
+  <mat-accordion>
+    
+  </mat-accordion>
 </spa-result>
 `;

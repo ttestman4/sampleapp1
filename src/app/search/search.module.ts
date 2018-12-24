@@ -18,6 +18,7 @@ import { SearchComponent } from './search.component';
     Material.MatDatepickerModule,
     Material.MatNativeDateModule,
     Material.MatSelectModule,
+    Material.MatRippleModule,
   ],
   exports: [
     SearchComponent

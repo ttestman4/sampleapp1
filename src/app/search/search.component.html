@@ -1,6 +1,3 @@
-<p>
-  search works!
-</p>
 <form [formGroup]="searchForm">
   <mat-form-field>
     <mat-select [formControl]="travelTypeCtrl">
@@ -9,7 +6,6 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <br/>
   <mat-form-field>
     <mat-select [formControl]="stopsCtrl">
       <mat-option value="0">Nonstop only</mat-option>
@@ -26,7 +22,6 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <br />
     <mat-form-field>
       <input type="text" placeholder="Where To" aria-label="To" matInput [formControl]="toCtrl" [matAutocomplete]="auto2">
       <mat-autocomplete #auto2="matAutocomplete">
@@ -36,13 +31,11 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <br />
     <mat-form-field>
       <input matInput [matDatepicker]="departureDt" placeholder="Choose departure date" [formControl]="fromDateCtrl">
       <mat-datepicker-toggle matSuffix [for]="departureDt"></mat-datepicker-toggle>
       <mat-datepicker #departureDt></mat-datepicker>
     </mat-form-field>
-    <br />
     <mat-form-field>
       <input matInput [matDatepicker]="returnDt" placeholder="Choose return date" [formControl]="toDateCtrl">
       <mat-datepicker-toggle matSuffix [for]="returnDt"></mat-datepicker-toggle>
@@ -50,9 +43,3 @@
     </mat-form-field>
   </div>
 </form>
-<p>
-  Form Status: {{ searchForm.value | json }}
-</p>
-<p>
-  Form Status: {{ searchForm.status }}
-</p>
