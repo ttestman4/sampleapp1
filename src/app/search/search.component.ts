@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Vali
 import { select, Store } from '@ngrx/store';
 import * as FeatuerStore from 'feature-store';
 import * as NonFunctional from 'non-functional';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription , combineLatest} from 'rxjs';
 import { filter, map, startWith, withLatestFrom } from 'rxjs/operators';
 import { ArirportValidatiorService } from './arirport-validatior.service';
 
@@ -33,7 +33,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   fromAirports$: Observable<FeatuerStore.Airport[]>;
   toAirports$: Observable<FeatuerStore.Airport[]>;
   searchForm: FormGroup;
-  formValueChangeSubscription: Subscription;
+  formSubmitSubscription: Subscription;
+
   travelTypes = Object.values(FeatuerStore.TravelType);
 
   get fromCtrl() {
@@ -126,17 +127,17 @@ export class SearchComponent implements OnInit, OnDestroy {
         })
       );
 
-    this.formValueChangeSubscription = this.searchForm.valueChanges.pipe(
-      withLatestFrom(this.searchForm.statusChanges, (value, status) => {
-        return ({ status, value });
-      }),
-      filter((data) => {
-        return data.status === 'VALID';
-      })
-    ).subscribe(data => {
-      this._sendUpsertFlightSearchDetailsAction(data.value);
-    });
-
+    this.formSubmitSubscription = combineLatest(this.searchForm.valueChanges, this.searchForm.statusChanges)
+      .pipe(
+        map(results => {
+          return { value: results[0], status: results[1] };
+        }),
+        filter((data) => {
+          return data.status === 'VALID';
+        })
+      ).subscribe(data => {
+        this._sendUpsertFlightSearchDetailsAction(data.value);
+      });
   }
 
   ngOnInit() {
@@ -145,7 +146,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.formValueChangeSubscription.unsubscribe();
+    this.formSubmitSubscription.unsubscribe();
   }
 
   private _sendUpsertFlightSearchDetailsAction(value: any) {
