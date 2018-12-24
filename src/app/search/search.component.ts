@@ -1,28 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import * as FeatuerStore from 'feature-store';
-import * as NonFunctional from 'non-functional';
-import { Observable, Subscription , combineLatest} from 'rxjs';
+import { combineLatest, Observable, Subscription } from 'rxjs';
 import { filter, map, startWith, withLatestFrom } from 'rxjs/operators';
 import { ArirportValidatiorService } from './arirport-validatior.service';
-
-export function AirportCodeValidator(store: Store<FeatuerStore.ConfigData>): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } | null => {
-    let airports: FeatuerStore.Airport[] = [];
-
-    if (airports.length <= 0) {
-      store.pipe(
-        select(FeatuerStore.selectAirports)
-      ).subscribe((data) => {
-        airports = data;
-      }).unsubscribe();
-    }
-
-    const validCode = airports.find((ele: FeatuerStore.Airport) => ele.displayText.toLowerCase() === control.value.toLowerCase());
-    return NonFunctional.isUndefined(validCode) ? { 'invalidCode': { value: control.value } } : null;
-  };
-}
 
 @Component({
   selector: 'spa-search',
@@ -35,7 +17,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   searchForm: FormGroup;
   formSubmitSubscription: Subscription;
 
-  travelTypes = Object.values(FeatuerStore.TravelType);
+  travelTypes = FeatuerStore.TravelType;
 
   get fromCtrl() {
     return this.searchForm

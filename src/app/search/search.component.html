@@ -1,8 +1,8 @@
 <form [formGroup]="searchForm">
   <mat-form-field>
     <mat-select [formControl]="travelTypeCtrl">
-      <mat-option *ngFor="let tt of travelTypes" [value]="tt">
-        {{tt}}
+      <mat-option *ngFor="let tt of travelTypes | keyvalue" [value]="tt.value">
+        {{tt.value}}
       </mat-option>
     </mat-select>
   </mat-form-field>
