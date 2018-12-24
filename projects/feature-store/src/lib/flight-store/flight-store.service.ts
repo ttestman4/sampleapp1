@@ -59,72 +59,78 @@ export class FlightStoreService {
         });
       }),
       map((response) => {
-        const result: FlightModels.FlightResultDetail[] = [];
-        // Build list of direct flights
-        // Filter records which match the origin and destination criteria and date
-        const directFights = response.filter((ele) => {
-          return (
-            (ele.origin === criteria.flightSearchDetails[0].origin &&
-              ele.destination === criteria.flightSearchDetails[0].destination) &&
-            ele.date.valueOf() === criteria.flightSearchDetails[0].date.valueOf()
-          );
-        });
-
-        let flightsWithOneStop: FlightModels.FlightResultDetail[] = [];
-
-        if (criteria.stops >= 1) {
-          // Build list of of flights with 1 stop
-          const departureFlightsMatchingOrigin = response.filter((ele) => {
+        const resultForAllFlightPlans = criteria.flightSearchDetails.map((singleFlightPlan) => {
+          const result: FlightModels.FlightResultDetail[] = [];
+          // Build list of direct flights
+          // Filter records which match the origin and destination criteria and date
+          const directFights = response.filter((ele) => {
             return (
-              (ele.origin === criteria.flightSearchDetails[0].origin &&
-                ele.destination !== criteria.flightSearchDetails[0].destination) &&
-              ele.date.valueOf() === criteria.flightSearchDetails[0].date.valueOf()
+              (ele.origin === singleFlightPlan.origin &&
+                ele.destination === singleFlightPlan.destination) &&
+              ele.date.valueOf() === singleFlightPlan.date.valueOf()
             );
+          }).map(ele => {
+            return { ...ele, travelOrder: singleFlightPlan.travelOrder };
           });
 
-          const arrivalFlightsMatchingOrigin = response.filter((ele) => {
-            return (
-              (ele.origin !== criteria.flightSearchDetails[0].origin &&
-                ele.destination === criteria.flightSearchDetails[0].destination) &&
-              ele.date.valueOf() === criteria.flightSearchDetails[0].date.valueOf()
-            );
-          });
+          let flightsWithOneStop: FlightModels.FlightResultDetail[] = [];
 
-
-          departureFlightsMatchingOrigin.forEach((depart) => {
-            const secondLegFlight = arrivalFlightsMatchingOrigin.filter((arrival) => {
-              return depart.destination === arrival.origin &&
-                this.timeToMinutes(this.calculateDuration(depart.arrivalTime, arrival.departureTime)) >= 30;
+          if (criteria.stops >= 1) {
+            // Build list of of flights with 1 stop
+            const departureFlightsMatchingOrigin = response.filter((ele) => {
+              return (
+                (ele.origin === singleFlightPlan.origin &&
+                  ele.destination !== singleFlightPlan.destination) &&
+                ele.date.valueOf() === singleFlightPlan.date.valueOf()
+              );
             });
 
-            const firstLegInstanceAndSecondLegListMerged =
-              secondLegFlight.map((second) => {
-                const multipleFlightInstance: FlightModels.FlightResultDetail = {
-                  origin: depart.origin,
-                  destination: second.destination,
-                  date: depart.date,
-                  travelOrder: 0,
-                  name: 'Multiple',
-                  departureTime: depart.departureTime,
-                  arrivalTime: second.arrivalTime,
-                  duration: this.calculateDuration(
-                    depart.departureTime,
-                    second.arrivalTime
-                  ),
-                  price: (depart.price + second.price),
-                  flightNo: depart.flightNo + ' => ' + second.flightNo,
-                  stops: 1,
-                  multiple: [
-                    depart, second
-                  ]
-                };
-                return multipleFlightInstance;
+            const arrivalFlightsMatchingOrigin = response.filter((ele) => {
+              return (
+                (ele.origin !== singleFlightPlan.origin &&
+                  ele.destination === singleFlightPlan.destination) &&
+                ele.date.valueOf() === singleFlightPlan.date.valueOf()
+              );
+            });
+
+
+            departureFlightsMatchingOrigin.forEach((depart) => {
+              const secondLegFlight = arrivalFlightsMatchingOrigin.filter((arrival) => {
+                return depart.destination === arrival.origin &&
+                  this.timeToMinutes(this.calculateDuration(depart.arrivalTime, arrival.departureTime)) >= 30;
               });
 
-            flightsWithOneStop = flightsWithOneStop.concat(firstLegInstanceAndSecondLegListMerged);
-          });
-        }
-        return result.concat(directFights, flightsWithOneStop);
+              const firstLegInstanceAndSecondLegListMerged =
+                secondLegFlight.map((second) => {
+                  const multipleFlightInstance: FlightModels.FlightResultDetail = {
+                    origin: depart.origin,
+                    destination: second.destination,
+                    date: depart.date,
+                    travelOrder: singleFlightPlan.travelOrder,
+                    name: 'Multiple',
+                    departureTime: depart.departureTime,
+                    arrivalTime: second.arrivalTime,
+                    duration: this.calculateDuration(
+                      depart.departureTime,
+                      second.arrivalTime
+                    ),
+                    price: (depart.price + second.price),
+                    flightNo: depart.flightNo + ' => ' + second.flightNo,
+                    stops: 1,
+                    multiple: [
+                      { ...depart, travelOrder: singleFlightPlan.travelOrder },
+                      { ...second, travelOrder: singleFlightPlan.travelOrder }
+                    ]
+                  };
+                  return multipleFlightInstance;
+                });
+
+              flightsWithOneStop = flightsWithOneStop.concat(firstLegInstanceAndSecondLegListMerged);
+            });
+          }
+          return result.concat(directFights, flightsWithOneStop);
+        });
+        return resultForAllFlightPlans;
       }),
       map((response) => {
         return {

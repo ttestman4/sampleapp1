@@ -67,7 +67,7 @@ export enum ResultSortBy {
 }
 
 export interface Result {
-    flightDetails: FlightResultDetail[];
+    flightDetails: FlightResultDetail[][];
     sortBy: ResultSortBy;
 }
 

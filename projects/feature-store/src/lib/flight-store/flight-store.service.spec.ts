@@ -94,7 +94,7 @@ describe('FlightStoreService', () => {
       flightNo: '6E-125',
     }];
     const testData: Result = {
-      flightDetails: [{
+      flightDetails: [[{
         origin: 'Pune (PNQ)',
         destination: 'Mumbai (BOM)',
         date: new Date('2019-12-21'),
@@ -145,7 +145,7 @@ describe('FlightStoreService', () => {
           flightNo: '6E-125',
           stops: 0,
         }]
-      }],
+      }]],
       sortBy: ResultSortBy.BestFlights
     };
 
@@ -171,7 +171,8 @@ describe('FlightStoreService', () => {
 
       flightStoreService.search(criteria).subscribe(
         result => {
-          expect(result.flightDetails.length).toEqual(0, 'should have empty airports array');
+          expect(result.flightDetails.length).toEqual(1, 'should have one empty airports array');
+          expect(result.flightDetails[0].length).toEqual(0, 'should have empty airports array');
           done();
         },
         fail
