@@ -3,7 +3,7 @@ import { Time } from '@angular/common';
 export enum TravelType {
     OneWay = 'One way',
     Return = 'Round trip',
-    MultiCity = 'Multi-city',
+    // MultiCity = 'Multi-city',
 }
 interface FlightDetailsCore {
     origin: string;
