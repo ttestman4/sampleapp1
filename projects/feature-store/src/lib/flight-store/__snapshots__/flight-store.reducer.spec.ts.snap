@@ -4,22 +4,7 @@ exports[`Flight Reducer SearchSuccess Valid action should update the result 1`] 
 Object {
   "criteria": Object {
     "bags": 1,
-    "flightSearchDetails": Array [
-      Object {
-        "date": 2018-12-17T00:00:00.000Z,
-        "departureAfterTime": Object {
-          "hours": 9,
-          "minutes": 20,
-        },
-        "departureBeforeTime": Object {
-          "hours": 16,
-          "minutes": 19,
-        },
-        "destination": "GOI",
-        "origin": "BOM",
-        "travelOrder": 0,
-      },
-    ],
+    "flightSearchDetails": Array [],
     "passengers": 1,
     "price": 0,
     "stops": 2,
@@ -77,6 +62,63 @@ Object {
 `;
 
 exports[`Flight Reducer Unknown action should return the initial state for undefined initial state input 1`] = `
+Object {
+  "criteria": Object {
+    "bags": 1,
+    "flightSearchDetails": Array [],
+    "passengers": 1,
+    "price": 0,
+    "stops": 2,
+    "travelClass": "Economy",
+    "travelType": "Round trip",
+  },
+  "name": "Flight Store",
+  "result": Object {
+    "flightDetails": Array [],
+    "sortBy": "Best Flights",
+  },
+}
+`;
+
+exports[`Flight Reducer UpdatePriceFilter Valid action should return the update price filter 1`] = `
+Object {
+  "criteria": Object {
+    "bags": 1,
+    "flightSearchDetails": Array [],
+    "passengers": 1,
+    "price": 10,
+    "stops": 2,
+    "travelClass": "Economy",
+    "travelType": "Round trip",
+  },
+  "name": "Flight Store",
+  "result": Object {
+    "flightDetails": Array [],
+    "sortBy": "Best Flights",
+  },
+}
+`;
+
+exports[`Flight Reducer UpdatePriceFilter Valid action with negative number should return the update price filter with zero 1`] = `
+Object {
+  "criteria": Object {
+    "bags": 1,
+    "flightSearchDetails": Array [],
+    "passengers": 1,
+    "price": 0,
+    "stops": 2,
+    "travelClass": "Economy",
+    "travelType": "Round trip",
+  },
+  "name": "Flight Store",
+  "result": Object {
+    "flightDetails": Array [],
+    "sortBy": "Best Flights",
+  },
+}
+`;
+
+exports[`Flight Reducer UpdatePriceFilter Valid action with null should return the update price filter with zero 1`] = `
 Object {
   "criteria": Object {
     "bags": 1,

@@ -47,6 +47,35 @@ describe('Flight Reducer', () => {
         });
     });
 
+    describe('UpdatePriceFilter', () => {
+        it('Valid action should return the update price filter', () => {
+            const action = new FlighActions.UpdatePriceFilter(10);
+
+            resultFromPreviousStep = reducer(initialState, action);
+
+            expect(resultFromPreviousStep.criteria.price).toEqual(10);
+            expect(resultFromPreviousStep).toMatchSnapshot();
+        });
+
+        it('Valid action with negative number should return the update price filter with zero', () => {
+            const action = new FlighActions.UpdatePriceFilter(-10);
+
+            resultFromPreviousStep = reducer(initialState, action);
+
+            expect(resultFromPreviousStep.criteria.price).toEqual(0);
+            expect(resultFromPreviousStep).toMatchSnapshot();
+        });
+
+        it('Valid action with null should return the update price filter with zero', () => {
+            const action = new FlighActions.UpdatePriceFilter(null);
+
+            resultFromPreviousStep = reducer(initialState, action);
+
+            expect(resultFromPreviousStep.criteria.price).toEqual(0);
+            expect(resultFromPreviousStep).toMatchSnapshot();
+        });
+    });
+
     describe('SearchSuccess', () => {
         it('Valid action should update the result', () => {
             const result: FlightModels.Result = {

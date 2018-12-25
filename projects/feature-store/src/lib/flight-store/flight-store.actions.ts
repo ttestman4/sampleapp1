@@ -5,6 +5,7 @@ export enum FlightActionTypes {
     SearchSuccess = '[Flight Store] Search Success',
     SearchFailuer = '[Flight Store] Search Failuer',
     UpdateSearchCriteria = '[Flight Store] Update Search Criteria',
+    UpdatePriceFilter = '[Flight Store] Update Price Filter',
 }
 
 /**
@@ -33,6 +34,10 @@ export class UpdateSearchCriteria implements Action {
     constructor(public payload: FlightModels.Criteria) { }
 }
 
+export class UpdatePriceFilter implements Action {
+    readonly type = FlightActionTypes.UpdatePriceFilter;
+    constructor(public payload: number | null) { }
+}
 
 /**
  * Export a type alias of all actions in this action group
@@ -42,5 +47,6 @@ export type FlightActionsUnion =
     Search |
     SearchSuccess |
     SearchFailuer |
-    UpdateSearchCriteria;
+    UpdateSearchCriteria |
+    UpdatePriceFilter;
 

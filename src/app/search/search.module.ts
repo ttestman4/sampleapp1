@@ -21,6 +21,7 @@ import { SearchComponent } from './search.component';
     Material.MatRippleModule,
     Material.MatIconModule,
     Material.MatButtonModule,
+    Material.MatSliderModule,
   ],
   exports: [
     SearchComponent

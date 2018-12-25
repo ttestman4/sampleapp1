@@ -1,4 +1,5 @@
 import { createFeatureSelector } from '@ngrx/store';
+import { isNumber } from 'non-functional';
 import * as FlightActions from './flight-store.actions';
 import { ResultSortBy, SearchState, TravelClass, TravelType } from './flight-store.models';
 
@@ -39,6 +40,17 @@ export function reducer(
             return {
                 ...state,
                 criteria: action.payload,
+            };
+        }
+        case FlightActions.FlightActionTypes.UpdatePriceFilter: {
+            return {
+                ...state,
+                criteria: {
+                    ...state.criteria,
+                    price: ((isNumber(action.payload) &&
+                        (<number>(action.payload)) >= 0) ?
+                        (<number>(action.payload)) : 0)
+                },
             };
         }
         case FlightActions.FlightActionTypes.SearchSuccess: {

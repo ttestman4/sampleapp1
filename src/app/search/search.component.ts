@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSliderChange } from '@angular/material';
 import { select, Store } from '@ngrx/store';
 import * as FeatuerStore from 'feature-store';
 import { combineLatest, Observable, Subscription } from 'rxjs';
@@ -18,6 +19,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   formSubmitSubscription: Subscription;
   passengers: number;
   travelTypes = FeatuerStore.TravelType;
+  maxPriceFilter$: Observable<number>;
 
   get fromCtrl() {
     return this.searchForm
@@ -121,6 +123,10 @@ export class SearchComponent implements OnInit, OnDestroy {
       ).subscribe(data => {
         this._sendUpsertFlightSearchDetailsAction(data.value);
       });
+
+    this.maxPriceFilter$ = this.store.pipe(
+      select(FeatuerStore.selectMaxPrice)
+    );
   }
 
   ngOnInit() {
@@ -134,7 +140,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   updatePassengers(incrementCount: number) {
     this.passengers += incrementCount;
     this.passengers = this.passengers <= 1 ? 1 : this.passengers;
-    this._sendUpsertFlightSearchDetailsAction(this.searchForm.value);
+    if (this.searchForm.status === 'VALID') {
+      this._sendUpsertFlightSearchDetailsAction(this.searchForm.value);
+    }
+  }
+
+  updatePriceFilter(slider: MatSliderChange) {
+    this.store.dispatch(new FeatuerStore.UpdatePriceFilter(slider.value));
   }
 
   private _sendUpsertFlightSearchDetailsAction(value: any) {
