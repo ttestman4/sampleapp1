@@ -432,6 +432,8 @@ MIT
 
 @angular/material/autocomplete
 
+@angular/material/icon
+
 @ngrx/effects
 MIT
 
@@ -470,8 +472,6 @@ non-functional
 @angular/material/list
 
 @angular/material/expansion
-
-@angular/material/icon
 
 @ngrx/store
 MIT
