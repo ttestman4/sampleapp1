@@ -434,10 +434,10 @@ MIT
 
 @angular/material/icon
 
+@angular/material/slider
+
 @ngrx/effects
 MIT
-
-feature-store
 
 ngx-logger
 MIT
@@ -468,6 +468,8 @@ THE SOFTWARE.
 MIT
 
 non-functional
+
+feature-store
 
 @angular/material/list
 
