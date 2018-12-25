@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   toAirports$: Observable<FeatuerStore.Airport[]>;
   searchForm: FormGroup;
   formSubmitSubscription: Subscription;
-
+  passengers: number;
   travelTypes = FeatuerStore.TravelType;
 
   get fromCtrl() {
@@ -52,6 +52,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   constructor(private store: Store<FeatuerStore.ConfigData>,
     private fb: FormBuilder,
     private airportValidatorService: ArirportValidatiorService) {
+    this.passengers = 1;
     this.searchForm = this.fb.group({
       travelTypeCtrl: [
         FeatuerStore.TravelType.Return,
@@ -68,7 +69,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           [this.airportValidatorService.validate.bind(this.airportValidatorService)]
         ],
         toCtrl: [
-          '',
+          'Delhi (DEL)',
           [Validators.required],
           [this.airportValidatorService.validate.bind(this.airportValidatorService)]
         ],
@@ -123,12 +124,17 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.toCtrl.setValue('Delhi (DEL)');
     this._sendUpsertFlightSearchDetailsAction(this.searchForm.value);
   }
 
   ngOnDestroy() {
     this.formSubmitSubscription.unsubscribe();
+  }
+
+  updatePassengers(incrementCount: number) {
+    this.passengers += incrementCount;
+    this.passengers = this.passengers <= 1 ? 1 : this.passengers;
+    this._sendUpsertFlightSearchDetailsAction(this.searchForm.value);
   }
 
   private _sendUpsertFlightSearchDetailsAction(value: any) {
@@ -141,7 +147,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         departureAfterTime: { hours: 0, minutes: 0 },
         departureBeforeTime: { hours: 0, minutes: 0 }
       }],
-      passengers: [],
+      passengers: this.passengers,
       travelType: value.travelTypeCtrl,
       travelClass: FeatuerStore.TravelClass.Economy,
       bags: 1,

@@ -99,7 +99,7 @@ describe('FlightEffects', () => {
                     departureAfterTime: { hours: 9, minutes: 20 },
                     departureBeforeTime: { hours: 16, minutes: 19 },
                 }],
-                passengers: [],
+                passengers: 1,
                 travelType: FlightModels.TravelType.Return,
                 travelClass: FlightModels.TravelClass.Economy,
                 bags: 1,

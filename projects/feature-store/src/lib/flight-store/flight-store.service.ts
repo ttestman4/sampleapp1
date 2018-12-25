@@ -51,7 +51,7 @@ export class FlightStoreService {
             departureTime,
             arrivalTime,
             duration,
-            price: ele.price,
+            price: ele.price * criteria.passengers,
             flightNo: ele.flightNo,
             stops: 0,
           };

@@ -6,12 +6,8 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field>
-    <mat-select [formControl]="stopsCtrl">
-      <mat-option value="0">Nonstop only</mat-option>
-      <mat-option value="1">1 stop or fewer</mat-option>
-    </mat-select>
-  </mat-form-field>
+
+
   <div formGroupName="flightDetailsGroup">
     <mat-form-field>
       <input type="text" placeholder="From" aria-label="From" matInput [formControl]="fromCtrl" [matAutocomplete]="auto">
@@ -41,5 +37,21 @@
       <mat-datepicker-toggle matSuffix [for]="returnDt"></mat-datepicker-toggle>
       <mat-datepicker #returnDt></mat-datepicker>
     </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-select [formControl]="stopsCtrl">
+        <mat-option value="0">Nonstop only</mat-option>
+        <mat-option value="1">1 stop or fewer</mat-option>
+      </mat-select>
+    </mat-form-field>
+    Passenger
+    <button mat-icon-button (click)="updatePassengers(-1)" [disabled]="passengers <= 1">
+      <mat-icon aria-label="Remove Passenger">remove</mat-icon>
+    </button>
+    {{passengers}}
+    <button mat-icon-button (click)="updatePassengers(1)">
+      <mat-icon aria-label="Remove Passenger">add</mat-icon>
+    </button>
   </div>
 </form>

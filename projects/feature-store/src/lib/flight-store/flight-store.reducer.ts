@@ -17,7 +17,7 @@ export const initialState: State = {
     name: 'Flight Store',
     criteria: {
         flightSearchDetails: [],
-        passengers: [],
+        passengers: 1,
         travelType: TravelType.Return,
         travelClass: TravelClass.Economy,
         bags: 1,

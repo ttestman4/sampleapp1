@@ -28,18 +28,6 @@ export interface FlightResultDetail extends FlightDetailsCore {
     multiple?: FlightResultDetail[];
 }
 
-export enum PassengerType {
-    Adult = 'Adult',
-    Child = 'Child',
-    InfantInSeat = 'Infant in Seat',
-    InfantOnLap = 'Infant on Lap',
-}
-
-export interface Passenger {
-    type: PassengerType;
-    count: number;
-}
-
 export enum TravelClass {
     Economy = 'Economy',
     PremiumEconomy = 'Premium Economy',
@@ -49,7 +37,7 @@ export enum TravelClass {
 
 export interface Criteria {
     flightSearchDetails: FlightSearchDetails[];
-    passengers: Passenger[];
+    passengers: number;
     travelType: TravelType;
     travelClass: TravelClass;
     bags: number;

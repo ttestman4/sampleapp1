@@ -19,6 +19,8 @@ import { SearchComponent } from './search.component';
     Material.MatNativeDateModule,
     Material.MatSelectModule,
     Material.MatRippleModule,
+    Material.MatIconModule,
+    Material.MatButtonModule,
   ],
   exports: [
     SearchComponent

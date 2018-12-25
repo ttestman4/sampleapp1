@@ -55,7 +55,7 @@ describe('FlightStoreService', () => {
           }
         }
       ],
-      passengers: [],
+      passengers: 1,
       travelType: TravelType.Return,
       travelClass: TravelClass.Economy,
       bags: 1,
