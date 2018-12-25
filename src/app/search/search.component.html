@@ -53,10 +53,8 @@
     <button mat-icon-button (click)="updatePassengers(1)">
       <mat-icon aria-label="Remove Passenger">add</mat-icon>
     </button>
-    Price: {{maxPriceFilter$ | async}} <mat-slider thumbLabel
-    step="100" tickInterval="auto" [max]="maxPriceFilter$ | async"
-    [value]="maxPriceFilter$ | async"
-    (change)="updatePriceFilter($event)">
+    Price: {{priceFilterText}} <mat-slider thumbLabel step="100" tickInterval="auto" [max]="maxPriceFilter$ | async"
+      [value]="maxPriceFilter$ | async" (change)="updatePriceFilter($event)">
     </mat-slider>
   </div>
 </form>

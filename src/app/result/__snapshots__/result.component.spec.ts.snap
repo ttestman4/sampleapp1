@@ -2,9 +2,10 @@
 
 exports[`ResultComponent snaps 1`] = `
 <spa-result
+  flightCriteriaDetails={[Function Array]}
+  flightCriteriaFlightDetailsSubscription={[Function Subscriber]}
   flightListAll={[Function Array]}
-  result$={[Function Store]}
-  resultSubscription={[Function Subscriber]}
+  flightResultSubscription={[Function Subscriber]}
   store={[Function Store]}
 >
   <mat-accordion>

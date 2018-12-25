@@ -8,6 +8,14 @@ describe('selectCriteria', () => {
     });
 });
 
+describe('selectCriteriaFlightDetails', () => {
+    it('should return flightSearchDetails', () => {
+        expect(flightSelectors.selectCriteriaFlightDetails
+            .projector(initialState.criteria))
+            .toBe(initialState.criteria.flightSearchDetails);
+    });
+});
+
 describe('selectPriceFilter', () => {
     it('should return Price', () => {
         expect(flightSelectors.selectPriceFilter
@@ -37,5 +45,14 @@ describe('selectMaxPrice', () => {
         expect(flightSelectors.selectMaxPrice
             .projector(initialState.result.flightDetails))
             .toBe(0);
+    });
+});
+
+describe('selectResultFlightDetailsListAllFilteredByPrice', () => {
+    it('should return flightDetails', () => {
+        expect(flightSelectors.selectResultFlightDetailsListAllFilteredByPrice
+            .projector(initialState.criteria.price,
+                initialState.result.flightDetails))
+            .toEqual([]);
     });
 });

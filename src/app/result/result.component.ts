@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as FeatuerStore from 'feature-store';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'spa-result',
@@ -9,22 +9,29 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit, OnDestroy {
-  result$: Observable<FeatuerStore.Result>;
-  resultSubscription: Subscription;
+  flightResultSubscription: Subscription;
+  flightCriteriaFlightDetailsSubscription: Subscription;
   flightListAll: FeatuerStore.FlightResultDetail[][] = [];
+  flightCriteriaDetails: FeatuerStore.FlightSearchDetails[] = [];
   constructor(private store: Store<FeatuerStore.SearchState>) {
-    this.result$ = this.store.pipe(
-      select(FeatuerStore.selectResult)
-    );
-    this.resultSubscription = this.result$.subscribe((res) =>
-      this.flightListAll = res.flightDetails
-    );
+    this.flightResultSubscription = this.store.pipe(
+      select(FeatuerStore.selectResultFlightDetailsListAllFilteredByPrice)
+    ).subscribe((flightDetails) => {
+      this.flightListAll = flightDetails;
+    });
+
+    this.flightCriteriaFlightDetailsSubscription = this.store.pipe(
+      select(FeatuerStore.selectCriteriaFlightDetails)
+    ).subscribe((flightDetails) => {
+      this.flightCriteriaDetails = flightDetails;
+    });
   }
 
   ngOnInit() {
   }
 
   ngOnDestroy() {
-    this.resultSubscription.unsubscribe();
+    this.flightResultSubscription.unsubscribe();
+    this.flightCriteriaFlightDetailsSubscription.unsubscribe();
   }
 }

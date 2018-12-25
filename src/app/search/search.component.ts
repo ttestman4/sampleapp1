@@ -20,6 +20,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   passengers: number;
   travelTypes = FeatuerStore.TravelType;
   maxPriceFilter$: Observable<number>;
+  priceFilterText = '';
 
   get fromCtrl() {
     return this.searchForm
@@ -61,7 +62,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         [Validators.required]
       ],
       stopsCtrl: [
-        '0',
+        '1',
         [Validators.required]
       ],
       flightDetailsGroup: this.fb.group({
@@ -146,6 +147,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   updatePriceFilter(slider: MatSliderChange) {
+    this.priceFilterText = 'Under $' + slider.value;
     this.store.dispatch(new FeatuerStore.UpdatePriceFilter(slider.value));
   }
 

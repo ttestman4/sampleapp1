@@ -5,6 +5,10 @@ export const selectCriteria = createSelector(selectSearchState,
     (searchData) => searchData.criteria
 );
 
+export const selectCriteriaFlightDetails = createSelector(selectCriteria,
+    (criteria) => criteria.flightSearchDetails
+);
+
 export const selectPriceFilter = createSelector(selectCriteria,
     (criteria) => criteria.price
 );
@@ -23,8 +27,17 @@ export const selectMaxPrice = createSelector(selecResultFlightDetailsListAll,
             return currentValue.reduce((innerAccumulator, innerCurrentValue) => {
                 return Math.max(innerAccumulator, innerCurrentValue.price);
             }, accumulator);
-        }  , 0);
+        }, 0);
     }
 );
 
-
+export const selectResultFlightDetailsListAllFilteredByPrice = createSelector(
+    selectPriceFilter, selecResultFlightDetailsListAll,
+    (price, flightDetailsListAll) => {
+        return flightDetailsListAll.map(flightDetailsList => {
+            return flightDetailsList.filter(flightDetails => {
+                return price > 0 ? flightDetails.price <= price : true;
+            });
+        });
+    }
+);
