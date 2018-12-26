@@ -16,13 +16,13 @@ and github [ghpages](https://ttestman4.github.io/sampleapp1/index.html). Please 
 
 Clone project from repo and run yarn install
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
 ## Build
 
 Run `yarn build:release` to build the project.
+
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Running unit tests
 
