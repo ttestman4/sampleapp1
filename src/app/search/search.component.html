@@ -45,6 +45,7 @@
         <mat-option value="1">1 stop or fewer</mat-option>
       </mat-select>
     </mat-form-field>
+    <div>
     Passenger
     <button mat-icon-button (click)="updatePassengers(-1)" [disabled]="passengers <= 1">
       <mat-icon aria-label="Remove Passenger">remove</mat-icon>
@@ -53,8 +54,11 @@
     <button mat-icon-button (click)="updatePassengers(1)">
       <mat-icon aria-label="Remove Passenger">add</mat-icon>
     </button>
+    </div>
+    <div>
     Price: {{priceFilterText}} <mat-slider thumbLabel step="100" tickInterval="auto" [max]="maxPriceFilter$ | async"
       [value]="maxPriceFilter$ | async" (change)="updatePriceFilter($event)">
     </mat-slider>
+    </div>
   </div>
 </form>
