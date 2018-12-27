@@ -38,3 +38,7 @@
 # yarn ng g module result  -m app.module
 # yarn ng g component result  -m result/result.module
 # yarn ng g service search/ArirportValidatior --dry-run
+
+# yarn ng g m CustomPipe -m non-functional --project non-functional
+# yarn ng g pipe custom-pipe/time -m custom-pipe/custom-pipe --project non-functional  --export --dry-run
+# yarn ng g pipe custom-pipe/duration -m custom-pipe/custom-pipe --project non-functional  --export --dry-run

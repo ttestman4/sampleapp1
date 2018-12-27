@@ -11,9 +11,9 @@
     <mat-list>
       <mat-list-item *ngFor="let flight of flightList">
         {{flight.name}}
-        {{flight.departureTime.hours }}.{{flight.departureTime.minutes }}
-        {{flight.arrivalTime.hours }}.{{flight.arrivalTime.minutes}}
-        {{flight.duration.hours }}.{{flight.arrivalTime.minutes}}
+        {{flight.departureTime | time}}
+        {{flight.arrivalTime | time }}
+        {{flight.duration | duration }}
         {{flight.price | currency: 'INR' : 'symbol': '.0-0'}}
       </mat-list-item>
     </mat-list>

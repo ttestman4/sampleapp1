@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import * as Material from '@angular/material';
+import { NonFunctionalModule } from 'non-functional';
 import { ResultComponent } from './result.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ResultComponent } from './result.component';
     Material.MatLineModule,
     Material.MatDividerModule,
     Material.MatExpansionModule,
+    NonFunctionalModule.forChild(),
   ],
   exports: [
     ResultComponent,

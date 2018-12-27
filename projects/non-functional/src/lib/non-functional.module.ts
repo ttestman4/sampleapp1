@@ -6,6 +6,7 @@ import { NonFunctionalConfigService } from './non-functional-config.service';
 import { NonFunctionalConfig } from './non-functional.models';
 import { RootStoreModule } from './root-store/root-store.module';
 import { RootStoreConfigService } from './root-store/root-store-config.service';
+import { CustomPipeModule } from './custom-pipe/custom-pipe.module';
 export { CustomLogger, CustomLoggerLevel } from './custom-logger/custom-logger.module';
 export { NonFunctionalConfig } from './non-functional.models';
 
@@ -15,7 +16,8 @@ export { NonFunctionalConfig } from './non-functional.models';
     CustomLoggerModule,
     AppErrorHandlerModule,
     HttpConfigurationModule,
-    RootStoreModule
+    RootStoreModule,
+    CustomPipeModule,
   ],
   providers: [
     {
@@ -35,7 +37,9 @@ export { NonFunctionalConfig } from './non-functional.models';
       useExisting: NonFunctionalConfigService
     }
   ],
-  exports: []
+  exports: [
+    CustomPipeModule
+  ]
 })
 export class NonFunctionalModule {
   constructor(@Optional() @SkipSelf() parentModule: NonFunctionalModule) {

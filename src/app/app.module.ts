@@ -8,12 +8,14 @@ import { environment } from 'src/environments/environment';
 import { ConfigDataStoreModule, FlightStoreModule } from 'feature-store';
 import { SearchModule } from './search/search.module';
 import { ResultModule } from './result/result.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
