@@ -14,7 +14,7 @@
         {{flight.departureTime.hours }}.{{flight.departureTime.minutes }}
         {{flight.arrivalTime.hours }}.{{flight.arrivalTime.minutes}}
         {{flight.duration.hours }}.{{flight.arrivalTime.minutes}}
-        {{flight.price }}
+        {{flight.price | currency: 'INR' : 'symbol': '.0-0'}}
       </mat-list-item>
     </mat-list>
   </mat-expansion-panel>

@@ -19,8 +19,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   formSubmitSubscription: Subscription;
   passengers: number;
   travelTypes = FeatuerStore.TravelType;
-  maxPriceFilter$: Observable<number>;
-  priceFilterText = '';
+  maxPriceFilter: number = 0;
+  maxPriceFilterSubscription: Subscription;
+  priceFilterText = 0;
 
   get fromCtrl() {
     return this.searchForm
@@ -125,9 +126,12 @@ export class SearchComponent implements OnInit, OnDestroy {
         this._sendUpsertFlightSearchDetailsAction(data.value);
       });
 
-    this.maxPriceFilter$ = this.store.pipe(
+    this.maxPriceFilterSubscription = this.store.pipe(
       select(FeatuerStore.selectMaxPrice)
-    );
+    ).subscribe(data => {
+      this.maxPriceFilter = data;
+      this.priceFilterText = data;
+    });
   }
 
   ngOnInit() {
@@ -136,6 +140,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.formSubmitSubscription.unsubscribe();
+    this.maxPriceFilterSubscription.unsubscribe();
   }
 
   updatePassengers(incrementCount: number) {
@@ -147,7 +152,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   updatePriceFilter(slider: MatSliderChange) {
-    this.priceFilterText = 'Under $' + slider.value;
+    this.priceFilterText = slider.value === null ? 0 : slider.value;
     this.store.dispatch(new FeatuerStore.UpdatePriceFilter(slider.value));
   }
 

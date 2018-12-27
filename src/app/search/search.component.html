@@ -56,8 +56,8 @@
     </button>
     </div>
     <div>
-    Price: {{priceFilterText}} <mat-slider thumbLabel step="100" tickInterval="auto" [max]="maxPriceFilter$ | async"
-      [value]="maxPriceFilter$ | async" (change)="updatePriceFilter($event)">
+    Price: Under {{priceFilterText | currency: 'INR' : 'symbol': '.0-0'}} <mat-slider thumbLabel step="100" tickInterval="auto" [max]="maxPriceFilter"
+      [value]="maxPriceFilter" (change)="updatePriceFilter($event)">
     </mat-slider>
     </div>
   </div>
