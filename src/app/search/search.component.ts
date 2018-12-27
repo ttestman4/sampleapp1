@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   formSubmitSubscription: Subscription;
   passengers: number;
   travelTypes = FeatuerStore.TravelType;
-  maxPriceFilter: number = 0;
+  maxPriceFilter = 0;
   maxPriceFilterSubscription: Subscription;
   priceFilterText = 0;
 
