@@ -19,6 +19,8 @@
 # yarn add ngx-logger
 # yarn ng g module AppErrorHandler --project non-functional -m non-functional.module
 # yarn ng g service app-error-handler/AppErrorHandler --project non-functional -m app-error-handler/app-error-handler.module
+# yarn ng g module AsyncActionStateManager --project non-functional -m non-functional.module --dry-run
+# yarn ng g module async-action-state-manager/AsyncActionStateStore --project non-functional -m async-action-state-manager/async-action-state-manager.module --dry-run
 
 # yarn ng g module HttpConfiguration --project non-functional -m non-functional.module --dry-run
 # yarn ng g service http-configuration/HttpErrorLogger --project non-functional --dry-run

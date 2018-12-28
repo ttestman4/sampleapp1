@@ -7,9 +7,10 @@ import { NonFunctionalConfig } from './non-functional.models';
 import { RootStoreModule } from './root-store/root-store.module';
 import { RootStoreConfigService } from './root-store/root-store-config.service';
 import { CustomPipeModule } from './custom-pipe/custom-pipe.module';
+import { AsyncActionStateManagerModule } from './async-action-state-manager/async-action-state-manager.module';
 export { CustomLogger, CustomLoggerLevel } from './custom-logger/custom-logger.module';
 export { NonFunctionalConfig } from './non-functional.models';
-
+export * from './async-action-state-manager/async-action-state-manager.module';
 @NgModule({
   declarations: [],
   imports: [
@@ -18,6 +19,7 @@ export { NonFunctionalConfig } from './non-functional.models';
     HttpConfigurationModule,
     RootStoreModule,
     CustomPipeModule,
+    AsyncActionStateManagerModule,
   ],
   providers: [
     {
@@ -70,5 +72,6 @@ export class NonFunctionalModule {
   static forTestReset() {
     AppErrorHandlerModule.forTestReset();
     HttpConfigurationModule.forTestReset();
+    AsyncActionStateManagerModule.forTestReset();
   }
 }

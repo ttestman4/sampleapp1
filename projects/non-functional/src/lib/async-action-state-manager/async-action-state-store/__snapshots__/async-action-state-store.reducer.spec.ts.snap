@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Async State Reducer Error Valid action should return the added Async Action Id 1`] = `
+Object {
+  "entities": Object {
+    "foo": Object {
+      "asyncActionId": "foo",
+      "status": "[Async Status] Error",
+    },
+  },
+  "ids": Array [
+    "foo",
+  ],
+  "name": "Async Action State Store",
+}
+`;
+
+exports[`Async State Reducer Start Valid action should return the added Async Action Id 1`] = `
+Object {
+  "entities": Object {
+    "foo": Object {
+      "asyncActionId": "foo",
+      "status": "[Async Status] Start",
+    },
+  },
+  "ids": Array [
+    "foo",
+  ],
+  "name": "Async Action State Store",
+}
+`;
+
+exports[`Async State Reducer Success Valid action should return the added Async Action Id 1`] = `
+Object {
+  "entities": Object {
+    "foo": Object {
+      "asyncActionId": "foo",
+      "status": "[Async Status] Success",
+    },
+  },
+  "ids": Array [
+    "foo",
+  ],
+  "name": "Async Action State Store",
+}
+`;
+
+exports[`Async State Reducer Unknown action should return the initial state 1`] = `
+Object {
+  "entities": Object {},
+  "ids": Array [],
+  "name": "Async Action State Store",
+}
+`;
+
+exports[`Async State Reducer Unknown action should return the initial state for undefined initial state input 1`] = `
+Object {
+  "entities": Object {},
+  "ids": Array [],
+  "name": "Async Action State Store",
+}
+`;

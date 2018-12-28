@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Airport } from './config-data-store.models';
+import { AsyncActionStart, AsyncActionSuccess, AsyncActionError } from 'non-functional';
 
 export enum ConfigDataActionTypes {
     LoadConfig = '[ConfigData] Load Config Data',
@@ -20,16 +21,19 @@ export class LoadConfig implements Action {
     constructor() { }
 }
 
+@AsyncActionStart(ConfigDataActionTypes.LoadAirports)
 export class LoadAirports implements Action {
     readonly type = ConfigDataActionTypes.LoadAirports;
     constructor() { }
 }
 
+@AsyncActionSuccess(ConfigDataActionTypes.LoadAirports)
 export class LoadAirportsSuccess implements Action {
     readonly type = ConfigDataActionTypes.LoadAirportsSuccess;
     constructor(public payload: Airport[]) { }
 }
 
+@AsyncActionError(ConfigDataActionTypes.LoadAirports)
 export class LoadAirportsFailuer implements Action {
     readonly type = ConfigDataActionTypes.LoadAirportsSuccess;
 

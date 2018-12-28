@@ -18,6 +18,7 @@ module.exports = {
         "src/setupJest.ts",
         "dist/",
         "src/app/search",
+        "lib/helper-functions/helper-functions.ts",
     ],
     "coverageThreshold": {
         "global": {

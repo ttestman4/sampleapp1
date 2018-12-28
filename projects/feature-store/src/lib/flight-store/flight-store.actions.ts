@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 import * as FlightModels from './flight-store.models';
+import { AsyncActionStart, AsyncActionSuccess, AsyncActionError} from 'non-functional';
+
 export enum FlightActionTypes {
     Search = '[Flight Store] Search',
     SearchSuccess = '[Flight Store] Search Success',
@@ -15,15 +17,19 @@ export enum FlightActionTypes {
  *
  * See Discriminated Unions: https://www.typescriptlang.org/docs/handbook/advanced-types.html#discriminated-unions
  */
+@AsyncActionStart(FlightActionTypes.Search)
 export class Search implements Action {
     readonly type = FlightActionTypes.Search;
     constructor() { }
 }
 
+@AsyncActionSuccess(FlightActionTypes.Search)
 export class SearchSuccess implements Action {
     readonly type = FlightActionTypes.SearchSuccess;
     constructor(public payload: FlightModels.Result) { }
 }
+
+@AsyncActionError(FlightActionTypes.Search)
 export class SearchFailuer implements Action {
     readonly type = FlightActionTypes.SearchFailuer;
     constructor() { }
