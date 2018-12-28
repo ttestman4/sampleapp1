@@ -467,6 +467,9 @@ THE SOFTWARE.
 @ngrx/router-store
 MIT
 
+@ngrx/entity
+MIT
+
 non-functional
 
 feature-store
