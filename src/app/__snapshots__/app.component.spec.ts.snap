@@ -13,7 +13,8 @@ exports[`AppComponent snaps 1`] = `
     </h1>
   </div><nfl-async-state-indicator
     _nghost-c3=""
-    indicator-type="bar"
+    indicator="bar"
+    ng-reflect-indicator="bar"
   >
     
   </nfl-async-state-indicator><spa-search /><spa-result /><router-outlet />
