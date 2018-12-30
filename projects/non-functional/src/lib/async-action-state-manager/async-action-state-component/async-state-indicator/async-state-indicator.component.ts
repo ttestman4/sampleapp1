@@ -8,6 +8,7 @@ import { AsyncActionState, AsyncStatus, selectAsyncStateEntities } from '../../a
 enum IndicatorType {
   spinner = 'spinner',
   progressBar = 'bar',
+  unknown = 'unknown'
 }
 
 @Component({
@@ -17,9 +18,9 @@ enum IndicatorType {
 })
 export class AsyncStateIndicatorComponent implements OnInit, OnDestroy {
   @Input()
-  actionIds = '';
+  actionIds: string;
   @Input()
-  indicatorType = IndicatorType.spinner;
+  indicator: IndicatorType;
 
   showComponent = false;
   inputIndicatorType = IndicatorType.spinner;
@@ -55,9 +56,8 @@ export class AsyncStateIndicatorComponent implements OnInit, OnDestroy {
     } else {
       this.trackAllActionIds = true;
     }
-
-    this.inputIndicatorType = this.indicatorType;
-    switch (this.indicatorType) {
+    this.inputIndicatorType = this.indicator;
+    switch (this.indicator) {
       case IndicatorType.spinner: {
         this.inputIndicatorType = IndicatorType.spinner;
         break;

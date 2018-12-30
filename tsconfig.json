@@ -28,6 +28,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true,
+    "strictPropertyInitialization": false,
     "paths": {
       "non-functional": [
         "dist/non-functional"

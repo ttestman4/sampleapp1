@@ -2,7 +2,7 @@
   <mat-expansion-panel *ngFor="let flightList of flightListAll; let i= index" [expanded]="i === 0">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <mat-icon mat-list-icon>{{flightList[0].travelOrder === 1 ? 'flight_land': 'flight_takeoff'}}</mat-icon>
+        <mat-icon mat-list-icon>{{flightCriteriaDetails[i].travelOrder === 1 ? 'flight_land': 'flight_takeoff'}}</mat-icon>
         {{flightCriteriaDetails[i].origin}} to {{flightCriteriaDetails[i].destination}}
       </mat-panel-title>
       <mat-panel-description>
