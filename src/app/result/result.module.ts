@@ -16,6 +16,7 @@ import { ResultComponent } from './result.component';
     Material.MatLineModule,
     Material.MatDividerModule,
     Material.MatExpansionModule,
+    Material.MatCardModule,
     NonFunctionalModule.forChild(),
   ],
   exports: [
