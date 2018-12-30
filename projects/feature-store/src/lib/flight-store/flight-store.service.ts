@@ -169,9 +169,13 @@ export class FlightStoreService {
     date1.setUTCMinutes(time1.minutes);
     date2.setUTCHours(time2.hours);
     date2.setUTCMinutes(time2.minutes);
-    const diffDate = new Date(date2.valueOf() - date1.valueOf());
-    result.hours = diffDate.getUTCHours();
-    result.minutes = diffDate.getUTCMinutes();
+    const valueDiff = date2.valueOf() - date1.valueOf();
+
+    if (valueDiff > 0) {
+      const diffDate = new Date(valueDiff);
+      result.hours = diffDate.getUTCHours();
+      result.minutes = diffDate.getUTCMinutes();
+    }
 
     return result;
   }

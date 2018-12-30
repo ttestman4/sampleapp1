@@ -9,13 +9,16 @@
     <mat-accordion>
       <mat-expansion-panel *ngFor="let flight of flightListAll[i]">
         <mat-expansion-panel-header>
-          <mat-panel-title>{{flight.name}}
+          <mat-panel-title>
+            {{flight.flightNo}}
+            {{flight.name}}
             {{flight.departureTime | time}}
             {{flight.arrivalTime | time }}
             {{flight.duration | duration }}
             {{flight.price | currency: 'INR' : 'symbol': '.0-0'}}</mat-panel-title>
         </mat-expansion-panel-header>
         <div *ngFor="let flightLeg of flight.multiple">
+          {{flightLeg.flightNo }}
           {{flightLeg.name}}
           {{flightLeg.departureTime | time}}
           {{flightLeg.arrivalTime | time }}
@@ -23,6 +26,7 @@
           {{flightLeg.price | currency: 'INR' : 'symbol': '.0-0'}}
         </div>
         <div *ngIf="flight.name != 'Multiple'">
+          {{flight.flightNo}}
           {{flight.name}}
           {{flight.departureTime | time}}
           {{flight.arrivalTime | time }}

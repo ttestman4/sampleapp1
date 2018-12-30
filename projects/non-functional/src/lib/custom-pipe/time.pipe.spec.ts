@@ -21,6 +21,13 @@ describe('TimePipe', () => {
     expect(pipe.transform(input)).toEqual(output);
   });
 
+  it('valid PM value', () => {
+    const pipe = new TimePipe();
+    const input: Time = { hours: 12, minutes: 12 };
+    const output = '12:12 PM';
+    expect(pipe.transform(input)).toEqual(output);
+  });
+
   it('valid AM value', () => {
     const pipe = new TimePipe();
     const input: Time = { hours: 5, minutes: 0 };

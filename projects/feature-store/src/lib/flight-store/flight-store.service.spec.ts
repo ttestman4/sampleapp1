@@ -92,7 +92,18 @@ describe('FlightStoreService', () => {
       arrivalTime: '14:44',
       price: 3,
       flightNo: '6E-125',
-    }];
+      },
+      {
+        origin: 'Delhi (DEL)',
+        destination: 'Mumbai (BOM)',
+        date: '2019-12-21',
+        name: 'indigo',
+        departureTime: '1:44',
+        arrivalTime: '2:44',
+        price: 3,
+        flightNo: '6E-125',
+      }
+    ];
     const testData: Result = {
       flightDetails: [[{
         origin: 'Pune (PNQ)',
