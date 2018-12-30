@@ -424,21 +424,6 @@ MIT
 
 @angular/material/datepicker
 
-@angular/material/core
-
-@angular/material/form-field
-
-@angular/material/select
-
-@angular/material/autocomplete
-
-@angular/material/icon
-
-@angular/material/slider
-
-@ngrx/effects
-MIT
-
 ngx-logger
 MIT
 The MIT License
@@ -470,7 +455,26 @@ MIT
 @ngrx/entity
 MIT
 
+@ngrx/effects
+MIT
+
 non-functional
+
+@angular/material/progress-spinner
+
+@angular/material/progress-bar
+
+@angular/material/core
+
+@angular/material/form-field
+
+@angular/material/select
+
+@angular/material/autocomplete
+
+@angular/material/icon
+
+@angular/material/slider
 
 feature-store
 
