@@ -1,15 +1,15 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let flightList of flightListAll; let i= index" [expanded]="i === 0">
+  <mat-expansion-panel *ngFor="let flightCriteria of flightCriteriaDetails; let i= index" [expanded]="i === 0">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <mat-icon mat-list-icon>{{flightCriteriaDetails[i].travelOrder === 1 ? 'flight_land': 'flight_takeoff'}}</mat-icon>
-        {{flightCriteriaDetails[i].origin}} to {{flightCriteriaDetails[i].destination}}
+        <mat-icon mat-list-icon>{{flightCriteria.travelOrder === 1 ? 'flight_land': 'flight_takeoff'}}</mat-icon>
+        {{flightCriteria.origin}} to {{flightCriteria.destination}}
       </mat-panel-title>
       <mat-panel-description>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list>
-      <mat-list-item *ngFor="let flight of flightList">
+      <mat-list-item *ngFor="let flight of flightListAll[i]">
         {{flight.name}}
         {{flight.departureTime | time}}
         {{flight.arrivalTime | time }}
