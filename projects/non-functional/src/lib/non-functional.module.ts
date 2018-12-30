@@ -40,7 +40,8 @@ export * from './async-action-state-manager/async-action-state-manager.module';
     }
   ],
   exports: [
-    CustomPipeModule
+    CustomPipeModule,
+    AsyncActionStateManagerModule,
   ]
 })
 export class NonFunctionalModule {

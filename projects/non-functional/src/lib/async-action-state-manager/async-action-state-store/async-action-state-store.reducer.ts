@@ -47,4 +47,8 @@ export function reducer(
     }
 }
 
-export const selectAsyncActionState = createFeatureSelector<AsyncStateModels.AsyncActionState>(featureName);
+export const selectAsyncActionState = createFeatureSelector<State>(featureName);
+
+export const {
+    selectEntities: selectAsyncStateEntitiesFromState,
+} = adapter.getSelectors();

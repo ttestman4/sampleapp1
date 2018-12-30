@@ -19,10 +19,10 @@ export class AsyncActionStateEffects {
     asyncStateUpdater$ = this.actions$.pipe(
         filter((action: AsyncStateModels.AsyncAction) =>
             (util.isObject(action.asyncActionState) &&
-            util.isString(action.asyncActionState.asyncActionId) &&
-            (action.asyncActionState.status === AsyncStateModels.AsyncStatus.Start ||
-                action.asyncActionState.status === AsyncStateModels.AsyncStatus.Success ||
-                action.asyncActionState.status === AsyncStateModels.AsyncStatus.Error))
+                util.isString(action.asyncActionState.asyncActionId) &&
+                (action.asyncActionState.status === AsyncStateModels.AsyncStatus.Start ||
+                    action.asyncActionState.status === AsyncStateModels.AsyncStatus.Success ||
+                    action.asyncActionState.status === AsyncStateModels.AsyncStatus.Error))
         ),
         map(action => {
             switch (action.asyncActionState.status) {

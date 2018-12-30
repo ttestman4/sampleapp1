@@ -1,0 +1,8 @@
+<div *ngIf="showComponent === true">
+  <div *ngIf="indicatorType === 'spinner'">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="indicatorType === 'bar'">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</div>

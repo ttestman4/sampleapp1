@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { AsyncActionStateComponentModule } from './async-action-state-component/async-action-state-component.module';
 import { AsyncActionStateStoreModule } from './async-action-state-store/async-action-state-store.module';
 
 export * from './async-action-state-store/async-action-state-store.module';
@@ -7,7 +8,11 @@ export * from './async-action-state-store/async-action-state-store.module';
   declarations: [],
   imports: [
     CommonModule,
-    AsyncActionStateStoreModule
+    AsyncActionStateStoreModule,
+    AsyncActionStateComponentModule
+  ],
+  exports: [
+    AsyncActionStateComponentModule,
   ]
 })
 export class AsyncActionStateManagerModule {

@@ -8,7 +8,7 @@ import { ResetNextAsyncActionEffectsId, AsyncActionStateEffects } from './async-
 export * from './async-action-state-store.actions';
 export * from './async-action-state-store.models';
 export * from './async-action-state-store.decorator';
-
+export * from './async-action-state-store.selectors';
 @NgModule({
   declarations: [],
   imports: [
