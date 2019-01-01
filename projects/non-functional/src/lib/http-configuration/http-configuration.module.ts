@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { CustomLoggerConfigService, CustomLoggerModule } from '../custom-logger/custom-logger.module';
+import { CUSTOM_LOGGER_CONFIG, CustomLoggerModule } from '../custom-logger/custom-logger.module';
 import { HttpConfigurationConfigService } from './http-configuration-config.service';
 import { HttpConfigurationConfig } from './http-configuration.models';
 import { HttpErrorLoggerService, ResetHttpErrorLoggerServiceId } from './http-error-logger.service';
@@ -16,7 +16,7 @@ export { HttpConfigurationConfig } from './http-configuration.models';
   ],
   providers: [
     {
-      provide: CustomLoggerConfigService,
+      provide: CUSTOM_LOGGER_CONFIG,
       useExisting: HttpConfigurationConfigService
     },
     {

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ErrorHandler, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { CustomLoggerConfigService, CustomLoggerModule } from '../custom-logger/custom-logger.module';
+import { CUSTOM_LOGGER_CONFIG, CustomLoggerModule } from '../custom-logger/custom-logger.module';
 import { AppErrorHandlerConfigService } from './app-error-handler-config.service';
 import { AppErrorHandlerConfig } from './app-error-handler.models';
 import { AppErrorHandlerService, RestAppErrorHandlerServiceId } from './app-error-handler.service';
@@ -15,7 +15,7 @@ export { AppErrorHandlerConfig } from './app-error-handler.models';
   ],
   providers: [
     {
-      provide: CustomLoggerConfigService,
+      provide: CUSTOM_LOGGER_CONFIG,
       useExisting: AppErrorHandlerConfigService
     },
     {

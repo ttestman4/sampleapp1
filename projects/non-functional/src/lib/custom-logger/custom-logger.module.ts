@@ -1,12 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { LoggerConfig, LoggerModule } from 'ngx-logger';
-import { CustomLoggerConfigService } from './custom-logger-config.service';
+import { InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { LoggerConfig, LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { CustomLoggerConfig } from './custom-logger.model';
 
 export { NGXLogger as CustomLogger, NgxLoggerLevel as CustomLoggerLevel } from 'ngx-logger';
-export { CustomLoggerConfigService } from './custom-logger-config.service';
 export { CustomLoggerConfig } from './custom-logger.model';
+/**
+ * This is not a real service, but it looks like it from the outside.
+ * It's just an InjectionToken used to import the config object,
+ * provided from the outside
+ */
+export const CUSTOM_LOGGER_CONFIG =
+  new InjectionToken<CustomLoggerConfig>('CUSTOM_LOGGER_CONFIG');
+
 
 @NgModule({
   declarations: [],
@@ -17,7 +23,8 @@ export { CustomLoggerConfig } from './custom-logger.model';
   providers: [
     {
       provide: LoggerConfig,
-      useExisting: CustomLoggerConfigService
+      useFactory: createLoggerConfig,
+      deps: [CUSTOM_LOGGER_CONFIG]
     }
   ]
 })
@@ -28,13 +35,13 @@ export class CustomLoggerModule {
         'CustomLoggerModule is already loaded. Import it in the AppModule only');
     }
   }
-  static forRoot(config: CustomLoggerConfig | null | undefined): ModuleWithProviders {
+  static forRoot(config?: CustomLoggerConfig): ModuleWithProviders {
     return {
       ngModule: CustomLoggerModule,
       providers: [
         {
-          provide: CustomLoggerConfigService,
-          useValue: config
+          provide: CUSTOM_LOGGER_CONFIG,
+          useValue: config ? config : {}
         }
       ]
     };
@@ -46,4 +53,16 @@ export class CustomLoggerModule {
       ]
     };
   }
+}
+
+export function createLoggerConfig(
+  config: CustomLoggerConfig = { level: NgxLoggerLevel.ERROR }
+) {
+  const defaultConfig: LoggerConfig = {
+    level: NgxLoggerLevel.ERROR
+  };
+  return {
+    ...defaultConfig,
+    config
+  };
 }
