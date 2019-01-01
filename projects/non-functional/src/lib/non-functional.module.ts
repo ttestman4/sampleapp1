@@ -1,5 +1,5 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { AppErrorHandlerConfigService, AppErrorHandlerModule } from './app-error-handler/app-error-handler.module';
+import { APP_ERROR_HANDLER_CONFIG, AppErrorHandlerModule } from './app-error-handler/app-error-handler.module';
 import { CUSTOM_LOGGER_CONFIG, CustomLoggerModule } from './custom-logger/custom-logger.module';
 import { HttpConfigurationConfigService, HttpConfigurationModule } from './http-configuration/http-configuration.module';
 import { NonFunctionalConfigService } from './non-functional-config.service';
@@ -27,7 +27,7 @@ export * from './async-action-state-manager/async-action-state-manager.module';
       useExisting: NonFunctionalConfigService
     },
     {
-      provide: AppErrorHandlerConfigService,
+      provide: APP_ERROR_HANDLER_CONFIG,
       useExisting: NonFunctionalConfigService
     },
     {
