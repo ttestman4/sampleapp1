@@ -57,6 +57,6 @@ export function logger<T, V extends Action = Action>(nextReducer: ActionReducer<
  */
 export function createMetaReducers(config: RootStoreConfig) {
     return config.debugStore === true
-        ? [logger, storeFreeze]
+        ? [storeFreeze]
         : [];
 }

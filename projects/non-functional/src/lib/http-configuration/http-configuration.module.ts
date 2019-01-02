@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { CustomLoggerConfig, CustomLoggerLevel, CustomLoggerModule, CUSTOM_LOGGER_CONFIG } from '../custom-logger/custom-logger.module';
 import { HttpConfigurationConfig } from './http-configuration.models';
 import { HttpErrorLoggerService, ResetHttpErrorLoggerServiceId } from './http-error-logger.service';
 export { HttpConfigurationConfig } from './http-configuration.models';
+import * as CustomLogger from '../custom-logger/custom-logger.module';
 
 
 /**
@@ -19,13 +19,13 @@ export const HTTP_ERROR_CONFIG =
   declarations: [],
   imports: [
     CommonModule,
-    CustomLoggerModule,
+    CustomLogger.CustomLoggerModule,
     HttpClientModule,
   ],
   providers: [
     {
-      provide: CUSTOM_LOGGER_CONFIG,
-      useFactory: createLoggerConfig,
+      provide: CustomLogger.CUSTOM_LOGGER_CONFIG,
+      useFactory: CustomLogger.createLoggerConfig,
       deps: [HTTP_ERROR_CONFIG]
     },
     {
@@ -63,17 +63,4 @@ export class HttpConfigurationModule {
   static forTestReset() {
     ResetHttpErrorLoggerServiceId();
   }
-}
-
-
-export function createLoggerConfig(
-  config: CustomLoggerConfig = { level: CustomLoggerLevel.ERROR }
-) {
-  const defaultConfig: CustomLoggerConfig = {
-    level: CustomLoggerLevel.ERROR
-  };
-  return {
-    ...defaultConfig,
-    config
-  };
 }

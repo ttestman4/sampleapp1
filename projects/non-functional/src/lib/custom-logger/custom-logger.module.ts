@@ -1,17 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { LoggerConfig, LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-import { CustomLoggerConfig } from './custom-logger.model';
+import { LoggerConfig, LoggerModule } from 'ngx-logger';
+import * as LoggerModels from './custom-logger.model';
 
-export { NGXLogger as CustomLogger, NgxLoggerLevel as CustomLoggerLevel } from 'ngx-logger';
-export { CustomLoggerConfig } from './custom-logger.model';
+export * from './custom-logger.model';
 /**
  * This is not a real service, but it looks like it from the outside.
  * It's just an InjectionToken used to import the config object,
  * provided from the outside
  */
 export const CUSTOM_LOGGER_CONFIG =
-  new InjectionToken<CustomLoggerConfig>('CUSTOM_LOGGER_CONFIG');
+  new InjectionToken<LoggerModels.CustomLoggerConfig>('CUSTOM_LOGGER_CONFIG');
 
 
 @NgModule({
@@ -35,7 +34,7 @@ export class CustomLoggerModule {
         'CustomLoggerModule is already loaded. Import it in the AppModule only');
     }
   }
-  static forRoot(config?: CustomLoggerConfig): ModuleWithProviders {
+  static forRoot(config?: LoggerModels.CustomLoggerConfig): ModuleWithProviders {
     return {
       ngModule: CustomLoggerModule,
       providers: [
@@ -56,10 +55,10 @@ export class CustomLoggerModule {
 }
 
 export function createLoggerConfig(
-  config: CustomLoggerConfig = { level: NgxLoggerLevel.ERROR }
+  config: LoggerModels.CustomLoggerConfig = { level: LoggerModels.CustomLoggerLevel.ERROR }
 ) {
   const defaultConfig: LoggerConfig = {
-    level: NgxLoggerLevel.ERROR
+    level: LoggerModels.CustomLoggerLevel.ERROR
   };
   return {
     ...defaultConfig,

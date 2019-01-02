@@ -1,15 +1,24 @@
-import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { APP_ERROR_HANDLER_CONFIG, AppErrorHandlerModule } from './app-error-handler/app-error-handler.module';
-import { CUSTOM_LOGGER_CONFIG, CustomLoggerModule } from './custom-logger/custom-logger.module';
-import { HTTP_ERROR_CONFIG, HttpConfigurationModule } from './http-configuration/http-configuration.module';
-import { NonFunctionalConfigService } from './non-functional-config.service';
-import { NonFunctionalConfig } from './non-functional.models';
-import { RootStoreModule , ROOT_STORE_CONFIG} from './root-store/root-store.module';
-import { CustomPipeModule } from './custom-pipe/custom-pipe.module';
+import { InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { AppErrorHandlerModule, APP_ERROR_HANDLER_CONFIG } from './app-error-handler/app-error-handler.module';
 import { AsyncActionStateManagerModule } from './async-action-state-manager/async-action-state-manager.module';
+import { CustomLoggerModule, CUSTOM_LOGGER_CONFIG } from './custom-logger/custom-logger.module';
+import { CustomPipeModule } from './custom-pipe/custom-pipe.module';
+import { HttpConfigurationModule, HTTP_ERROR_CONFIG } from './http-configuration/http-configuration.module';
+import { NonFunctionalConfig } from './non-functional.models';
+import { RootStoreModule, ROOT_STORE_CONFIG } from './root-store/root-store.module';
+export * from './async-action-state-manager/async-action-state-manager.module';
 export { CustomLogger, CustomLoggerLevel } from './custom-logger/custom-logger.module';
 export { NonFunctionalConfig } from './non-functional.models';
-export * from './async-action-state-manager/async-action-state-manager.module';
+
+
+/**
+ * This is not a real service, but it looks like it from the outside.
+ * It's just an InjectionToken used to import the config object,
+ * provided from the outside
+ */
+export const NON_FUNCTIONAL_CONFIG =
+  new InjectionToken<NonFunctionalConfig>('NON_FUNCTIONAL_CONFIG');
+
 @NgModule({
   declarations: [],
   imports: [
@@ -23,19 +32,19 @@ export * from './async-action-state-manager/async-action-state-manager.module';
   providers: [
     {
       provide: CUSTOM_LOGGER_CONFIG,
-      useExisting: NonFunctionalConfigService
+      useExisting: NON_FUNCTIONAL_CONFIG
     },
     {
       provide: APP_ERROR_HANDLER_CONFIG,
-      useExisting: NonFunctionalConfigService
+      useExisting: NON_FUNCTIONAL_CONFIG
     },
     {
       provide: HTTP_ERROR_CONFIG,
-      useExisting: NonFunctionalConfigService
+      useExisting: NON_FUNCTIONAL_CONFIG
     },
     {
       provide: ROOT_STORE_CONFIG,
-      useExisting: NonFunctionalConfigService
+      useExisting: NON_FUNCTIONAL_CONFIG
     }
   ],
   exports: [
@@ -51,13 +60,13 @@ export class NonFunctionalModule {
     }
   }
 
-  static forRoot(config: NonFunctionalConfig | null | undefined): ModuleWithProviders {
+  static forRoot(config?: NonFunctionalConfig): ModuleWithProviders {
     return {
       ngModule: NonFunctionalModule,
       providers: [
         {
-          provide: NonFunctionalConfigService,
-          useValue: config
+          provide: NON_FUNCTIONAL_CONFIG,
+          useValue: config ? config : {}
         },
       ]
     };

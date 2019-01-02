@@ -1,1 +1,6 @@
-export { LoggerConfig as CustomLoggerConfig } from 'ngx-logger';
+export {
+    LoggerConfig as CustomLoggerConfig,
+    NGXLogger as CustomLogger,
+    NgxLoggerLevel as CustomLoggerLevel
+} from 'ngx-logger';
+

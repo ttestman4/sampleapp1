@@ -4,7 +4,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { META_REDUCERS, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { RootStoreConfig, StoreConfig } from './root-store.models';
+import { RootStoreConfig } from './root-store.models';
 import { createMetaReducers, reducers } from './root-store.reducer';
 export { RootStoreConfig } from './root-store.models';
 
@@ -70,7 +70,6 @@ export class RootStoreModule {
     }
   }
   static forRoot(config?: RootStoreConfig): ModuleWithProviders {
-    StoreConfig.config = Object.assign({}, StoreConfig.config, config);
     return {
       ngModule: RootStoreModule,
       providers: [
