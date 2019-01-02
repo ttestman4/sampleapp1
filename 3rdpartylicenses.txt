@@ -424,6 +424,9 @@ MIT
 
 @angular/material/datepicker
 
+@ngrx/entity
+MIT
+
 ngx-logger
 MIT
 The MIT License
@@ -449,13 +452,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-@ngrx/router-store
-MIT
-
-@ngrx/entity
-MIT
-
 @ngrx/effects
+MIT
+
+@ngrx/router-store
 MIT
 
 non-functional
