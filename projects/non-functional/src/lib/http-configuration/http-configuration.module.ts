@@ -1,12 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { CUSTOM_LOGGER_CONFIG, CustomLoggerModule } from '../custom-logger/custom-logger.module';
-import { HttpConfigurationConfigService } from './http-configuration-config.service';
+import { InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { CustomLoggerConfig, CustomLoggerLevel, CustomLoggerModule, CUSTOM_LOGGER_CONFIG } from '../custom-logger/custom-logger.module';
 import { HttpConfigurationConfig } from './http-configuration.models';
 import { HttpErrorLoggerService, ResetHttpErrorLoggerServiceId } from './http-error-logger.service';
-export { HttpConfigurationConfigService } from './http-configuration-config.service';
 export { HttpConfigurationConfig } from './http-configuration.models';
+
+
+/**
+ * This is not a real service, but it looks like it from the outside.
+ * It's just an InjectionToken used to import the config object,
+ * provided from the outside
+ */
+export const HTTP_ERROR_CONFIG =
+  new InjectionToken<HttpConfigurationConfig>('HTTP_ERROR_CONFIG');
+
 @NgModule({
   declarations: [],
   imports: [
@@ -17,7 +25,8 @@ export { HttpConfigurationConfig } from './http-configuration.models';
   providers: [
     {
       provide: CUSTOM_LOGGER_CONFIG,
-      useExisting: HttpConfigurationConfigService
+      useFactory: createLoggerConfig,
+      deps: [HTTP_ERROR_CONFIG]
     },
     {
       provide: HTTP_INTERCEPTORS,
@@ -33,13 +42,13 @@ export class HttpConfigurationModule {
         'HttpConfigurationModule is already loaded. Import it in the AppModule only');
     }
   }
-  static forRoot(config: HttpConfigurationConfig | null | undefined): ModuleWithProviders {
+  static forRoot(config?: HttpConfigurationConfig): ModuleWithProviders {
     return {
       ngModule: HttpConfigurationModule,
       providers: [
         {
-          provide: HttpConfigurationConfigService,
-          useValue: config
+          provide: HTTP_ERROR_CONFIG,
+          useValue: config ? config : {}
         }
       ]
     };
@@ -54,4 +63,17 @@ export class HttpConfigurationModule {
   static forTestReset() {
     ResetHttpErrorLoggerServiceId();
   }
+}
+
+
+export function createLoggerConfig(
+  config: CustomLoggerConfig = { level: CustomLoggerLevel.ERROR }
+) {
+  const defaultConfig: CustomLoggerConfig = {
+    level: CustomLoggerLevel.ERROR
+  };
+  return {
+    ...defaultConfig,
+    config
+  };
 }

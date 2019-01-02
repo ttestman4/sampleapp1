@@ -1,13 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { InjectionToken, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { META_REDUCERS, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { RootStoreConfigService } from './root-store-config.service';
 import { RootStoreConfig, StoreConfig } from './root-store.models';
 import { createMetaReducers, reducers } from './root-store.reducer';
 export { RootStoreConfig } from './root-store.models';
+
+/**
+ * This is not a real service, but it looks like it from the outside.
+ * It's just an InjectionToken used to import the config object,
+ * provided from the outside
+ */
+export const ROOT_STORE_CONFIG =
+  new InjectionToken<RootStoreConfig>('ROOT_STORE_CONFIG');
 
 @NgModule({
   declarations: [],
@@ -50,7 +57,7 @@ export { RootStoreConfig } from './root-store.models';
   providers: [
     {
       provide: META_REDUCERS,
-      deps: [RootStoreConfigService],
+      deps: [ROOT_STORE_CONFIG],
       useFactory: createMetaReducers
     }
   ]
@@ -62,14 +69,14 @@ export class RootStoreModule {
         'RootStoreModule is already loaded. Import it in the AppModule only');
     }
   }
-  static forRoot(config: RootStoreConfig | null | undefined): ModuleWithProviders {
+  static forRoot(config?: RootStoreConfig): ModuleWithProviders {
     StoreConfig.config = Object.assign({}, StoreConfig.config, config);
     return {
       ngModule: RootStoreModule,
       providers: [
         {
-          provide: RootStoreConfigService,
-          useValue: config
+          provide: ROOT_STORE_CONFIG,
+          useValue: config ? config : {}
         },
       ]
     };

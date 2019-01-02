@@ -1,11 +1,10 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { APP_ERROR_HANDLER_CONFIG, AppErrorHandlerModule } from './app-error-handler/app-error-handler.module';
 import { CUSTOM_LOGGER_CONFIG, CustomLoggerModule } from './custom-logger/custom-logger.module';
-import { HttpConfigurationConfigService, HttpConfigurationModule } from './http-configuration/http-configuration.module';
+import { HTTP_ERROR_CONFIG, HttpConfigurationModule } from './http-configuration/http-configuration.module';
 import { NonFunctionalConfigService } from './non-functional-config.service';
 import { NonFunctionalConfig } from './non-functional.models';
-import { RootStoreModule } from './root-store/root-store.module';
-import { RootStoreConfigService } from './root-store/root-store-config.service';
+import { RootStoreModule , ROOT_STORE_CONFIG} from './root-store/root-store.module';
 import { CustomPipeModule } from './custom-pipe/custom-pipe.module';
 import { AsyncActionStateManagerModule } from './async-action-state-manager/async-action-state-manager.module';
 export { CustomLogger, CustomLoggerLevel } from './custom-logger/custom-logger.module';
@@ -31,11 +30,11 @@ export * from './async-action-state-manager/async-action-state-manager.module';
       useExisting: NonFunctionalConfigService
     },
     {
-      provide: HttpConfigurationConfigService,
+      provide: HTTP_ERROR_CONFIG,
       useExisting: NonFunctionalConfigService
     },
     {
-      provide: RootStoreConfigService,
+      provide: ROOT_STORE_CONFIG,
       useExisting: NonFunctionalConfigService
     }
   ],
