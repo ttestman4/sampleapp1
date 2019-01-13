@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "scripts": {
     "ng": "ng",
+    "prestart": "yarn build:lib",
     "start": "ng serve",
     "build": "ng build",
     "build:lib:non": "yarn build non-functional",
