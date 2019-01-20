@@ -20,8 +20,7 @@
     "test:app": "jest --config ./jest.app.config.js",
     "test:debug:lib:fea": "node  --inspect-brk node_modules/.bin/jest --runInBand --ci --config ./jest.lib.feature-store.config.js",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "yarn start"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
