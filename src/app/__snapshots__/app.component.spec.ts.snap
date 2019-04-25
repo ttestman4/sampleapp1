@@ -12,7 +12,7 @@ exports[`AppComponent snaps 1`] = `
        Flight Search App 
     </h1>
   </div><nfl-async-state-indicator
-    _nghost-c3=""
+    _nghost-a-c3=""
     indicator="bar"
     ng-reflect-indicator="bar"
   >
