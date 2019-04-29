@@ -6,6 +6,7 @@
     "prestart": "yarn build:lib",
     "start": "ng serve -o",
     "build": "ng build",
+    "analyze" : "yarn build --prod --stats-json && webpack-bundle-analyzer ./dist/spa/stats.json",
     "build:lib:non": "yarn build non-functional",
     "build:lib:fea": "yarn build feature-store",
     "build:lib": "yarn build:lib:non && yarn build:lib:fea",
@@ -77,6 +78,7 @@
     "tsickle": ">=0.29.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.2.4"
+    "typescript": "~3.2.4",
+    "webpack-bundle-analyzer": "^3.3.2"
   }
 }
